@@ -25,7 +25,7 @@ include {
 }
 
 terraform {
-  source = "../../infra-modules/backend-environment"
+  source = "../../infra-modules/backend"
 
   extra_arguments "conditional_vars" {
     # built-in function to automatically get the list of 
