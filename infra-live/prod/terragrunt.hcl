@@ -3,11 +3,18 @@ inputs = {
   branch_name    = "master"
   github_org = "MoveoTech"
   profile = "default"
-  region = "eu-west-2"
+  region = "eu-west-3"
+  app_port = 3000
+  availability_zones = ["eu-west-3a","eu-west-3b","eu-west-3c"]
+  main_pvt_route_table_id ="rtb-06a8532ebc2603d20"
   bucket_name = "terraform-moveo-test"
   github_secret_name = "github_secret"
   repository_name = "Skill-Epicure-Dan"
-
+  // https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.docker
+  solution_stack_name = "64bit Amazon Linux 2 v5.4.9 running Node.js 14"
+  instance_type       = "t2.micro"
+  app_name            = "myapp"
+  platform_name       = "eliran-eb"
 }
 
 include {
@@ -18,7 +25,7 @@ include {
 }
 
 terraform {
-  source = "../../infra-modules/cicd"
+  source = "../../infra-modules/backend-environment"
 
   extra_arguments "conditional_vars" {
     # built-in function to automatically get the list of 
