@@ -7,7 +7,6 @@ module "elastic_beanstalk" {
   name                = var.app_name
   availability_zones  = var.availability_zones
   instance_type       = var.instance_type
-  solution_stack_name = var.solution_stack_name
   vpc_id              = var.vpc_id
   private_subnet_ids  = var.private_subnet_ids
 

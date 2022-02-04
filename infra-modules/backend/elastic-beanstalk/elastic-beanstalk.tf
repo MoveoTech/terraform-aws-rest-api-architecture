@@ -53,7 +53,7 @@ module "elastic_beanstalk_environment" {
   application_port = var.application_port
 
   # https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html#platforms-supported.docker
-  solution_stack_name = var.solution_stack_name
+  solution_stack_name = data.aws_elastic_beanstalk_solution_stack.solution_stack_name.name
 
   additional_settings = var.additional_settings
   env_vars            = var.env_vars

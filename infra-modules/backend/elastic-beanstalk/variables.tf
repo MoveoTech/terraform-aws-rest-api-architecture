@@ -55,10 +55,6 @@ variable "autoscale_max" {
   description = "Maximum instances to launch"
 }
 
-variable "solution_stack_name" {
-  type        = string
-  description = "Elastic Beanstalk stack, e.g. Docker, Go, Node, Java, IIS. For more info, see https://docs.aws.amazon.com/elasticbeanstalk/latest/platforms/platforms-supported.html"
-}
 
 variable "wait_for_ready_timeout" {
   type        = string
