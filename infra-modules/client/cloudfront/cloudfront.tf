@@ -1,23 +1,6 @@
-provider "aws" {
-  region = var.region
-}
-
-locals {
-  enabled = true
-}
-
-module "acm_request_certificate" {
-  source  = "./acm"
-  zone_id = var.parent_zone_id
-}
-
-module "lambda_at_edge" {
-  source  = "./lambda"
-  context = module.this.context
-}
 
 data "aws_canonical_user_id" "current" {
-  count = local.enabled ? 1 : 0
+  count = 1
 }
 
 module "s3_bucket" {
@@ -32,7 +15,7 @@ module "s3_bucket" {
 
   grants = [
     {
-      id          = local.enabled ? data.aws_canonical_user_id.current[0].id : ""
+      id          = var.context.enabled ? data.aws_canonical_user_id.current[0].id : ""
       type        = "CanonicalUser"
       permissions = ["FULL_CONTROL"]
       uri         = null
@@ -45,26 +28,29 @@ module "s3_bucket" {
     },
   ]
 
-  context = module.this.context
+  context = var.context
+}
+
+data "aws_cloudfront_response_headers_policy" "default" {
+  name = "Managed-SecurityHeadersPolicy"
+}
+
+data "aws_cloudfront_cache_policy" "default" {
+  name = "Managed-CachingOptimized"
 }
 
 module "cloudfront_s3_cdn" {
-  source = "cloudposse/cloudfront-s3-cdn/aws"
-  # Cloud Posse recommends pinning every module to a specific version
-  version   = "0.82.2"
-  namespace = "moveo-test"
-  stage     = "prod"
-  name      = "app"
-  aliases   = ["elirana.moveodevelop.com", "www.elirana.moveodevelop.com"]
+  source  = "cloudposse/cloudfront-s3-cdn/aws"
+  version = "0.82.2"
 
-  # website_enabled             = true
-  # s3_website_password_enabled = true
-  dns_alias_enabled = true
-  parent_zone_id    = "ZZG2X8KI3MIQB"
-
-  s3_access_logging_enabled = true
-  s3_access_log_bucket_name = module.s3_bucket.bucket_id
-  s3_access_log_prefix      = "logs/s3_access"
+  aliases                    = var.aliases
+  dns_alias_enabled          = var.dns_alias_enabled
+  parent_zone_id             = var.parent_zone_id
+  response_headers_policy_id = data.aws_cloudfront_response_headers_policy.default.id
+  cache_policy_id            = data.aws_cloudfront_cache_policy.default.id
+  s3_access_logging_enabled  = true
+  s3_access_log_bucket_name  = module.s3_bucket.bucket_id
+  s3_access_log_prefix       = "logs/s3_access"
 
   cloudfront_access_logging_enabled = true
   cloudfront_access_log_prefix      = "logs/cf_access"
@@ -94,9 +80,8 @@ module "cloudfront_s3_cdn" {
     ]
   }]
 
-  acm_certificate_arn = module.acm_request_certificate.acm_request_certificate_arn
-  # lambda_function_association = module.lambda_at_edge.lambda_function_association
-  depends_on = [module.acm_request_certificate]
+  acm_certificate_arn = var.acm_certificate_arn
+  context             = var.context
 }
 
 
@@ -108,5 +93,5 @@ resource "aws_s3_bucket_object" "index" {
   source       = "${path.module}/index.html"
   content_type = "text/html"
   etag         = md5(file("${path.module}/index.html"))
-  tags         = module.this.tags
+  tags         = var.context.tags
 }

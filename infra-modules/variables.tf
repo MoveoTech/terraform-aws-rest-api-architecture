@@ -3,23 +3,36 @@ variable "region" {
   description = "aws region to deploy to"
   type        = string
 }
+variable "parent_zone_id" {
+  description = "The id of the parent Route53 zone to use for the distribution."
+  type        = string
+  default     = null
+}
+variable "domain_name" {
+  type        = string
+  description = "A domain name for which the certificate should be issued"
+  default     = null
+}
 
-# variable "vpc_id" {
-#   type        = string
-#   description = "VPC ID where subnets will be created (e.g. `vpc-aceb2723`)"
-# }
-
-# variable "private_subnet_ids" {
-#   type        = list(string)
-#   description = "IDs of the created private subnets"
-# }
-
-# variable "private_route_table_ids" {
-#   type        = list(string)
-#   description = "IDs of the created private route tables"
-# }
-
-
+variable "aliases" {
+  type        = list(string)
+  description = "List of FQDN's - Used to set the Alternate Domain Names (CNAMEs) setting on Cloudfront"
+  default     = []
+}
+variable "dns_alias_enabled" {
+  type        = bool
+  default     = false
+  description = "Create a DNS alias for the CDN. Requires `parent_zone_id` or `parent_zone_name`"
+}
+variable "subject_alternative_names" {
+  type        = list(string)
+  default     = []
+  description = "A list of domains that should be SANs in the issued certificate"
+  validation {
+    condition     = length([for name in var.subject_alternative_names : name if can(regex("[A-Z]", name))]) == 0
+    error_message = "All SANs must be lower-case."
+  }
+}
 variable "platform_name" {
   description = "The name of the platform"
   type        = string
