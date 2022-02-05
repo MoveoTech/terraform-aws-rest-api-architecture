@@ -26,3 +26,26 @@ module "server" {
   depends_on = [module.network]
   context    = module.this.context
 }
+
+
+
+# module "acm_request_certificate" {
+#   source                    = "./client/acm"
+#   domain_name               = var.domain_name
+#   zone_id                   = var.parent_zone_id
+#   subject_alternative_names = var.subject_alternative_names
+# }
+
+
+module "cloudfront_s3_cdn" {
+  source              = "./client/cloudfront"
+  region              = var.region
+  aliases             = var.aliases
+  dns_alias_enabled   = var.dns_alias_enabled
+  parent_zone_id      = var.parent_zone_id
+  # acm_certificate_arn = module.acm_request_certificate.acm_request_certificate_arn
+  # depends_on          = [module.acm_request_certificate]
+  context             = module.this.context
+}
+
+
