@@ -22,7 +22,7 @@ module "server" {
   app_port                = var.app_port
   private_subnet_ids      = module.network.private_subnet_ids
   private_route_table_ids = module.network.private_route_table_ids
-  platform_name = var.platform_name
+  platform_name           = var.platform_name
 
   depends_on = [module.network]
   context    = module.this.context

@@ -1,0 +1,4 @@
+
+variable "context" {
+  type = any
+}
