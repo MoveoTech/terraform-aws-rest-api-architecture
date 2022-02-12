@@ -1,6 +1,6 @@
 resource "aws_security_group" "atlas_resource" {
   vpc_id      = var.vpc_id
-  name        = "iot-events-atlas-resource-security-group"
+  name        = "${module.label.name}-${module.label.stage}-atlas-resource-security-group"
   description = "The security group for resources that need to communicate with the Atlas private endpoint"
 
   egress {
@@ -13,7 +13,7 @@ resource "aws_security_group" "atlas_resource" {
 
 resource "aws_security_group" "atlas_endpoint" {
   vpc_id      = var.vpc_id
-  name        = "iot-events-atlas-endpoint-security-group"
+  name        = "${module.label.name}-${module.label.stage}-atlas-endpoint-security-group"
   description = "The security group for the Atlas private endpoint, allowing it to communicate with VPC resources"
 
   ingress {

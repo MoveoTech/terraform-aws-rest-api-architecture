@@ -1,5 +1,5 @@
 variable "region" {
-  type = string 
+  type        = string
   description = "The AWS region where resources have been deployed"
 }
 
@@ -10,7 +10,7 @@ variable "availability_zones" {
 
 variable "description" {
   type        = string
-  default     = "Elastic Beanstalk environment" 
+  default     = "Elastic Beanstalk environment"
   description = "Short description of the Environment"
 }
 
@@ -178,30 +178,53 @@ variable "additional_settings" {
   }))
 
   description = "Additional Elastic Beanstalk setttings. For full list of options, see https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html"
-  default     = [
-      {
-    namespace = "aws:elasticbeanstalk:managedactions"
-    name      = "ManagedActionsEnabled"
-    value     = "false"
-  }
+  default = [
+    {
+      namespace = "aws:elasticbeanstalk:managedactions"
+      name      = "ManagedActionsEnabled"
+      value     = "false"
+    }
   ]
 }
 
 variable "env_vars" {
-  type        = map(string)
-  default     = {
-    "NODE_ENV"  = "prod"
+  type = map(string)
+  default = {
+    "NODE_ENV" = "prod"
   }
   description = "Map of custom ENV variables to be provided to the application running on Elastic Beanstalk, e.g. env_vars = { DB_USER = 'admin' DB_PASS = 'xxxxxx' }"
 }
 
-
+variable "context" {
+  type = any
+}
 variable "vpc_id" {
-  type = string 
+  type        = string
   description = "The id for the VPC where the ECS container instance should be deployed"
 }
 
 variable "private_subnet_ids" {
-  type = list(string)
+  type        = list(string)
   description = "IDs for private subnets"
 }
+variable "associated_security_group_ids" {
+  type        = string
+  description = "IDs for private subnets"
+}
+
+
+variable "db_connection_string" {
+  description = "The MongoDB connection string the lambda will use to connect to Atlas"
+  type        = string
+}
+
+variable "db_username" {
+  description = "The username of the account with which to access the database"
+  type        = string
+}
+
+variable "db_password" {
+  description = "The password of the account with which to access the database"
+  type        = string
+}
+

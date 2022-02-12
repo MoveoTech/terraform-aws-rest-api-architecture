@@ -1,14 +1,4 @@
-terraform {
-  required_providers {
-    mongodbatlas = {
-      source  = "mongodb/mongodbatlas"
-    }
 
-    random = {
-      source  = "hashicorp/random"
-    }
-  }
-}
 
 module "atlas_vpc_endpoint" {
   source = "./vpc-endpoint"
@@ -29,10 +19,10 @@ module "atlas_project" {
 }
 
 module "db_users" {
-  source = "./db-user"
-
-  project_id = module.atlas_project.atlas_project_id
-  context    = var.context
+  source       = "./db-user"
+  cluster_name = module.atlas_cluster.cluster_name
+  project_id   = module.atlas_project.atlas_project_id
+  context      = var.context
 }
 
 module "security_groups" {

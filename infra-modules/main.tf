@@ -1,15 +1,3 @@
-terraform {
-  required_providers {
-    mongodbatlas = {
-      source  = "mongodb/mongodbatlas"
-    }
-
-    random = {
-      source  = "hashicorp/random"
-    }
-  }
-}
-
 provider "aws" {
   region = var.region
 }
@@ -28,32 +16,37 @@ module "network" {
 }
 
 module "atlas_database" {
-  source       = "./database"
-  region       = var.region
-  public_key   = var.public_key
-  private_key  = var.private_key
-  atlas_org_id = var.atlas_org_id
-  vpc_id       = module.network.vpc_id
-  cidr_block   = module.network.vpc_id
-  context      = module.this.context
+  source             = "./database"
+  region             = var.region
+  public_key         = var.public_key
+  private_key        = var.private_key
+  atlas_org_id       = var.atlas_org_id
+  vpc_id             = module.network.vpc_id
+  cidr_block         = module.network.vpc_cidr_block
+  private_subnet_ids = module.network.private_subnet_ids
+  context            = module.this.context
 }
 
-# module "server" {
-#   source = "./backend"
+module "server" {
+  source = "./backend"
 
-#   region                  = var.region
-#   app_name                = var.app_name
-#   availability_zones      = var.availability_zones
-#   instance_type           = var.instance_type
-#   vpc_id                  = module.network.vpc_id
-#   app_port                = var.app_port
-#   private_subnet_ids      = module.network.private_subnet_ids
-#   private_route_table_ids = module.network.private_route_table_ids
-#   platform_name           = var.platform_name
+  region                        = var.region
+  app_name                      = var.app_name
+  availability_zones            = var.availability_zones
+  instance_type                 = var.instance_type
+  vpc_id                        = module.network.vpc_id
+  app_port                      = var.app_port
+  private_subnet_ids            = module.network.private_subnet_ids
+  private_route_table_ids       = module.network.private_route_table_ids
+  associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
+  platform_name                 = var.platform_name
+  db_connection_string          = module.atlas_database.db_connection_string
+  db_username                   = module.atlas_database.db_username
+  db_password                   = module.atlas_database.db_password
 
-#   depends_on = [module.network]
-#   context    = module.this.context
-# }
+  depends_on = [module.network]
+  context    = module.this.context
+}
 
 
 

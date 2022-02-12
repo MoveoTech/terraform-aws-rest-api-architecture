@@ -29,3 +29,9 @@ variable "cidr_block" {
   type        = string
   description = "Base CIDR block which will be divided into subnet CIDR blocks (e.g. `10.0.0.0/16`)"
 }
+
+
+variable "private_subnet_ids" {
+  type = list(string)
+  description = "IDs for private subnets"
+}
