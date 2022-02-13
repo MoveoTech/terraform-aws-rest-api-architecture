@@ -11,6 +11,26 @@ module "atlas_vpc_endpoint" {
 
   context = var.context
 }
+resource "mongodbatlas_auditing" "audit" {
+  project_id                  = module.atlas_project.atlas_project_id
+  audit_filter                = "{ 'atype': 'authenticate', 'param': {   'user': 'auditAdmin',   'db': 'admin',   'mechanism': 'SCRAM-SHA-1' }}"
+  audit_authorization_success = false
+  enabled                     = true
+}
+
+resource "mongodbatlas_org_invitation" "invitation" {
+  for_each = { for vm in var.atlas_users : vm => vm }
+  username = each.value
+  org_id   = var.atlas_org_id
+  roles    = ["ORG_MEMBER"]
+}
+resource "mongodbatlas_project_invitation" "project_invitation" {
+  for_each = { for vm in var.atlas_users : vm => vm }
+  username = each.value
+  project_id  = module.atlas_project.atlas_project_id
+  roles       = [ "GROUP_DATA_ACCESS_READ_WRITE" ]
+}
+
 
 module "atlas_project" {
   source       = "./atlas-project"

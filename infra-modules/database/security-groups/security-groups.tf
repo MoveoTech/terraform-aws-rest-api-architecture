@@ -1,3 +1,10 @@
+module "label" {
+  source  = "cloudposse/label/null"
+  version = "0.25.0"
+
+  context = var.context
+}
+
 resource "aws_security_group" "atlas_resource" {
   vpc_id      = var.vpc_id
   name        = "${module.label.name}-${module.label.stage}-atlas-resource-security-group"

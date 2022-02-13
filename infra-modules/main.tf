@@ -24,6 +24,7 @@ module "atlas_database" {
   vpc_id             = module.network.vpc_id
   cidr_block         = module.network.vpc_cidr_block
   private_subnet_ids = module.network.private_subnet_ids
+  atlas_users        = var.atlas_users
   context            = module.this.context
 }
 
