@@ -1,20 +1,25 @@
+module "label" {
+  source  = "cloudposse/label/null"
+  version = "0.25.0"
 
+  context = var.context
+}
 module "elastic_beanstalk_application" {
-  source  = "cloudposse/elastic-beanstalk-application/aws"
-  version = "0.11.1"
+  source      = "cloudposse/elastic-beanstalk-application/aws"
+  version     = "0.11.1"
   description = "Elastic Beanstalk application"
-  context = module.this.context
+  context     = var.context
 }
 
 module "elastic_beanstalk_environment" {
-  source = "cloudposse/elastic-beanstalk-environment/aws"
+  source  = "cloudposse/elastic-beanstalk-environment/aws"
   version = "0.46.0"
 
-  description                = var.description
-  region                     = var.region
-  availability_zone_selector = var.availability_zone_selector
-  dns_zone_id                = var.dns_zone_id
-
+  description                        = var.description
+  region                             = var.region
+  availability_zone_selector         = var.availability_zone_selector
+  dns_zone_id                        = var.dns_zone_id
+  associated_security_group_ids      = [var.associated_security_group_ids]
   wait_for_ready_timeout             = var.wait_for_ready_timeout
   elastic_beanstalk_application_name = module.elastic_beanstalk_application.elastic_beanstalk_application_name
   environment_type                   = var.environment_type
@@ -56,12 +61,16 @@ module "elastic_beanstalk_environment" {
   solution_stack_name = data.aws_elastic_beanstalk_solution_stack.solution_stack_name.name
 
   additional_settings = var.additional_settings
-  env_vars            = var.env_vars
-
+  env_vars = {
+    "NODE_ENV"      = "${module.label.stage}"
+    "DATABASE_NAME" = "${module.label.name}-${module.label.stage}"
+  }
+  enable_stream_logs           = true
   extended_ec2_policy_document = data.aws_iam_policy_document.minimal_s3_permissions.json
   prefer_legacy_ssm_policy     = false
   prefer_legacy_service_policy = false
-
+  s3_bucket_encryption_enabled = true
+  managed_actions_enabled      = true
   # Unhealthy threshold count and healthy threshold count must be the same for Network Load Balancers
   healthcheck_healthy_threshold_count   = 3
   healthcheck_unhealthy_threshold_count = 3
@@ -69,7 +78,7 @@ module "elastic_beanstalk_environment" {
   # Health check interval must be either 10 seconds or 30 seconds for Network Load Balancers
   healthcheck_interval = 30
 
-  context = module.this.context
+  context = var.context
 }
 
 data "aws_iam_policy_document" "minimal_s3_permissions" {

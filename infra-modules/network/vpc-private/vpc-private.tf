@@ -31,7 +31,7 @@ module "vpc_endpoints" {
   private_route_table_ids = module.private_subnets.private_route_table_ids
   default_security_group  = module.default_security_group.id
   region                  = var.region
-    context           = var.context
+  context                 = var.context
 }
 
 

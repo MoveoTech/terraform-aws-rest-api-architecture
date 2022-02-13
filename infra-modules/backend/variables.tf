@@ -51,3 +51,15 @@ variable "private_subnet_ids" {
   type        = list(string)
   description = "IDs of the created private subnets"
 }
+
+
+variable "associated_security_group_ids" {
+  type        = string
+  description = "IDs for private subnets"
+}
+
+
+variable "ssm_arn" {
+  description = "Secrets manager arn for adding to ec2 policy"
+  type        = string
+}
