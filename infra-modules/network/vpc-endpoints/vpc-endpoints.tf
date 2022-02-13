@@ -75,6 +75,29 @@ resource "aws_vpc_endpoint" "cloudwatch" {
 
 }
 
+resource "aws_vpc_endpoint" "kms" {
+  vpc_id              = var.vpc_id
+  service_name        = "com.amazonaws.${var.region}.kms"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = var.private_subnet_ids
+  private_dns_enabled = true
+
+  security_group_ids = [var.default_security_group]
+  tags               = merge(module.label.tags, { Name = "KMS Endpoint Interface - ${module.label.stage}" })
+
+}
+resource "aws_vpc_endpoint" "secretsmanager" {
+  vpc_id              = var.vpc_id
+  service_name        = "com.amazonaws.${var.region}.secretsmanager"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = var.private_subnet_ids
+  private_dns_enabled = true
+
+  security_group_ids = [var.default_security_group]
+  tags               = merge(module.label.tags, { Name = "Secret Manager Endpoint Interface - ${module.label.stage}" })
+
+}
+
 # S3
 resource "aws_vpc_endpoint" "s3" {
   vpc_id            = var.vpc_id

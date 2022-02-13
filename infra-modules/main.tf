@@ -7,6 +7,13 @@ provider "mongodbatlas" {
   private_key = var.private_key
 }
 
+locals {
+  secrets = {
+    db_username          = module.atlas_database.db_username
+    db_password          = module.atlas_database.db_password
+    db_connection_string = module.atlas_database.db_connection_string
+  }
+}
 
 module "network" {
   source             = "./network"
@@ -28,6 +35,26 @@ module "atlas_database" {
   context            = module.this.context
 }
 
+resource "aws_secretsmanager_secret" "secrets" {
+  name                    = "secrets/${module.this.stage}"
+  description             = "Envoironment secrets"
+  recovery_window_in_days = 0
+  kms_key_id              = module.kms.kms_id
+  tags                    = module.this.tags
+}
+
+resource "aws_secretsmanager_secret_version" "secrets" {
+  secret_id     = aws_secretsmanager_secret.secrets.id
+  secret_string = jsonencode(local.secrets)
+}
+
+module "kms" {
+  source                      = "./kms"
+  elastic_beanstalk_role_name = module.server.elastic_beanstalk_environment_ec2_instance_profile_role_name
+
+  context = module.this.context
+}
+
 module "server" {
   source = "./backend"
 
@@ -41,12 +68,9 @@ module "server" {
   private_route_table_ids       = module.network.private_route_table_ids
   associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
   platform_name                 = var.platform_name
-  db_connection_string          = module.atlas_database.db_connection_string
-  db_username                   = module.atlas_database.db_username
-  db_password                   = module.atlas_database.db_password
-
-  depends_on = [module.network]
-  context    = module.this.context
+  ssm_arn                       = aws_secretsmanager_secret.secrets.arn
+  depends_on                    = [module.network, aws_secretsmanager_secret.secrets]
+  context                       = module.this.context
 }
 
 

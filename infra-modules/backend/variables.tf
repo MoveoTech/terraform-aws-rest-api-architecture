@@ -59,18 +59,7 @@ variable "associated_security_group_ids" {
 }
 
 
-variable "db_connection_string" {
-  description = "The MongoDB connection string the lambda will use to connect to Atlas"
-  type = string
+variable "ssm_arn" {
+  description = "Secrets manager arn for adding to ec2 policy"
+  type        = string
 }
-
-variable "db_username" {
-  description = "The username of the account with which to access the database"
-  type = string
-}
-
-variable "db_password" {
-  description = "The password of the account with which to access the database"
-  type = string
-}
-

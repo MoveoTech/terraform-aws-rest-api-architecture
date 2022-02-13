@@ -5,7 +5,7 @@ module "label" {
   context = var.context
 }
 resource "random_password" "db_user_password" {
-  length = 16
+  length = 24
 }
 # DATABASE USER
 resource "mongodbatlas_database_user" "user1" {

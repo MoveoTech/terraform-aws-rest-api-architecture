@@ -62,17 +62,15 @@ module "elastic_beanstalk_environment" {
 
   additional_settings = var.additional_settings
   env_vars = {
-    "NODE_ENV"         = "${module.label.stage}"
-    "MONGODB_URI"      = var.db_connection_string
-    "MONGODB_USER"     = var.db_username
-    "MONGODB_PASSWORD" = var.db_password
-    "DATABASE_NAME"    = "${module.label.name}-${module.label.stage}"
+    "NODE_ENV"      = "${module.label.stage}"
+    "DATABASE_NAME" = "${module.label.name}-${module.label.stage}"
   }
-
+  enable_stream_logs           = true
   extended_ec2_policy_document = data.aws_iam_policy_document.minimal_s3_permissions.json
   prefer_legacy_ssm_policy     = false
   prefer_legacy_service_policy = false
-
+  s3_bucket_encryption_enabled = true
+  managed_actions_enabled      = true
   # Unhealthy threshold count and healthy threshold count must be the same for Network Load Balancers
   healthcheck_healthy_threshold_count   = 3
   healthcheck_unhealthy_threshold_count = 3
