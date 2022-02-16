@@ -55,11 +55,6 @@ variable "private_subnet_ids" {
 
 variable "associated_security_group_ids" {
   type        = string
+  default = "null"
   description = "IDs for private subnets"
-}
-
-
-variable "ssm_arn" {
-  description = "Secrets manager arn for adding to ec2 policy"
-  type        = string
 }

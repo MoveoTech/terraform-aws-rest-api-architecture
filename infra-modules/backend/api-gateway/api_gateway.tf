@@ -1,11 +1,20 @@
-
+locals {
+  create_log_group = true
+  log_group_arn    = module.cloudwatch_log_group.log_group_arn
+}
 module "label" {
   source  = "cloudposse/label/null"
   version = "0.25.0"
 
   context = var.context
 }
+module "account_settings" {
+  source = "cloudposse/api-gateway/aws//modules/account-settings"
 
+  version = "0.2.0"
+  name    = "api-gateway-${module.label.environment}"
+
+}
 resource "aws_api_gateway_rest_api" "main" {
   name = "api-gateway-${module.label.environment}"
   tags = merge(module.label.tags, { Name = "Api Gateway" })
@@ -44,8 +53,8 @@ resource "aws_api_gateway_integration" "main" {
 
 resource "aws_api_gateway_deployment" "main" {
   rest_api_id = aws_api_gateway_rest_api.main.id
-  stage_name  = "${module.label.environment}-env"
-  depends_on  = [aws_api_gateway_integration.main]
+  # stage_name  = "${module.label.environment}-env"
+  depends_on = [aws_api_gateway_integration.main]
 
   variables = {
     # just to trigger redeploy on resource changes
@@ -61,4 +70,56 @@ resource "aws_api_gateway_deployment" "main" {
 }
 
 
+resource "aws_api_gateway_stage" "main" {
+  deployment_id = aws_api_gateway_deployment.main.id
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  stage_name    = module.label.stage
 
+
+  variables = {
+    vpc_link_id = aws_api_gateway_vpc_link.this.id
+  }
+
+  dynamic "access_log_settings" {
+    for_each = local.create_log_group ? [1] : []
+
+    content {
+      destination_arn = local.log_group_arn
+      format          = replace(var.access_log_format, "\n", "")
+    }
+  }
+}
+
+module "cloudwatch_log_group" {
+  source  = "cloudposse/cloudwatch-logs/aws"
+  version = "0.6.4"
+  context = merge(var.context,
+    {
+      namespace   = "",
+      stage       = "",
+      environment = "",
+      name        = "api-gateway-${module.label.environment}"
+  })
+}
+
+resource "aws_api_gateway_method_settings" "main" {
+  rest_api_id = aws_api_gateway_rest_api.main.id
+  stage_name  = aws_api_gateway_stage.main.stage_name
+  method_path = "*/*"
+
+  settings {
+    metrics_enabled = true
+    logging_level   = "INFO"
+  }
+
+  depends_on = [
+    module.account_settings
+  ]
+}
+
+# Optionally create a VPC Link to allow the API Gateway to communicate with private resources (e.g. ALB)
+resource "aws_api_gateway_vpc_link" "this" {
+  name        = "vpc-link-${module.label.name}"
+  description = "VPC Link for ${module.label.name}"
+  target_arns = [var.nlb_arn]
+}
