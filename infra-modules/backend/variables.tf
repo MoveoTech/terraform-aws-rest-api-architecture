@@ -52,7 +52,6 @@ variable "private_subnet_ids" {
   description = "IDs of the created private subnets"
 }
 
-
 variable "associated_security_group_ids" {
   type        = string
   default = "null"

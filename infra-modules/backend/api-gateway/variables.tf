@@ -31,6 +31,10 @@ variable "elastic_beanstalk_application_name" {
   description = "Elastic beanstalk application name"
 }
 
+variable "kms_key_arn" {
+  type = string
+  description = "The KMS arn key to encrtypt all logs "
+}
 variable "nlb_arn" {
   type = string
   description = "Network load balncer arn"

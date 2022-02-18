@@ -43,6 +43,7 @@ module "cloudfront_s3_cdn" {
   source  = "cloudposse/cloudfront-s3-cdn/aws"
   version = "0.82.2"
 
+  web_acl_id                 = module.waf_cloudfront.arn
   aliases                    = var.aliases
   dns_alias_enabled          = var.dns_alias_enabled
   parent_zone_id             = var.parent_zone_id
@@ -94,4 +95,24 @@ resource "aws_s3_bucket_object" "index" {
   content_type = "text/html"
   etag         = md5(file("${path.module}/index.html"))
   tags         = var.context.tags
+}
+provider "aws" {
+  region = "us-east-1"
+  alias  = "east"
+}
+
+
+module "kms" {
+  source       = "./kms"
+  context      = var.context
+}
+module "waf_cloudfront" {
+  source      = "../../waf"
+  kms_key_arn = module.kms.key_arn
+  providers = {
+    aws = aws.east
+  }
+  scope   = "CLOUDFRONT"
+  type    = "cloudfront"
+  context = var.context
 }

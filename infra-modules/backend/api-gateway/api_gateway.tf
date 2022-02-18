@@ -89,16 +89,23 @@ resource "aws_api_gateway_stage" "main" {
     }
   }
 }
+resource "random_string" "random" {
+  length  = 5
+  special = false
+  number  = true
+  upper   = true
+}
 
 module "cloudwatch_log_group" {
-  source  = "cloudposse/cloudwatch-logs/aws"
-  version = "0.6.4"
+  source      = "cloudposse/cloudwatch-logs/aws"
+  version     = "0.6.4"
+  kms_key_arn = var.kms_key_arn
   context = merge(var.context,
     {
       namespace   = "",
       stage       = "",
       environment = "",
-      name        = "api-gateway-${module.label.environment}"
+      name        = "api-gateway-${module.label.environment}-${random_string.random.result}"
   })
 }
 

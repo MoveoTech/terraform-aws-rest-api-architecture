@@ -1,5 +1,14 @@
 
 
+module "kms" {
+  source     = "../kms"
+  alias_name = "eb_backend"
+  service_name = [
+    "elasticbeanstalk.amazonaws.com",
+    "logs.amazonaws.com",
+  ]
+  context = var.context
+}
 
 module "elastic_beanstalk" {
   source                        = "./elastic-beanstalk"
@@ -12,9 +21,18 @@ module "elastic_beanstalk" {
   context                       = var.context
 }
 
+module "waf_api_gateway" {
+  source                    = "../waf"
+  association_resource_arns = [module.api_gateway.arn]
+  type                      = "cloudfront"
+  kms_key_arn               = module.kms.key_arn
+  context                   = var.context
+}
+
 # API Gateway and VPC link
 module "api_gateway" {
   source                              = "./api-gateway"
+  kms_key_arn               = module.kms.key_arn
   integration_input_type              = "HTTP_PROXY"
   path_part                           = "{proxy+}"
   app_port                            = var.app_port

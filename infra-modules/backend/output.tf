@@ -8,3 +8,13 @@ output "api_gateway_arn" {
   description = "The ARN of the REST API"
   value       = module.api_gateway.arn
 }
+
+output "eb_kms_id" {
+  value       = module.kms.key_id
+  description = "KMS key id"
+}
+
+output "eb_key_arn" {
+  value       = module.kms.key_arn
+  description = "Key ARN"
+}

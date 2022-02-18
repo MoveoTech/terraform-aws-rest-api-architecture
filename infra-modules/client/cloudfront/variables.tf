@@ -4,17 +4,21 @@ variable "region" {
 variable "context" {
   type = any
 }
-  variable "domain_name" {
-    type        = string
-    description = "A domain name for which the certificate should be issued"
-    default     = null
-  }
+variable "domain_name" {
+  type        = string
+  description = "A domain name for which the certificate should be issued"
+  default     = null
+}
 variable "acm_certificate_arn" {
   type        = string
   description = "Existing ACM Certificate ARN"
   default     = ""
 }
-
+variable "kms_key_arn" {
+  type        = string
+  default     = null
+  description = "The KMS arn key to encrtypt all logs "
+}
 variable "subject_alternative_names" {
   type        = list(string)
   default     = []
