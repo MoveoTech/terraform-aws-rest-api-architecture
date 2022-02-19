@@ -19,7 +19,9 @@ module "account_settings" {
 }
 resource "aws_api_gateway_rest_api" "main" {
   name = "api-gateway-${module.label.stage}"
-  tags = merge(module.label.tags, { Name = "Api Gateway" })
+  tags = merge(module.label.tags, { Name = "Api Gateway" }, {
+    yor_trace = "921a6956-bab5-4ab5-9fca-496360259651"
+  })
 }
 
 resource "aws_api_gateway_resource" "main" {
@@ -90,8 +92,10 @@ resource "aws_api_gateway_stage" "main" {
     }
   }
   xray_tracing_enabled = true
-  tags                 = module.label.tags
   description          = "Api gateway stage"
+  tags = merge(var.context.tags, {
+    yor_trace =  "1942e4b8-f1a0-4d18-82bf-60fc2bb773b4"
+  })
 }
 
 resource "random_string" "random" {
@@ -134,6 +138,9 @@ resource "aws_api_gateway_vpc_link" "this" {
   name        = "vpc-link-${module.label.name}"
   description = "VPC Link for ${module.label.name}"
   target_arns = [var.nlb_arn]
+  tags = {
+    yor_trace = "e7aa8167-7821-4ef6-8033-51c395dac6e5"
+  }
 }
 
 
@@ -149,6 +156,9 @@ resource "aws_api_gateway_domain_name" "server_domain" {
   certificate_arn = var.acm_request_certificate_arn
   domain_name     = var.domain_name
   security_policy = "TLS_1_2"
+  tags = {
+    yor_trace = "c335514d-abc6-48f7-8c03-2e0cbaaca4b4"
+  }
 }
 
 # Example DNS record using Route53.

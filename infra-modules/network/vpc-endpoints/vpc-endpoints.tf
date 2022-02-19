@@ -15,7 +15,9 @@ resource "aws_vpc_endpoint" "sqs" {
   private_dns_enabled = true
 
   security_group_ids = [var.default_security_group]
-  tags               = merge(module.label.tags, { Name = "SQS VPC Endpoint Interface - ${module.label.stage}" })
+  tags = merge(module.label.tags, { Name = "SQS VPC Endpoint Interface - ${module.label.stage}" }, {
+    yor_trace = "fc6ad378-71f8-4c1a-a18b-002c42753824"
+  })
 
 }
 
@@ -30,7 +32,9 @@ resource "aws_vpc_endpoint" "cloudformation" {
   private_dns_enabled = true
 
   security_group_ids = [var.default_security_group]
-  tags               = merge(module.label.tags, { Name = "Cloudformation VPC Endpoint Interface - ${module.label.stage}" })
+  tags = merge(module.label.tags, { Name = "Cloudformation VPC Endpoint Interface - ${module.label.stage}" }, {
+    yor_trace = "3b41be8f-46e5-492a-8f19-798258e66132"
+  })
 
 }
 
@@ -44,7 +48,9 @@ resource "aws_vpc_endpoint" "elasticbeanstalk_health" {
   private_dns_enabled = true
 
   security_group_ids = [var.default_security_group]
-  tags               = merge(module.label.tags, { Name = "Elastic Beanstalk Helath VPC Endpoint Interface - ${module.label.stage}" })
+  tags = merge(module.label.tags, { Name = "Elastic Beanstalk Helath VPC Endpoint Interface - ${module.label.stage}" }, {
+    yor_trace = "7c7888ea-c46f-4672-b12c-71b7fcf9b6dd"
+  })
 
 }
 
@@ -57,7 +63,9 @@ resource "aws_vpc_endpoint" "elasticbeanstalk" {
   private_dns_enabled = true
 
   security_group_ids = [var.default_security_group]
-  tags               = merge(module.label.tags, { Name = "Elastic Beanstalk VPC Endpoint Interface - ${module.label.stage}" })
+  tags = merge(module.label.tags, { Name = "Elastic Beanstalk VPC Endpoint Interface - ${module.label.stage}" }, {
+    yor_trace = "160b5d4d-b54c-4f4e-8384-f14b1666033c"
+  })
 
 }
 
@@ -71,7 +79,9 @@ resource "aws_vpc_endpoint" "cloudwatch" {
   private_dns_enabled = true
 
   security_group_ids = [var.default_security_group]
-  tags               = merge(module.label.tags, { Name = "CloudWatch VPC Endpoint Interface - ${module.label.stage}" })
+  tags = merge(module.label.tags, { Name = "CloudWatch VPC Endpoint Interface - ${module.label.stage}" }, {
+    yor_trace = "5fb3190b-0fd7-470a-b214-8d8c48992830"
+  })
 
 }
 
@@ -83,7 +93,9 @@ resource "aws_vpc_endpoint" "kms" {
   private_dns_enabled = true
 
   security_group_ids = [var.default_security_group]
-  tags               = merge(module.label.tags, { Name = "KMS Endpoint Interface - ${module.label.stage}" })
+  tags = merge(module.label.tags, { Name = "KMS Endpoint Interface - ${module.label.stage}" }, {
+    yor_trace = "94c24f37-e9f8-4c0d-9de3-b399db492b97"
+  })
 
 }
 resource "aws_vpc_endpoint" "secretsmanager" {
@@ -94,7 +106,9 @@ resource "aws_vpc_endpoint" "secretsmanager" {
   private_dns_enabled = true
 
   security_group_ids = [var.default_security_group]
-  tags               = merge(module.label.tags, { Name = "Secret Manager Endpoint Interface - ${module.label.stage}" })
+  tags = merge(module.label.tags, { Name = "Secret Manager Endpoint Interface - ${module.label.stage}" }, {
+    yor_trace = "1e1ed177-ac56-4e32-86bb-d4eceacded37"
+  })
 
 }
 
@@ -104,5 +118,7 @@ resource "aws_vpc_endpoint" "s3" {
   service_name      = "com.amazonaws.${var.region}.s3"
   vpc_endpoint_type = "Gateway"
   route_table_ids   = var.private_route_table_ids
-  tags              = merge(module.label.tags, { Name = "S3 VPC Endpoint Gateway  - ${module.label.stage}" })
+  tags = merge(module.label.tags, { Name = "S3 VPC Endpoint Gateway  - ${module.label.stage}" }, {
+    yor_trace = "ccad2dc9-ba40-4058-aa90-887b5e3f9006"
+  })
 }
