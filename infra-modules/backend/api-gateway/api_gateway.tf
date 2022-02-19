@@ -36,6 +36,8 @@ resource "aws_api_gateway_method" "main" {
   request_parameters = {
     "method.request.path.proxy" = true
   }
+  tags        = module.label.tags
+  description = "Api gateway method"
 }
 
 resource "aws_api_gateway_integration" "main" {
@@ -51,6 +53,8 @@ resource "aws_api_gateway_integration" "main" {
   }
   connection_type = "VPC_LINK"
   connection_id   = aws_api_gateway_vpc_link.this.id
+  tags            = module.label.tags
+  description     = "Api Gateway VPC Link"
 }
 
 resource "aws_api_gateway_deployment" "main" {
@@ -90,7 +94,8 @@ resource "aws_api_gateway_stage" "main" {
     }
   }
   xray_tracing_enabled = true
-  tags = module.label.tags
+  tags                 = module.label.tags
+  description          = "Api gateway stage"
 }
 
 resource "random_string" "random" {
