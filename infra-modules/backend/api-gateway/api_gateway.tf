@@ -89,7 +89,9 @@ resource "aws_api_gateway_stage" "main" {
       format          = replace(var.access_log_format, "\n", "")
     }
   }
+  xray_tracing_enabled = true
 }
+
 resource "random_string" "random" {
   length  = 5
   special = false
