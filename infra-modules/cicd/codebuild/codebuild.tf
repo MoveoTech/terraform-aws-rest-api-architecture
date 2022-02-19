@@ -1,6 +1,6 @@
 resource "aws_codebuild_project" "main" {
-  name = "${var.name}-${var.environment}"
-  service_role = aws_iam_role.main.arn
+  name          = "${var.name}-${var.environment}"
+  service_role  = aws_iam_role.main.arn
   build_timeout = "10"
 
   artifacts {
@@ -27,5 +27,8 @@ resource "aws_codebuild_project" "main" {
   source {
     type      = "CODEPIPELINE"
     buildspec = "buildspec.yml"
+  }
+  tags = {
+    yor_trace = "4624b1a4-2283-4288-b471-f94e1c4e2f12"
   }
 }

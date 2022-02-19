@@ -15,6 +15,9 @@ resource "aws_iam_role" "main" {
   ]
 }
 EOF
+  tags = {
+    yor_trace = "68ca79af-39aa-4701-aacb-2dce72c416e9"
+  }
 }
 
 resource "aws_iam_role_policy" "main" {

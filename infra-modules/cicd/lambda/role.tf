@@ -16,6 +16,9 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 EOF
 
+  tags = {
+    yor_trace = "fea25a1f-46d1-4623-9b0d-00f6d12ed5ab"
+  }
 }
 
 resource "aws_iam_role_policy" "iam_for_lambda" {

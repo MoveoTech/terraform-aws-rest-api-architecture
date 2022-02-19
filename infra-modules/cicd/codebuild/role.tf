@@ -1,6 +1,9 @@
 resource "aws_iam_role" "main" {
-  name = "${var.name}-role-${var.environment}"
+  name               = "${var.name}-role-${var.environment}"
   assume_role_policy = data.aws_iam_policy_document.main.json
+  tags = {
+    yor_trace = "284f65e2-6c6c-4807-a05f-abca8351e171"
+  }
 }
 
 # This is a data source which can be used to construct a 
@@ -9,7 +12,7 @@ resource "aws_iam_role" "main" {
 # such as the aws_iam_policy resource.
 
 data "aws_iam_policy_document" "main" {
-   statement {
+  statement {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
 
@@ -17,19 +20,22 @@ data "aws_iam_policy_document" "main" {
       type        = "Service"
       identifiers = ["codebuild.amazonaws.com"]
     }
-  } 
+  }
 }
 
 # Policies for select environment
 
 resource "aws_iam_policy" "main" {
-    name = "${var.name}-policy-${var.environment}"
-    description = "Allow AWS CodeBuild builds for Multicontainer application"
-    policy = data.aws_iam_policy_document.codebuild_multicontainer_app.json
+  name        = "${var.name}-policy-${var.environment}"
+  description = "Allow AWS CodeBuild builds for Multicontainer application"
+  policy      = data.aws_iam_policy_document.codebuild_multicontainer_app.json
+  tags = {
+    yor_trace = "8f1413db-5f68-4b9e-8500-52a74b5b2f9e"
+  }
 }
 
 resource "aws_iam_role_policy_attachment" "mutlicontainer_app" {
-  role = aws_iam_role.main.name
+  role       = aws_iam_role.main.name
   policy_arn = aws_iam_policy.main.arn
 }
 
@@ -94,4 +100,4 @@ data "aws_iam_policy_document" "codebuild_multicontainer_app" {
       "arn:aws:secretsmanager:eu-west-2:*"
     ]
   }
-} 
+}

@@ -1,5 +1,5 @@
 resource "aws_cloudwatch_event_rule" "main" {
-  name = "${var.name}-${var.environment}"
+  name        = "${var.name}-${var.environment}"
   description = var.description
 
   event_pattern = <<PATTERN
@@ -28,6 +28,9 @@ resource "aws_cloudwatch_event_rule" "main" {
   }
 }
 PATTERN
+  tags = {
+    yor_trace = "680d7c0c-2c97-4044-a460-f41508cf3782"
+  }
 }
 
 resource "aws_cloudwatch_event_target" "main" {
@@ -42,8 +45,8 @@ resource "aws_cloudwatch_event_target" "main" {
 }
   DOC
     input_paths = {
-      pipeline: "$.detail.pipeline",
-      state: "$.detail.state"
+      pipeline : "$.detail.pipeline",
+      state : "$.detail.state"
     }
   }
 }

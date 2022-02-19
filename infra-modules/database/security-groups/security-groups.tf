@@ -16,6 +16,9 @@ resource "aws_security_group" "atlas_resource" {
     protocol    = "-1"
     cidr_blocks = [var.cidr_block]
   }
+  tags = {
+    yor_trace = "584506ee-d6d9-4cd3-b4dc-8d7dfdd55e69"
+  }
 }
 
 resource "aws_security_group" "atlas_endpoint" {
@@ -28,5 +31,8 @@ resource "aws_security_group" "atlas_endpoint" {
     to_port     = 0
     protocol    = "-1"
     cidr_blocks = [var.cidr_block]
+  }
+  tags = {
+    yor_trace = "249ed03e-08ed-4eea-925b-fe577bb3e247"
   }
 }

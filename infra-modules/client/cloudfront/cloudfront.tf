@@ -94,7 +94,9 @@ resource "aws_s3_bucket_object" "index" {
   source       = "${path.module}/index.html"
   content_type = "text/html"
   etag         = md5(file("${path.module}/index.html"))
-  tags         = var.context.tags
+  tags = merge(var.context.tags, {
+    yor_trace = "ff48c2b4-0d82-4b27-9df5-62db2c595070"
+  })
 }
 provider "aws" {
   region = "us-east-1"
@@ -103,8 +105,8 @@ provider "aws" {
 
 
 module "kms" {
-  source       = "./kms"
-  context      = var.context
+  source  = "./kms"
+  context = var.context
 }
 module "waf_cloudfront" {
   source      = "../../waf"
