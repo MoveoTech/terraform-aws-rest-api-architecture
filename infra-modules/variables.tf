@@ -14,7 +14,12 @@ variable "domain_name" {
   default     = null
 }
 
-variable "aliases" {
+variable "aliases_client" {
+  type        = list(string)
+  description = "List of FQDN's - Used to set the Alternate Domain Names (CNAMEs) setting on Cloudfront"
+  default     = []
+}
+variable "aliases_server" {
   type        = list(string)
   description = "List of FQDN's - Used to set the Alternate Domain Names (CNAMEs) setting on Cloudfront"
   default     = []

@@ -2,6 +2,22 @@ variable "app_port" {
   type = number 
   description = "The Application port"
 }
+
+variable "zone_id" {
+  description = "The id of the parent Route53 zone to use for the distribution."
+  type        = string
+  default     = null
+}
+variable "domain_name" {
+  type        = string
+  description = "A domain name for which the certificate should be issued"
+  default     = null
+}
+variable "acm_request_certificate_arn" {
+  description = "Certificate manager ARN"
+  type        = string
+  default     = null
+}
 variable "context" {
   type = any
 }

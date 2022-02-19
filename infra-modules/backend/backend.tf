@@ -1,5 +1,4 @@
 
-
 module "kms" {
   source     = "../kms"
   alias_name = "eb_backend"
@@ -32,7 +31,10 @@ module "waf_api_gateway" {
 # API Gateway and VPC link
 module "api_gateway" {
   source                              = "./api-gateway"
-  kms_key_arn               = module.kms.key_arn
+  domain_name                         = var.domain_name
+  zone_id                             = var.zone_id
+  acm_request_certificate_arn         = var.acm_request_certificate_arn
+  kms_key_arn                         = module.kms.key_arn
   integration_input_type              = "HTTP_PROXY"
   path_part                           = "{proxy+}"
   app_port                            = var.app_port
