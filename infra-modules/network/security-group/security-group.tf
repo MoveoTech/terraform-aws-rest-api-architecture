@@ -17,13 +17,14 @@ resource "aws_security_group" "default" {
 
 
   ingress {
+    description = "Https incoming traffic"
     protocol    = "tcp"
     from_port   = 443
     to_port     = 443
     cidr_blocks = [var.vpc_cidr_block]
   }
-
   egress {
+    description = "Allow all https outgoing trafic"
     from_port = 443
     to_port   = 443
     protocol  = "tcp"
@@ -32,15 +33,8 @@ resource "aws_security_group" "default" {
       var.s3_prefix_list_id
     ]
   }
-
   egress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = [var.vpc_cidr_block]
-  }
-
-  egress {
+    description = "Allow all outgoing trafic"
     protocol    = "-1"
     from_port   = 0
     to_port     = 0

@@ -11,6 +11,7 @@ resource "aws_security_group" "atlas_resource" {
   description = "The security group for resources that need to communicate with the Atlas private endpoint"
 
   egress {
+    description = "Https outgoing traffic"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
@@ -24,6 +25,7 @@ resource "aws_security_group" "atlas_endpoint" {
   description = "The security group for the Atlas private endpoint, allowing it to communicate with VPC resources"
 
   ingress {
+    description = "Allow all trafic from range of ips"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"

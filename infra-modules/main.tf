@@ -6,18 +6,18 @@ locals {
   server_domain_name = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
 }
 
-# provider "mongodbatlas" {
-#   public_key  = var.public_key
-#   private_key = var.private_key
-# }
+provider "mongodbatlas" {
+  public_key  = var.public_key
+  private_key = var.private_key
+}
 
-# locals {
-#   secrets = {
-#     db_username          = module.atlas_database.db_username
-#     db_password          = module.atlas_database.db_password
-#     db_connection_string = module.atlas_database.db_connection_string
-#   }
-# }
+locals {
+  secrets = {
+    db_username          = module.atlas_database.db_username
+    db_password          = module.atlas_database.db_password
+    db_connection_string = module.atlas_database.db_connection_string
+  }
+}
 
 module "network" {
   source             = "./network"
@@ -26,31 +26,31 @@ module "network" {
   context            = module.this.context
 }
 
-# module "atlas_database" {
-#   source             = "./database"
-#   region             = var.region
-#   public_key         = var.public_key
-#   private_key        = var.private_key
-#   atlas_org_id       = var.atlas_org_id
-#   vpc_id             = module.network.vpc_id
-#   cidr_block         = module.network.vpc_cidr_block
-#   private_subnet_ids = module.network.private_subnet_ids
-#   atlas_users        = var.atlas_users
-#   context            = module.this.context
-# }
+module "atlas_database" {
+  source             = "./database"
+  region             = var.region
+  public_key         = var.public_key
+  private_key        = var.private_key
+  atlas_org_id       = var.atlas_org_id
+  vpc_id             = module.network.vpc_id
+  cidr_block         = module.network.vpc_cidr_block
+  private_subnet_ids = module.network.private_subnet_ids
+  atlas_users        = var.atlas_users
+  context            = module.this.context
+}
 
-# resource "aws_secretsmanager_secret" "secrets" {
-#   name                    = "secrets/${module.this.stage}"
-#   description             = "Envoironment secrets"
-#   recovery_window_in_days = 0
-#   kms_key_id              = module.server.eb_kms_id
-#   tags                    = module.this.tags
-# }
+resource "aws_secretsmanager_secret" "secrets" {
+  name                    = "secrets/${module.this.stage}"
+  description             = "Envoironment secrets"
+  recovery_window_in_days = 0
+  kms_key_id              = module.server.eb_kms_id
+  tags                    = module.this.tags
+}
 
-# resource "aws_secretsmanager_secret_version" "secrets" {
-#   secret_id     = aws_secretsmanager_secret.secrets.id
-#   secret_string = jsonencode(local.secrets)
-# }
+resource "aws_secretsmanager_secret_version" "secrets" {
+  secret_id     = aws_secretsmanager_secret.secrets.id
+  secret_string = jsonencode(local.secrets)
+}
 
 
 
@@ -73,9 +73,8 @@ module "server" {
   app_port                    = var.app_port
   private_subnet_ids          = module.network.private_subnet_ids
   private_route_table_ids     = module.network.private_route_table_ids
-  # associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
+  associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
   platform_name = var.platform_name
-  # depends_on                    = [module.network, aws_secretsmanager_secret.secrets]
   depends_on = [module.network, module.acm_request_certificate_server]
   context    = module.this.context
 }

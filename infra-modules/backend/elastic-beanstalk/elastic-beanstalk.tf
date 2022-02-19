@@ -19,7 +19,7 @@ module "elastic_beanstalk_environment" {
   region                             = var.region
   availability_zone_selector         = var.availability_zone_selector
   dns_zone_id                        = var.dns_zone_id
-  # associated_security_group_ids      = [var.associated_security_group_ids]
+  associated_security_group_ids      = [var.associated_security_group_ids]
   wait_for_ready_timeout             = var.wait_for_ready_timeout
   elastic_beanstalk_application_name = module.elastic_beanstalk_application.elastic_beanstalk_application_name
   environment_type                   = var.environment_type

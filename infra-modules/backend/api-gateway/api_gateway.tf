@@ -90,6 +90,7 @@ resource "aws_api_gateway_stage" "main" {
     }
   }
   xray_tracing_enabled = true
+  tags = module.label.tags
 }
 
 resource "random_string" "random" {
