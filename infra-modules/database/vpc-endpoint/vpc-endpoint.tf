@@ -11,6 +11,9 @@ resource "aws_vpc_endpoint" "project_vpc_endpoint" {
   vpc_endpoint_type  = "Interface"
   subnet_ids         = var.private_subnet_ids
   security_group_ids = [var.security_group_id]
+  tags = {
+    yor_trace = "0ae5c039-4cbc-4881-8f38-1464864e73b1"
+  }
 }
 
 resource "mongodbatlas_privatelink_endpoint_service" "project_vpc_endpoint_svc" {

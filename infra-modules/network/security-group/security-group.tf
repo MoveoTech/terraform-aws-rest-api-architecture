@@ -13,7 +13,9 @@ resource "aws_security_group" "default" {
   name        = "${module.label.name}-${module.label.stage}"
   description = "${module.label.name}-${module.label.stage} Default security group"
   vpc_id      = var.vpc_id
-  tags        = merge(module.label.tags, { Name = "Default Security Group" })
+  tags = merge(module.label.tags, { Name = "Default Security Group" }, {
+    yor_trace = "955e8433-eb32-477d-8ac8-34903d428a1f"
+  })
 
 
   ingress {
@@ -25,13 +27,20 @@ resource "aws_security_group" "default" {
   }
   egress {
     description = "Allow all https outgoing trafic"
-    from_port = 443
-    to_port   = 443
-    protocol  = "tcp"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
     cidr_blocks = [var.vpc_cidr_block]
     prefix_list_ids = [
       var.s3_prefix_list_id
     ]
+  }
+  egress {
+    description = "Allow all https outgoing trafic"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [var.vpc_cidr_block]
   }
   egress {
     description = "Allow all outgoing trafic"

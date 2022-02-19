@@ -61,22 +61,20 @@ module "acm_request_certificate_server" {
   zone_id     = var.parent_zone_id
 }
 module "server" {
-  source                      = "./backend"
-  domain_name                 = local.server_domain_name
-  zone_id                     = var.parent_zone_id
-  acm_request_certificate_arn = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
-  region                      = var.region
-  app_name                    = var.app_name
-  availability_zones          = var.availability_zones
-  instance_type               = var.instance_type
-  vpc_id                      = module.network.vpc_id
-  app_port                    = var.app_port
-  private_subnet_ids          = module.network.private_subnet_ids
-  private_route_table_ids     = module.network.private_route_table_ids
+  source                        = "./backend"
+  domain_name                   = local.server_domain_name
+  zone_id                       = var.parent_zone_id
+  acm_request_certificate_arn   = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
+  region                        = var.region
+  availability_zones            = var.availability_zones
+  instance_type                 = var.instance_type
+  vpc_id                        = module.network.vpc_id
+  private_subnet_ids            = module.network.private_subnet_ids
+  private_route_table_ids       = module.network.private_route_table_ids
   associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
-  platform_name = var.platform_name
-  depends_on = [module.network, module.acm_request_certificate_server]
-  context    = module.this.context
+  ssm_arn                       = aws_secretsmanager_secret.secrets.arn
+  depends_on                    = [module.network, module.acm_request_certificate_server]
+  context                       = module.this.context
 }
 
 

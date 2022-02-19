@@ -61,7 +61,9 @@ resource "aws_subnet" "private" {
     {
       "Name" = format("%s%s%s", module.private_label.id, local.delimiter, local.az_map[element(var.availability_zones, count.index)])
     }
-  )
+    , {
+      yor_trace = "12ce2903-1bcc-4b02-92ea-0546e65c5140"
+  })
 
   lifecycle {
     # Ignore tags added by kops or kubernetes
@@ -78,7 +80,9 @@ resource "aws_route_table" "private" {
     {
       "Name" = format("%s%s%s", module.private_label.id, local.delimiter, local.az_map[element(var.availability_zones, count.index)])
     }
-  )
+    , {
+      yor_trace = "357cf0c5-ab28-4143-ad88-328c9c9712f1"
+  })
 }
 
 resource "aws_route_table_association" "private" {
@@ -104,11 +108,13 @@ resource "aws_network_acl" "private" {
   ingress {
     rule_no    = 100
     action     = "allow"
-    cidr_block = var.cidr_block
+    cidr_block = "0.0.0.0/0"
     from_port  = 0
     to_port    = 0
     protocol   = "-1"
   }
 
-  tags = module.private_label.tags
+  tags = merge(module.private_label.tags, {
+    yor_trace = "425d9733-b10e-442d-8c26-2d561bc3f028"
+  })
 }

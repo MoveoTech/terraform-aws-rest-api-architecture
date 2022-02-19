@@ -38,23 +38,6 @@ variable "subject_alternative_names" {
     error_message = "All SANs must be lower-case."
   }
 }
-variable "platform_name" {
-  description = "The name of the platform"
-  type        = string
-}
-
-
-variable "app_port" {
-  description = "Application port"
-  type        = number
-}
-
-variable "app_name" {
-  type        = string
-  description = "Application Name"
-}
-
-
 
 variable "instance_type" {
   type        = string

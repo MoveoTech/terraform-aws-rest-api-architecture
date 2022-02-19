@@ -40,9 +40,9 @@ data "aws_cloudfront_cache_policy" "default" {
 }
 
 module "cloudfront_s3_cdn" {
-  source  = "cloudposse/cloudfront-s3-cdn/aws"
-  version = "0.82.2"
-
+  source                     = "cloudposse/cloudfront-s3-cdn/aws"
+  version                    = "0.82.2"
+  origin_force_destroy       = true
   web_acl_id                 = module.waf_cloudfront.arn
   aliases                    = var.aliases
   dns_alias_enabled          = var.dns_alias_enabled
@@ -87,7 +87,7 @@ module "cloudfront_s3_cdn" {
 
 
 resource "aws_s3_bucket_object" "index" {
-	# checkov:skip=CKV_AWS_186: s3 website not support kms
+  # checkov:skip=CKV_AWS_186: s3 website not support kms
 
 
   bucket       = module.cloudfront_s3_cdn.s3_bucket
@@ -95,8 +95,9 @@ resource "aws_s3_bucket_object" "index" {
   source       = "${path.module}/index.html"
   content_type = "text/html"
   etag         = md5(file("${path.module}/index.html"))
-  tags         = var.context.tags
-  
+  tags = merge(var.context.tags, {
+    yor_trace = "ff48c2b4-0d82-4b27-9df5-62db2c595070"
+  })
 }
 provider "aws" {
   region = "us-east-1"
@@ -105,8 +106,8 @@ provider "aws" {
 
 
 module "kms" {
-  source       = "./kms"
-  context      = var.context
+  source  = "./kms"
+  context = var.context
 }
 module "waf_cloudfront" {
   source      = "../../waf"

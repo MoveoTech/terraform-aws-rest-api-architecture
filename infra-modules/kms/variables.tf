@@ -9,9 +9,13 @@ variable "context" {
 }
 variable "service_name" {
   type        = list(string)
+  default     = []
   description = "The name of the service you want to give a permission to use the key"
 }
-
+variable "region" {
+  description = "AWS region"
+  type        = string
+}
 variable "multi_region" {
   type        = bool
   default     = false

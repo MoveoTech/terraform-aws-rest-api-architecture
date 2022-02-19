@@ -21,7 +21,7 @@ module "cloudwatch_log_group" {
       namespace   = "",
       stage       = "",
       environment = "",
-      name        = "aws-waf-logs-${module.label.environment}-${var.type}-${random_string.random.result}"
+      name        = "aws-waf-logs-${module.label.stage}-${var.type}-${random_string.random.result}"
   })
 }
 
