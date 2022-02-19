@@ -4,6 +4,21 @@ variable "region" {
   type        = string
 }
 
+variable "zone_id" {
+  description = "The id of the parent Route53 zone to use for the distribution."
+  type        = string
+  default     = null
+}
+variable "acm_request_certificate_arn" {
+  description = "Certificate manager ARN"
+  type        = string
+  default     = null
+}
+variable "domain_name" {
+  type        = string
+  description = "A domain name for which the certificate should be issued"
+  default     = null
+}
 variable "platform_name" {
   description = "The name of the platform"
   type        = string
@@ -51,7 +66,6 @@ variable "private_subnet_ids" {
   type        = list(string)
   description = "IDs of the created private subnets"
 }
-
 
 variable "associated_security_group_ids" {
   type        = string

@@ -22,7 +22,14 @@ variable "association_resource_arns" {
     This must be an ARN of an Application Load Balancer or an Amazon API Gateway stage.
   DOC
 }
-
+variable "kms_key_arn" {
+  type = string
+  description = "The KMS arn key to encrtypt all logs "
+}
+variable "type" {
+  type = string
+  description = "This is for the cloud watch naming"
+}
 
 variable "context" {
   type = any

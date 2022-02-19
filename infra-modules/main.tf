@@ -1,6 +1,9 @@
 provider "aws" {
   region = var.region
 }
+locals {
+  server_domain_name = "${var.stage}.api.${var.domain_name}"
+}
 
 # provider "mongodbatlas" {
 #   public_key  = var.public_key
@@ -39,7 +42,7 @@ module "network" {
 #   name                    = "secrets/${module.this.stage}"
 #   description             = "Envoironment secrets"
 #   recovery_window_in_days = 0
-#   kms_key_id              = module.kms.kms_id
+#   kms_key_id              = module.server.eb_kms_id
 #   tags                    = module.this.tags
 # }
 
@@ -48,58 +51,52 @@ module "network" {
 #   secret_string = jsonencode(local.secrets)
 # }
 
-# module "kms" {
-#   source                      = "./kms"
-#   elastic_beanstalk_role_name = module.server.elastic_beanstalk_environment_ec2_instance_profile_role_name
-
-#   context = module.this.context
-# }
-
-module "waf_api_gateway" {
-  source                    = "./waf"
-  association_resource_arns = [module.server.api_gateway_arn]
 
 
-  context = module.this.context
+module "acm_request_certificate_server" {
+  source      = "./client/acm"
+  domain_name = local.server_domain_name
+  zone_id     = var.parent_zone_id
 }
-
 module "server" {
-  source = "./backend"
-
-  region                  = var.region
-  app_name                = var.app_name
-  availability_zones      = var.availability_zones
-  instance_type           = var.instance_type
-  vpc_id                  = module.network.vpc_id
-  app_port                = var.app_port
-  private_subnet_ids      = module.network.private_subnet_ids
-  private_route_table_ids = module.network.private_route_table_ids
+  source                      = "./backend"
+  domain_name                 = local.server_domain_name
+  zone_id                     = var.parent_zone_id
+  acm_request_certificate_arn = module.acm_request_certificate_server.acm_request_certificate_arn
+  region                      = var.region
+  app_name                    = var.app_name
+  availability_zones          = var.availability_zones
+  instance_type               = var.instance_type
+  vpc_id                      = module.network.vpc_id
+  app_port                    = var.app_port
+  private_subnet_ids          = module.network.private_subnet_ids
+  private_route_table_ids     = module.network.private_route_table_ids
   # associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
   platform_name = var.platform_name
   # depends_on                    = [module.network, aws_secretsmanager_secret.secrets]
-  depends_on = [module.network]
+  depends_on = [module.network, module.acm_request_certificate_server]
   context    = module.this.context
 }
 
 
 
-# module "acm_request_certificate" {
-#   source                    = "./client/acm"
-#   domain_name               = var.domain_name
-#   zone_id                   = var.parent_zone_id
-#   subject_alternative_names = var.subject_alternative_names
-# }
+module "acm_request_certificate_client" {
+  source                    = "./client/acm"
+  domain_name               = var.domain_name
+  zone_id                   = var.parent_zone_id
+  subject_alternative_names = var.subject_alternative_names
+}
 
 
-# module "cloudfront_s3_cdn" {
-#   source              = "./client/cloudfront"
-#   region              = var.region
-#   aliases             = var.aliases
-#   dns_alias_enabled   = var.dns_alias_enabled
-#   parent_zone_id      = var.parent_zone_id
-#   # acm_certificate_arn = module.acm_request_certificate.acm_request_certificate_arn
-#   # depends_on          = [module.acm_request_certificate]
-#   context             = module.this.context
-# }
+module "cloudfront_s3_cdn" {
+  source              = "./client/cloudfront"
+  region              = var.region
+  aliases             = var.aliases_client
+  dns_alias_enabled   = var.dns_alias_enabled
+  parent_zone_id      = var.parent_zone_id
+  acm_certificate_arn = module.acm_request_certificate_client.acm_request_certificate_arn
+  context             = module.this.context
+}
+
 
 

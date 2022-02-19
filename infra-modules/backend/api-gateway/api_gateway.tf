@@ -53,8 +53,7 @@ resource "aws_api_gateway_integration" "main" {
 
 resource "aws_api_gateway_deployment" "main" {
   rest_api_id = aws_api_gateway_rest_api.main.id
-  # stage_name  = "${module.label.environment}-env"
-  depends_on = [aws_api_gateway_integration.main]
+  depends_on  = [aws_api_gateway_integration.main]
 
   variables = {
     # just to trigger redeploy on resource changes
@@ -89,16 +88,23 @@ resource "aws_api_gateway_stage" "main" {
     }
   }
 }
+resource "random_string" "random" {
+  length  = 5
+  special = false
+  number  = true
+  upper   = true
+}
 
 module "cloudwatch_log_group" {
-  source  = "cloudposse/cloudwatch-logs/aws"
-  version = "0.6.4"
+  source      = "cloudposse/cloudwatch-logs/aws"
+  version     = "0.6.4"
+  kms_key_arn = var.kms_key_arn
   context = merge(var.context,
     {
       namespace   = "",
       stage       = "",
       environment = "",
-      name        = "api-gateway-${module.label.environment}"
+      name        = "api-gateway-${module.label.environment}-${random_string.random.result}"
   })
 }
 
@@ -122,4 +128,31 @@ resource "aws_api_gateway_vpc_link" "this" {
   name        = "vpc-link-${module.label.name}"
   description = "VPC Link for ${module.label.name}"
   target_arns = [var.nlb_arn]
+}
+
+
+resource "aws_api_gateway_base_path_mapping" "domain_mapping" {
+  api_id      = aws_api_gateway_rest_api.main.id
+  stage_name  = aws_api_gateway_stage.main.stage_name
+  domain_name = aws_api_gateway_domain_name.server_domain.domain_name
+}
+
+resource "aws_api_gateway_domain_name" "server_domain" {
+  certificate_arn = var.acm_request_certificate_arn
+  domain_name     = var.domain_name
+  security_policy = "TLS_1_2"
+}
+
+# Example DNS record using Route53.
+# Route53 is not specifically required; any DNS host can be used.
+resource "aws_route53_record" "server_record" {
+  name    = aws_api_gateway_domain_name.server_domain.domain_name
+  type    = "A"
+  zone_id = var.zone_id
+
+  alias {
+    evaluate_target_health = true
+    name                   = aws_api_gateway_domain_name.server_domain.cloudfront_domain_name
+    zone_id                = aws_api_gateway_domain_name.server_domain.cloudfront_zone_id
+  }
 }

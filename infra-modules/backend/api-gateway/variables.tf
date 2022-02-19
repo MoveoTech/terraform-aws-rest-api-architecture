@@ -2,6 +2,22 @@ variable "app_port" {
   type = number 
   description = "The Application port"
 }
+
+variable "zone_id" {
+  description = "The id of the parent Route53 zone to use for the distribution."
+  type        = string
+  default     = null
+}
+variable "domain_name" {
+  type        = string
+  description = "A domain name for which the certificate should be issued"
+  default     = null
+}
+variable "acm_request_certificate_arn" {
+  description = "Certificate manager ARN"
+  type        = string
+  default     = null
+}
 variable "context" {
   type = any
 }
@@ -31,6 +47,10 @@ variable "elastic_beanstalk_application_name" {
   description = "Elastic beanstalk application name"
 }
 
+variable "kms_key_arn" {
+  type = string
+  description = "The KMS arn key to encrtypt all logs "
+}
 variable "nlb_arn" {
   type = string
   description = "Network load balncer arn"

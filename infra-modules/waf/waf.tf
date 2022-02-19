@@ -5,15 +5,23 @@ module "label" {
   context = var.context
 }
 
+resource "random_string" "random" {
+  length  = 5
+  special = false
+  number  = true
+  upper   = true
+}
+
 module "cloudwatch_log_group" {
-  source  = "cloudposse/cloudwatch-logs/aws"
-  version = "0.6.4"
+  source      = "cloudposse/cloudwatch-logs/aws"
+  version     = "0.6.4"
+  kms_key_arn = var.kms_key_arn
   context = merge(var.context,
     {
       namespace   = "",
       stage       = "",
       environment = "",
-      name        = "aws-waf-logs-${module.label.environment}"
+      name        = "aws-waf-logs-${module.label.environment}-${var.type}-${random_string.random.result}"
   })
 }
 

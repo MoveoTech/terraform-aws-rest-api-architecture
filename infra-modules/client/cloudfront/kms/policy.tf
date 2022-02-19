@@ -1,12 +1,4 @@
 
-module "label" {
-  source  = "cloudposse/label/null"
-  version = "0.25.0"
-
-  context = var.context
-}
-
-
 data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "kms_permissions" {
@@ -24,7 +16,7 @@ data "aws_iam_policy_document" "kms_permissions" {
     sid = "Allow use of the key"
     principals {
       type        = "Service"
-      identifiers = var.service_name
+      identifiers = ["logs.us-east-1.amazonaws.com"]
     }
     actions = [
       "kms:Encrypt",
@@ -36,18 +28,3 @@ data "aws_iam_policy_document" "kms_permissions" {
     resources = ["*"]
   }
 }
-
-
-module "kms_key" {
-  source  = "cloudposse/kms-key/aws"
-  version = "0.12.1"
-
-  multi_region            = var.multi_region
-  description             = "KMS key for secrets manager"
-  deletion_window_in_days = 7
-  enable_key_rotation     = true
-  alias                   = "alias/${var.alias_name}"
-  policy                  = data.aws_iam_policy_document.kms_permissions.json
-  context                 = var.context
-}
-
