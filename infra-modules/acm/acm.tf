@@ -1,6 +1,6 @@
 
 locals {
-  enabled     = var.domain_name != null ? true : false
+  enabled     = var.enabled && var.domain_name != null ? true : false
   domain_name = local.enabled ? var.domain_name : ""
 }
 

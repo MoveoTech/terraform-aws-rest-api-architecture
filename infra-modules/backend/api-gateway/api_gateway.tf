@@ -1,4 +1,6 @@
 locals {
+  domain_enabled   = var.domain_name != null && var.domain_name != "" ? true : false
+  domain_count     = local.domain_enabled ? 1 : 0
   create_log_group = true
   log_group_arn    = module.cloudwatch_log_group.log_group_arn
 }
@@ -132,12 +134,14 @@ resource "aws_api_gateway_vpc_link" "this" {
 
 
 resource "aws_api_gateway_base_path_mapping" "domain_mapping" {
+  count       = local.domain_count
   api_id      = aws_api_gateway_rest_api.main.id
   stage_name  = aws_api_gateway_stage.main.stage_name
-  domain_name = aws_api_gateway_domain_name.server_domain.domain_name
+  domain_name = aws_api_gateway_domain_name.server_domain[0].domain_name
 }
 
 resource "aws_api_gateway_domain_name" "server_domain" {
+  count           = local.domain_count
   certificate_arn = var.acm_request_certificate_arn
   domain_name     = var.domain_name
   security_policy = "TLS_1_2"
@@ -146,13 +150,14 @@ resource "aws_api_gateway_domain_name" "server_domain" {
 # Example DNS record using Route53.
 # Route53 is not specifically required; any DNS host can be used.
 resource "aws_route53_record" "server_record" {
-  name    = aws_api_gateway_domain_name.server_domain.domain_name
+  count   = local.domain_count
+  name    = aws_api_gateway_domain_name.server_domain[0].domain_name
   type    = "A"
   zone_id = var.zone_id
 
   alias {
     evaluate_target_health = true
-    name                   = aws_api_gateway_domain_name.server_domain.cloudfront_domain_name
-    zone_id                = aws_api_gateway_domain_name.server_domain.cloudfront_zone_id
+    name                   = aws_api_gateway_domain_name.server_domain[0].cloudfront_domain_name
+    zone_id                = aws_api_gateway_domain_name.server_domain[0].cloudfront_zone_id
   }
 }

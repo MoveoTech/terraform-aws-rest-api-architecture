@@ -2,7 +2,8 @@ provider "aws" {
   region = var.region
 }
 locals {
-  server_domain_name = "${var.stage}.api.${var.domain_name}"
+  domain_enabled     = var.parent_zone_id != null && var.domain_name != null
+  server_domain_name = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
 }
 
 # provider "mongodbatlas" {
@@ -54,7 +55,8 @@ module "network" {
 
 
 module "acm_request_certificate_server" {
-  source      = "./client/acm"
+  source      = "./acm"
+  enabled     = local.domain_enabled
   domain_name = local.server_domain_name
   zone_id     = var.parent_zone_id
 }
@@ -62,7 +64,7 @@ module "server" {
   source                      = "./backend"
   domain_name                 = local.server_domain_name
   zone_id                     = var.parent_zone_id
-  acm_request_certificate_arn = module.acm_request_certificate_server.acm_request_certificate_arn
+  acm_request_certificate_arn = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
   region                      = var.region
   app_name                    = var.app_name
   availability_zones          = var.availability_zones
@@ -81,7 +83,8 @@ module "server" {
 
 
 module "acm_request_certificate_client" {
-  source                    = "./client/acm"
+  source                    = "./acm"
+  enabled                   = local.domain_enabled
   domain_name               = var.domain_name
   zone_id                   = var.parent_zone_id
   subject_alternative_names = var.subject_alternative_names
@@ -94,7 +97,7 @@ module "cloudfront_s3_cdn" {
   aliases             = var.aliases_client
   dns_alias_enabled   = var.dns_alias_enabled
   parent_zone_id      = var.parent_zone_id
-  acm_certificate_arn = module.acm_request_certificate_client.acm_request_certificate_arn
+  acm_certificate_arn = try(module.acm_request_certificate_client.acm_request_certificate_arn, "")
   context             = module.this.context
 }
 
