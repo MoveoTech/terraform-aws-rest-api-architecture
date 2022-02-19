@@ -7,7 +7,7 @@ module "s3_bucket" {
   source              = "cloudposse/s3-bucket/aws"
   version             = "0.36.0"
   block_public_policy = true
-  acl                 = null
+  acl                 = "private"
   force_destroy       = true
   user_enabled        = false
   versioning_enabled  = false
@@ -87,6 +87,7 @@ module "cloudfront_s3_cdn" {
 
 
 resource "aws_s3_bucket_object" "index" {
+	# checkov:skip=CKV_AWS_186: s3 website not support kms
 
 
   bucket       = module.cloudfront_s3_cdn.s3_bucket
@@ -95,6 +96,7 @@ resource "aws_s3_bucket_object" "index" {
   content_type = "text/html"
   etag         = md5(file("${path.module}/index.html"))
   tags         = var.context.tags
+  
 }
 provider "aws" {
   region = "us-east-1"

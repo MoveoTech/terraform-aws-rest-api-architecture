@@ -34,6 +34,98 @@ module "waf" {
   default_action            = "allow"
   log_destination_configs   = [module.cloudwatch_log_group.log_group_arn]
   managed_rule_group_statement_rules = [
+
+    {
+      name            = "rule-10"
+      override_action = "none"
+      priority        = 10
+
+      statement = {
+        name        = "AWSManagedRulesKnownBadInputsRuleSet"
+        vendor_name = "AWS"
+
+        excluded_rule = []
+      }
+
+      visibility_config = {
+        cloudwatch_metrics_enabled = true
+        sampled_requests_enabled   = true
+        metric_name                = "rule-10-metric"
+      }
+    },
+    {
+      name            = "rule-12"
+      override_action = "none"
+      priority        = 12
+
+      statement = {
+        name        = "AWSManagedRulesAdminProtectionRuleSet"
+        vendor_name = "AWS"
+
+        excluded_rule = []
+      }
+
+      visibility_config = {
+        cloudwatch_metrics_enabled = true
+        sampled_requests_enabled   = true
+        metric_name                = "rule-12-metric"
+      }
+    },
+
+    {
+      name            = "rule-13"
+      override_action = "none"
+      priority        = 13
+
+      statement = {
+        name        = "AWSManagedRulesLinuxRuleSet"
+        vendor_name = "AWS"
+
+        excluded_rule = []
+      }
+
+      visibility_config = {
+        cloudwatch_metrics_enabled = true
+        sampled_requests_enabled   = true
+        metric_name                = "rule-13-metric"
+      }
+    },
+    {
+      name            = "rule-14"
+      override_action = "none"
+      priority        = 14
+
+      statement = {
+        name        = "AWSManagedRulesAmazonIpReputationList"
+        vendor_name = "AWS"
+
+        excluded_rule = []
+      }
+
+      visibility_config = {
+        cloudwatch_metrics_enabled = true
+        sampled_requests_enabled   = true
+        metric_name                = "rule-14-metric"
+      }
+    },
+    # {
+    #   name            = "rule-15"
+    #   override_action = "none"
+    #   priority        = 15
+
+    #   statement = {
+    #     name        = "AWSManagedRulesATPRuleSet"
+    #     vendor_name = "AWS"
+
+    #     excluded_rule = []
+    #   }
+
+    #   visibility_config = {
+    #     cloudwatch_metrics_enabled = true
+    #     sampled_requests_enabled   = true
+    #     metric_name                = "rule-15-metric"
+    #   }
+    # },
     {
       name            = "rule-20"
       override_action = "none"
@@ -54,7 +146,8 @@ module "waf" {
         sampled_requests_enabled   = true
         metric_name                = "rule-20-metric"
       }
-      }, {
+    },
+    {
       name            = "rule-21"
       override_action = "none"
       priority        = 21

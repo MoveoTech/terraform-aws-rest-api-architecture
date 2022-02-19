@@ -104,7 +104,7 @@ resource "aws_network_acl" "private" {
   ingress {
     rule_no    = 100
     action     = "allow"
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.cidr_block
     from_port  = 0
     to_port    = 0
     protocol   = "-1"

@@ -6,6 +6,10 @@ module "label" {
   context = var.context
 }
 
+locals {
+  account_id     = data.aws_caller_identity.current.account_id
+}
+
 
 data "aws_caller_identity" "current" {}
 
@@ -20,12 +24,24 @@ data "aws_iam_policy_document" "kms_permissions" {
     resources = ["*"]
   }
 
+
   statement {
-    sid = "Allow use of the key"
+    sid       = "Allow access for Key Administrators"
+    effect    = "Allow"
+    actions   = ["kms:*"]
+    resources = ["*"]
+
     principals {
-      type        = "Service"
-      identifiers = var.service_name
+      type = "AWS"
+      identifiers = [
+        "arn:aws:iam::${local.account_id}:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport",
+        "arn:aws:iam::${local.account_id}:role/aws-service-role/trustedadvisor.amazonaws.com/AWSServiceRoleForTrustedAdvisor"
+      ]
     }
+  }
+  statement {
+    sid    = "Allow use of the key"
+    effect = "Allow"
     actions = [
       "kms:Encrypt",
       "kms:Decrypt",
@@ -34,6 +50,39 @@ data "aws_iam_policy_document" "kms_permissions" {
       "kms:DescribeKey"
     ]
     resources = ["*"]
+
+    principals {
+      type = "AWS"
+      identifiers = [
+        "arn:aws:iam::${local.account_id}:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport",
+        "arn:aws:iam::${local.account_id}:role/aws-service-role/trustedadvisor.amazonaws.com/AWSServiceRoleForTrustedAdvisor"
+      ]
+    }
+  }
+
+  statement {
+    sid    = "Allow attachment of persistent resources"
+    effect = "Allow"
+    actions = [
+      "kms:CreateGrant",
+      "kms:ListGrants",
+      "kms:RevokeGrant"
+    ]
+    resources = ["*"]
+
+    principals {
+      type = "AWS"
+      identifiers = [
+        "arn:aws:iam::${local.account_id}:role/aws-service-role/support.amazonaws.com/AWSServiceRoleForSupport",
+        "arn:aws:iam::${local.account_id}:role/aws-service-role/trustedadvisor.amazonaws.com/AWSServiceRoleForTrustedAdvisor"
+      ]
+    }
+
+    condition {
+      test     = "Bool"
+      variable = "kms:GrantIsForAWSResource"
+      values   = ["true"]
+    }
   }
 }
 
