@@ -1,17 +1,20 @@
+module "label" {
+  source  = "cloudposse/label/null"
+  version = "0.25.0"
 
+  context = var.context
+}
 module "kms" {
   source     = "../kms"
+  region     = var.region
   alias_name = "eb_backend"
-  service_name = [
-    "elasticbeanstalk.amazonaws.com",
-    "logs.amazonaws.com",
-  ]
   context = var.context
 }
 
 module "elastic_beanstalk" {
   source                        = "./elastic-beanstalk"
   region                        = var.region
+  ssm_arn                       = var.ssm_arn
   availability_zones            = var.availability_zones
   instance_type                 = var.instance_type
   vpc_id                        = var.vpc_id
@@ -37,10 +40,9 @@ module "api_gateway" {
   kms_key_arn                         = module.kms.key_arn
   integration_input_type              = "HTTP_PROXY"
   path_part                           = "{proxy+}"
-  app_port                            = var.app_port
   nlb_arn                             = module.elastic_beanstalk.load_balancers_arn
   elastic_beanstalk_environment_cname = module.elastic_beanstalk.load_balancers_arn
-  elastic_beanstalk_application_name  = var.app_name
+  elastic_beanstalk_application_name  = module.label.name
   depends_on                          = [module.elastic_beanstalk.elastic_beanstalk_application]
   context                             = var.context
 }

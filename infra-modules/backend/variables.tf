@@ -19,21 +19,6 @@ variable "domain_name" {
   description = "A domain name for which the certificate should be issued"
   default     = null
 }
-variable "platform_name" {
-  description = "The name of the platform"
-  type        = string
-}
-
-variable "app_port" {
-  description = "Application port"
-  type        = number
-}
-
-variable "app_name" {
-  type        = string
-  description = "Application Name"
-}
-
 variable "instance_type" {
   type        = string
   description = "Instances type"
@@ -71,4 +56,8 @@ variable "associated_security_group_ids" {
   type        = string
   default = "null"
   description = "IDs for private subnets"
+}
+variable "ssm_arn" {
+  description = "Secrets manager arn for adding to ec2 policy"
+  type        = string
 }

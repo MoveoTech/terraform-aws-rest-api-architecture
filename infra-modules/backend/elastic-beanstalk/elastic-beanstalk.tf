@@ -90,6 +90,17 @@ data "aws_iam_policy_document" "minimal_s3_permissions" {
     ]
     resources = ["*"]
   }
+  statement {
+    sid = "AllowSSMOperationsOnElasticBeanstalkBuckets"
+    actions = [
+      "secretsmanager:GetResourcePolicy",
+      "secretsmanager:GetSecretValue",
+      "secretsmanager:DescribeSecret",
+      "secretsmanager:ListSecretVersionIds",
+      "secretsmanager:GetRandomPassword",
+    ]
+    resources = ["*"]
+  }
 }
 
 

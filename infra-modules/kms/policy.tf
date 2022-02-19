@@ -1,4 +1,5 @@
 
+
 data "aws_caller_identity" "current" {}
 
 data "aws_iam_policy_document" "kms_permissions" {
@@ -29,7 +30,7 @@ data "aws_iam_policy_document" "kms_permissions" {
     condition {
       test     = "StringEquals"
       variable = "kms:ViaService"
-      values   = ["secretsmanager.us-east-1..amazonaws.com"]
+      values   = ["secretsmanager.${var.region}.amazonaws.com"]
     }
     condition {
       test     = "StringEquals"
@@ -40,7 +41,8 @@ data "aws_iam_policy_document" "kms_permissions" {
   }
 
   statement {
-    sid = "Allow access AWS Secrets Manager for all principals in the account that are authorized to use AWS Secrets Manager"
+
+    sid = "Allow access through AWS Secrets Manager all principals in the account that are authorized to use AWS Secrets Manager"
     principals {
       type        = "AWS"
       identifiers = ["*"]

@@ -14,11 +14,11 @@ module "account_settings" {
   source = "cloudposse/api-gateway/aws//modules/account-settings"
 
   version = "0.2.0"
-  name    = "api-gateway-${module.label.environment}"
+  name    = "api-gateway-${module.label.stage}"
 
 }
 resource "aws_api_gateway_rest_api" "main" {
-  name = "api-gateway-${module.label.environment}"
+  name = "api-gateway-${module.label.stage}"
   tags = merge(module.label.tags, { Name = "Api Gateway" })
 }
 
@@ -36,8 +36,6 @@ resource "aws_api_gateway_method" "main" {
   request_parameters = {
     "method.request.path.proxy" = true
   }
-  tags        = module.label.tags
-  description = "Api gateway method"
 }
 
 resource "aws_api_gateway_integration" "main" {
@@ -53,8 +51,6 @@ resource "aws_api_gateway_integration" "main" {
   }
   connection_type = "VPC_LINK"
   connection_id   = aws_api_gateway_vpc_link.this.id
-  tags            = module.label.tags
-  description     = "Api Gateway VPC Link"
 }
 
 resource "aws_api_gateway_deployment" "main" {
@@ -114,7 +110,7 @@ module "cloudwatch_log_group" {
       namespace   = "",
       stage       = "",
       environment = "",
-      name        = "api-gateway-${module.label.environment}-${random_string.random.result}"
+      name        = "api-gateway-${module.label.stage}-${random_string.random.result}"
   })
 }
 
