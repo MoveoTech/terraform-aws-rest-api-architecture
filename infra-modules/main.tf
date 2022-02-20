@@ -44,7 +44,9 @@ resource "aws_secretsmanager_secret" "secrets" {
   description             = "Envoironment secrets"
   recovery_window_in_days = 0
   kms_key_id              = module.server.eb_kms_id
-  tags                    = module.this.tags
+  tags = merge(module.this.tags, {
+    yor_trace = "f225cf4e-e1e9-4c5c-a479-f5d907e634f1"
+  })
 }
 
 resource "aws_secretsmanager_secret_version" "secrets" {
