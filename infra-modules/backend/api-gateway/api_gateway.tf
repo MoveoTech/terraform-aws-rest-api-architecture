@@ -24,6 +24,16 @@ resource "aws_api_gateway_rest_api" "main" {
   })
 }
 
+resource "aws_api_gateway_authorizer" "cognito_auth" {
+  name          = "cognito_auth"
+  rest_api_id   = aws_api_gateway_rest_api.main.id
+  type          = "COGNITO_USER_POOLS"
+  provider_arns = [var.user_pool_arn]
+}
+
+
+
+
 resource "aws_api_gateway_resource" "main" {
   rest_api_id = aws_api_gateway_rest_api.main.id
   parent_id   = aws_api_gateway_rest_api.main.root_resource_id
@@ -31,10 +41,12 @@ resource "aws_api_gateway_resource" "main" {
 }
 
 resource "aws_api_gateway_method" "main" {
-  rest_api_id   = aws_api_gateway_rest_api.main.id
-  resource_id   = aws_api_gateway_resource.main.id
-  http_method   = "ANY"
-  authorization = "NONE"
+  rest_api_id          = aws_api_gateway_rest_api.main.id
+  resource_id          = aws_api_gateway_resource.main.id
+  http_method          = "ANY"
+  authorization        = "COGNITO_USER_POOLS"
+  authorization_scopes = ["aws.cognito.signin.user.admin"]
+  authorizer_id        = aws_api_gateway_authorizer.cognito_auth.id
   request_parameters = {
     "method.request.path.proxy" = true
   }
@@ -94,7 +106,7 @@ resource "aws_api_gateway_stage" "main" {
   xray_tracing_enabled = true
   description          = "Api gateway stage"
   tags = merge(var.context.tags, {
-    yor_trace =  "1942e4b8-f1a0-4d18-82bf-60fc2bb773b4"
+    yor_trace = "1942e4b8-f1a0-4d18-82bf-60fc2bb773b4"
   })
 }
 

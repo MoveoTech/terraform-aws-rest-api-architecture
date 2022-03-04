@@ -17,37 +17,37 @@ variable "context" {
   type = any
 }
 variable "path_part" {
-  type = string 
+  type        = string
   description = "The last path segment of this API resource"
 }
 
 variable "integration_input_type" {
-  type = string 
+  type        = string
   description = "The integration input's type."
 }
 
 variable "integration_http_method" {
-  type = string 
-  default = "ANY"
+  type        = string
+  default     = "ANY"
   description = "The integration HTTP method (GET, POST, PUT, DELETE, HEAD, OPTIONs, ANY, PATCH) specifying how API Gateway will interact with the back end."
 }
 
 variable "elastic_beanstalk_environment_cname" {
-  type = string
+  type        = string
   description = "Elastic beanstalk environment name"
 }
 
 variable "elastic_beanstalk_application_name" {
-  type = string
+  type        = string
   description = "Elastic beanstalk application name"
 }
 
 variable "kms_key_arn" {
-  type = string
+  type        = string
   description = "The KMS arn key to encrtypt all logs "
 }
 variable "nlb_arn" {
-  type = string
+  type        = string
   description = "Network load balncer arn"
 }
 variable "access_log_format" {
@@ -78,4 +78,9 @@ variable "access_log_format" {
   "user": "$context.identity.user"
 }
   EOF
+}
+
+variable "user_pool_arn" {
+  description = "The ARN of the Cognito user pool"
+  type        = string
 }
