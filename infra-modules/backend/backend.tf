@@ -8,7 +8,7 @@ module "kms" {
   source     = "../kms"
   region     = var.region
   alias_name = "eb_backend"
-  context = var.context
+  context    = var.context
 }
 
 module "elastic_beanstalk" {
@@ -44,5 +44,6 @@ module "api_gateway" {
   elastic_beanstalk_environment_cname = module.elastic_beanstalk.load_balancers_arn
   elastic_beanstalk_application_name  = module.label.name
   depends_on                          = [module.elastic_beanstalk.elastic_beanstalk_application]
+  user_pool_arn                       = var.user_pool_arn
   context                             = var.context
 }

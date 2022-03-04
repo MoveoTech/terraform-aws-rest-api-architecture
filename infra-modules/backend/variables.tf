@@ -61,3 +61,9 @@ variable "ssm_arn" {
   description = "Secrets manager arn for adding to ec2 policy"
   type        = string
 }
+
+
+variable "user_pool_arn" {
+  description = "The ARN of the Cognito user pool"
+  type        = string
+}

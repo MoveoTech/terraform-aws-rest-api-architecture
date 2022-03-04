@@ -62,6 +62,17 @@ module "acm_request_certificate_server" {
   domain_name = local.server_domain_name
   zone_id     = var.parent_zone_id
 }
+
+
+
+module "cognito_auth" {
+  source                      = "./authentication/cognito"
+  client_logout_urls          = var.client_logout_urls
+  client_default_redirect_uri = var.client_default_redirect_uri
+  client_callback_urls        = var.client_callback_urls
+  context                     = module.this.context
+}
+
 module "server" {
   source                        = "./backend"
   domain_name                   = local.server_domain_name
@@ -75,7 +86,8 @@ module "server" {
   private_route_table_ids       = module.network.private_route_table_ids
   associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
   ssm_arn                       = aws_secretsmanager_secret.secrets.arn
-  depends_on                    = [module.network, module.acm_request_certificate_server]
+  depends_on                    = [module.network, module.acm_request_certificate_server, module.cognito_auth]
+  user_pool_arn                 = module.cognito_auth.user_pool_arn
   context                       = module.this.context
 }
 
