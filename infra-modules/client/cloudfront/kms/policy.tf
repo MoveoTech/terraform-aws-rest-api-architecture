@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "kms_permissions" {
     condition {
       test     = "StringEquals"
       variable = "kms:ViaService"
-      values   = ["secretsmanager.us-east-1..amazonaws.com"]
+      values   = ["secretsmanager.us-east-1.amazonaws.com"]
     }
     condition {
       test     = "StringEquals"
@@ -73,5 +73,26 @@ data "aws_iam_policy_document" "kms_permissions" {
       "kms:RevokeGrant"
     ]
     resources = ["*"]
+  }
+
+  statement {
+    sid = "Allow cloudwatch logs"
+    principals {
+      type        = "Service"
+      identifiers = ["logs.us-east-1.amazonaws.com"]
+    }
+    actions = [
+      "kms:Encrypt*",
+      "kms:Decrypt*",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Describe*"
+    ]
+    resources = ["*"]
+    condition {
+      test     = "ArnLike"
+      variable = "kms:EncryptionContext:aws:logs:arn"
+      values   = ["arn:aws:logs:us-east-1:${data.aws_caller_identity.current.account_id}:*"]
+    }
   }
 }

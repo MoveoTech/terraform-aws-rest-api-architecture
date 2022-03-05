@@ -7,7 +7,7 @@ module "label" {
 module "kms" {
   source     = "../kms"
   region     = var.region
-  alias_name = "eb_backend"
+  alias_name = "eb-backend-${module.label.stage}"
   context    = var.context
 }
 
@@ -27,8 +27,8 @@ module "waf_api_gateway" {
   source                    = "../waf"
   association_resource_arns = [module.api_gateway.arn]
   type                      = "cloudfront"
-  kms_key_arn               = module.kms.key_arn
-  context                   = var.context
+  kms_key_arn = module.kms.key_arn
+  context     = var.context
 }
 
 # API Gateway and VPC link
