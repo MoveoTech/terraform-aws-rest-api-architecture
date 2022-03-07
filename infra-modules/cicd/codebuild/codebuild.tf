@@ -1,17 +1,23 @@
+module "label" {
+  source  = "cloudposse/label/null"
+  version = "0.25.0"
+
+  context = var.context
+}
+resource "random_string" "random" {
+  length  = 5
+  special = false
+}
 resource "aws_codebuild_project" "main" {
-  name = "${var.name}-${var.environment}"
-  service_role = aws_iam_role.main.arn
+  name          = "${module.label.name}-${module.label.stage}-${random_string.random.result}"
+  service_role  = aws_iam_role.main.arn
   build_timeout = "10"
 
   artifacts {
     type = "CODEPIPELINE"
   }
 
-  #cache {
-  #  type = "S3"
-  #  location = "${var.bucket_name}/${var.name}/build_cache"
-  #}
-
+  # encryption_key = var.kms_arn
   environment {
     compute_type    = "BUILD_GENERAL1_SMALL"
     image           = var.image
@@ -20,7 +26,7 @@ resource "aws_codebuild_project" "main" {
 
     environment_variable {
       name  = "STAGE_NAME"
-      value = var.environment
+      value = module.label.stage
     }
   }
 

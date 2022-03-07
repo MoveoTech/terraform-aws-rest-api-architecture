@@ -1,7 +1,4 @@
-variable "module" {
-  description = "The terraform module used to deploy"
-  type        = string
-}
+
 
 variable "profile" {
   description = "AWS profile"
@@ -14,7 +11,7 @@ variable "region" {
 }
 
 variable "github_secret_name" {
-  type        = string
+  type = string
 }
 
 variable "github_org" {
@@ -22,12 +19,9 @@ variable "github_org" {
 }
 
 variable "repository_name" {
-  type        = string
-}
-
-variable "environment" {
   type = string
 }
+
 
 variable "branch_name" {
   type = string
@@ -35,4 +29,21 @@ variable "branch_name" {
 
 variable "bucket_name" {
   type = string
+}
+
+variable "kms_arn" {
+  type        = string
+  description = "KMS key to encrypt artifact"
+  default = null
+}
+
+
+variable "elastic_beanstalk_application_name" {
+  type        = string
+  description = "Elastic beanstalk app name"
+}
+
+variable "elastic_beanstalk_environment_name" {
+  type        = string
+  description = "Elastic beanstalk environment name"
 }

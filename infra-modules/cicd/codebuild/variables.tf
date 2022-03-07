@@ -10,6 +10,15 @@ variable "environment" {
 
 variable "image" {
   description = "CodeBuild Container base image"
-  type = string
+  type        = string
 }
 
+variable "context" {
+  type = any
+}
+
+variable "kms_arn" {
+  type        = string
+  description = "KMS key to encrypt artifact"
+  default = null
+}

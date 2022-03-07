@@ -1,5 +1,6 @@
+
 resource "aws_iam_role" "main" {
-  name = "${var.name}-role-${var.environment}"
+  name               = "${module.label.name}-role-${module.label.stage}-${random_string.random.result}"
   assume_role_policy = data.aws_iam_policy_document.main.json
 }
 
@@ -9,7 +10,7 @@ resource "aws_iam_role" "main" {
 # such as the aws_iam_policy resource.
 
 data "aws_iam_policy_document" "main" {
-   statement {
+  statement {
     effect  = "Allow"
     actions = ["sts:AssumeRole"]
 
@@ -17,19 +18,19 @@ data "aws_iam_policy_document" "main" {
       type        = "Service"
       identifiers = ["codebuild.amazonaws.com"]
     }
-  } 
+  }
 }
 
 # Policies for select environment
 
 resource "aws_iam_policy" "main" {
-    name = "${var.name}-policy-${var.environment}"
-    description = "Allow AWS CodeBuild builds for Multicontainer application"
-    policy = data.aws_iam_policy_document.codebuild_multicontainer_app.json
+  name        = "${module.label.name}-policy-${module.label.stage}-${random_string.random.result}"
+  description = "Allow AWS CodeBuild builds for Multicontainer application"
+  policy      = data.aws_iam_policy_document.codebuild_multicontainer_app.json
 }
 
 resource "aws_iam_role_policy_attachment" "mutlicontainer_app" {
-  role = aws_iam_role.main.name
+  role       = aws_iam_role.main.name
   policy_arn = aws_iam_policy.main.arn
 }
 
@@ -91,7 +92,7 @@ data "aws_iam_policy_document" "codebuild_multicontainer_app" {
     ]
 
     resources = [
-      "arn:aws:secretsmanager:eu-west-2:*"
+      "arn:aws:secretsmanager:*"
     ]
   }
-} 
+}

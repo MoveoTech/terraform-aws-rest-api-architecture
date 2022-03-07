@@ -37,3 +37,24 @@ variable "github_token" {
 variable "environment" {
   type = string
 }
+
+variable "kms_arn" {
+  type        = string
+  description = "KMS key to encrypt artifact"
+  default = null
+}
+
+variable "elastic_beanstalk_application_name" {
+  type        = string
+  description = "Elastic beanstalk app name"
+}
+
+variable "elastic_beanstalk_environment_name" {
+  type        = string
+  description = "Elastic beanstalk environment name"
+}
+
+
+variable "context" {
+  type = any
+}
