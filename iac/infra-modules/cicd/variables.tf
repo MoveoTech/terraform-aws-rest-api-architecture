@@ -1,10 +1,3 @@
-
-
-variable "profile" {
-  description = "AWS profile"
-  type        = string
-}
-
 variable "region" {
   description = "aws region to deploy to"
   type        = string
@@ -18,23 +11,22 @@ variable "github_org" {
   type = string
 }
 
-variable "repository_name" {
+variable "client_repository_name" {
   type = string
 }
 
 
-variable "branch_name" {
+variable "client_branch_name" {
   type = string
 }
 
-variable "bucket_name" {
+variable "server_repository_name" {
   type = string
 }
 
-variable "kms_arn" {
-  type        = string
-  description = "KMS key to encrypt artifact"
-  default = null
+
+variable "server_branch_name" {
+  type = string
 }
 
 
@@ -46,4 +38,24 @@ variable "elastic_beanstalk_application_name" {
 variable "elastic_beanstalk_environment_name" {
   type        = string
   description = "Elastic beanstalk environment name"
+}
+
+variable "codepiplien_name" {
+  type        = string
+  description = "Pipline name"
+  default     = null
+}
+variable "codebuild_name" {
+  type        = string
+  description = "Pipline name"
+  default     = null
+}
+variable "pipline_type" {
+  type        = string
+  description = "The pipline type can be `server` or `client`"
+}
+
+variable "client_bucket_name" {
+  type = string
+  description = "The bucket where the client files are found"
 }

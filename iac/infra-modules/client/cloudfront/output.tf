@@ -27,3 +27,9 @@ output "cf_hosted_zone_id" {
   value       = try(module.cloudfront_s3_cdn.default[0].hosted_zone_id, "")
   description = "CloudFront Route 53 zone ID"
 }
+
+output "cf_s3_bucket_name" {
+  description = " Cloudfron s3 bucket name"
+  value       = module.s3_bucket.bucket_id
+
+}

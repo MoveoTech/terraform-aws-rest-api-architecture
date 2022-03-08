@@ -13,9 +13,6 @@ variable "project_name" {
   type = string
 }
 
-variable "bucket_name" {
-  type = string
-}
 
 variable "branch_name" {
   type = string
@@ -44,16 +41,10 @@ variable "kms_arn" {
   default = null
 }
 
-variable "elastic_beanstalk_application_name" {
-  type        = string
-  description = "Elastic beanstalk app name"
+variable "configuration" {
+  type        = any
+  description = "Deployment configuration"
 }
-
-variable "elastic_beanstalk_environment_name" {
-  type        = string
-  description = "Elastic beanstalk environment name"
-}
-
 
 variable "context" {
   type = any

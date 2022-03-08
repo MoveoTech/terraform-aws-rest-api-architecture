@@ -22,3 +22,8 @@ variable "kms_arn" {
   description = "KMS key to encrypt artifact"
   default = null
 }
+variable "buildspec_path" {
+  type        = string
+  description = "The build spec path in th context of the github repository project"
+  default = "buildspec.yml"
+}

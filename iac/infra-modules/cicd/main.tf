@@ -1,5 +1,8 @@
 
-
+locals {
+  codebuild_name    = var.codebuild_name ? var.codebuild_name : "build-app-${var.pipline_type}"
+  codepipeline_name = var.codebuild_name ? var.codebuild_name : "pipline-app-${var.pipline_type}"
+}
 
 # GitHub secrets
 data "aws_secretsmanager_secret" "github_secret" {
@@ -22,29 +25,60 @@ module "kms" {
 
 
 # Codebuild module for CI
-module "codebuild_application" {
-  source      = "./codebuild"
-  name        = "codebuild-app"
-  image       = "aws/codebuild/standard:4.0"
-  environment = var.environment
-  context     = module.this.context
+module "codebuild_application_server" {
+  source         = "./codebuild"
+  name           = "codebuild_server"
+  image          = "aws/codebuild/standard:4.0"
+  buildspec_path = "server/buildspec.yml"
+  environment    = var.environment
+  context        = module.this.context
 }
 
 # CodePipeline module for CICD pipeline
-module "codepipeline_app" {
-  source                             = "./codepipeline"
-  name                               = "codepipeline-app"
-  kms_arn                            = module.kms.key_arn
-  bucket_name                        = var.bucket_name
-  github_org                         = var.github_org
-  repository_name                    = var.repository_name
-  branch_name                        = var.branch_name
-  environment                        = var.environment
-  region                             = var.region
-  project_name                       = module.codebuild_application.project_name
-  elastic_beanstalk_application_name = var.elastic_beanstalk_application_name
-  elastic_beanstalk_environment_name = var.elastic_beanstalk_environment_name
-  github_token                       = jsondecode(data.aws_secretsmanager_secret_version.github_token.secret_string)["GitHubPersonalAccessToken"]
-  context                            = module.this.context
+module "codepipeline_server_app" {
+  source          = "./codepipeline"
+  name            = local.codepipeline_name
+  kms_arn         = module.kms.key_arn
+  github_org      = var.github_org
+  repository_name = var.server_repository_name
+  branch_name     = var.server_branch_name
+  environment     = var.environment
+  region          = var.region
+  project_name    = module.codebuild_application_server.project_name
+  configuration = {
+    ApplicationName = var.elastic_beanstalk_application_name
+    EnvironmentName = var.elastic_beanstalk_environment_name
+  }
+  github_token = jsondecode(data.aws_secretsmanager_secret_version.github_token.secret_string)["GitHubPersonalAccessToken"]
+  context      = module.this.context
 }
 
+# Codebuild module for CI
+module "codebuild_application_client" {
+  source         = "./codebuild"
+  name           = "codebuild_client"
+  image          = "aws/codebuild/standard:4.0"
+  environment    = var.environment
+  buildspec_path = "client/buildspec.yml"
+  context        = module.this.context
+
+}
+
+# CodePipeline module for CICD pipeline
+module "codepipeline_client_app" {
+  source          = "./codepipeline"
+  name            = local.codepipeline_name
+  kms_arn         = module.kms.key_arn
+  github_org      = var.github_org
+  repository_name = var.client_repository_name
+  branch_name     = var.client_branch_name
+  environment     = var.environment
+  region          = var.region
+  project_name    = module.codebuild_application_client.project_name
+  configuration = {
+    BucketName = var.client_bucket_name
+    Extract    = "true"
+  }
+  github_token = jsondecode(data.aws_secretsmanager_secret_version.github_token.secret_string)["GitHubPersonalAccessToken"]
+  context      = module.this.context
+}

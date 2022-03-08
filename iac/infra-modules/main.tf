@@ -113,4 +113,17 @@ module "cloudfront_s3_cdn" {
 }
 
 
+module "cicd" {
+  region                             = var.region
+  github_secret_name                 = var.github_secret_name
+  github_org                         = var.github_org
+  client_repository_name             = var.client_repository_name
+  client_branch_name                 = var.client_branch_name
+  server_repository_name             = var.server_repository_name
+  server_branch_name                 = var.server_branch_name
+  elastic_beanstalk_application_name = module.server.elastic_beanstalk_application_name
+  elastic_beanstalk_environment_name = module.server.elastic_beanstalk_environment_name
+  client_bucket_name                 = module.cloudfront_s3_cdn.cf_s3_bucket_name
+}
+
 
