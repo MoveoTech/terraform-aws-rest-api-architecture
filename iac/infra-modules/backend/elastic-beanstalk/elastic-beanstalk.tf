@@ -62,6 +62,7 @@ module "elastic_beanstalk_environment" {
 
   additional_settings = var.additional_settings
   env_vars = {
+    "REGION"        = var.region
     "NODE_ENV"      = "${module.label.stage}"
     "DATABASE_NAME" = "${module.label.name}-${module.label.stage}"
   }
