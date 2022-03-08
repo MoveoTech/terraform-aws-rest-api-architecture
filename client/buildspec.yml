@@ -10,10 +10,11 @@ phases:
       - npm install --silent --no-progress
     post_build:
      commands:
+      - cd client
       - npm run build
       - echo Build completed on `date`
 # Include only the files required for your application to run.
 artifacts:
   files:
-    - build/**/*
-  base-directory: 'client'
+    - '**/*'
+  base-directory: 'build'

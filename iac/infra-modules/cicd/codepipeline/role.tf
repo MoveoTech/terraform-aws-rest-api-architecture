@@ -110,7 +110,8 @@ data "aws_iam_policy_document" "codepipeline_mutlicontainer_app" {
     actions = [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
-      "logs:PutLogEvents"
+      "logs:PutLogEvents",
+      "logs:PutRetentionPolicy"
     ]
 
     resources = ["*"]
