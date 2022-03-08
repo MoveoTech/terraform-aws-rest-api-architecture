@@ -1,0 +1,15 @@
+{
+    "Resources": {
+        "user": {
+            "Type": "AWS::Cognito::UserPoolUser",
+            "Properties": {
+                "UserAttributes": [{
+                    "Name": "email",
+                    "Value": "${users_mail}"
+                }],
+                "Username": "${users_mail}",
+                "UserPoolId": "${user_pool_id}"
+            }
+        }
+    }
+}

@@ -5,6 +5,16 @@ module "label" {
   context = var.context
 }
 
+# resource "aws_cognito_user" "default_user" {
+#   user_pool_id             = module.aws_cognito_user_pool.id
+#   username                 = "eliran@moveohls.com"
+#   desired_delivery_mediums = ["EMAIL"]
+#   attributes = {
+#     email          = "eliran@moveohls.com"
+#     email_verified = true
+#   }
+# }
+
 
 module "aws_cognito_user_pool" {
 
@@ -50,8 +60,8 @@ module "aws_cognito_user_pool" {
     default_email_option = "CONFIRM_WITH_CODE"
   }
 
-    recovery_mechanisms = [
-     {
+  recovery_mechanisms = [
+    {
       name     = "verified_email"
       priority = 1
     },

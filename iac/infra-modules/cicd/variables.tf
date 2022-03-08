@@ -55,3 +55,11 @@ variable "client_bucket_name" {
   type = string
   description = "The bucket where the client files are found"
 }
+variable "cognito_pool_id" {
+  type = string
+  description = "Cognito pool id to configure the authentication"
+}
+variable "cognito_web_client_id" {
+  type = string
+  description = "Cognito web client id to configure the authentication"
+}

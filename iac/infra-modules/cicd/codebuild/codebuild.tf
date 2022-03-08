@@ -28,6 +28,14 @@ resource "aws_codebuild_project" "main" {
       name  = "STAGE_NAME"
       value = module.label.stage
     }
+    dynamic "environment_variable" {
+      for_each = var.environment_variables
+      content {
+        name  = environment_variable.value.name
+        value = environment_variable.value.value
+        type  = environment_variable.value.type
+      }
+    }
   }
 
   source {

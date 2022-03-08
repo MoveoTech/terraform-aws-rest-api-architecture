@@ -60,10 +60,26 @@ module "codepipeline_server_app" {
 
 # Codebuild module for CI
 module "codebuild_application_client" {
-  source         = "./codebuild"
-  name           = "${module.label.stage}-${module.label.name}-client-build"
-  image          = "aws/codebuild/standard:4.0"
-  environment    = var.environment
+  source      = "./codebuild"
+  name        = "${module.label.stage}-${module.label.name}-client-build"
+  image       = "aws/codebuild/standard:4.0"
+  environment = var.environment
+  environment_variables = [{
+    name  = "REACT_APP_AWS_REGION"
+    value = var.region
+    type  = "PLAINTEXT"
+    },
+    {
+      name  = "REACT_APP_AWS_POOL_ID"
+      value = var.cognito_pool_id
+      type  = "PLAINTEXT"
+    },
+    {
+      name  = "REACT_APP_AWS_WEB_CLIENT_ID"
+      value = var.cognito_web_client_id
+      type  = "PLAINTEXT"
+
+  }]
   kms_arn        = module.kms.key_arn
   buildspec_path = "client/buildspec.yml"
   context        = module.this.context

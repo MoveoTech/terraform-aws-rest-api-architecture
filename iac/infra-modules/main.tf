@@ -70,6 +70,7 @@ module "cognito_auth" {
   client_logout_urls          = var.client_logout_urls
   client_default_redirect_uri = var.client_default_redirect_uri
   client_callback_urls        = var.client_callback_urls
+  cognito_default_user_email  = var.cognito_default_user_email
   context                     = module.this.context
 }
 
@@ -125,6 +126,8 @@ module "cicd" {
   elastic_beanstalk_application_name = module.server.elastic_beanstalk_application_name
   elastic_beanstalk_environment_name = module.server.elastic_beanstalk_environment_name
   client_bucket_name                 = module.cloudfront_s3_cdn.cf_s3_bucket_name
+  cognito_pool_id                    = module.cognito_auth.user_pool_id
+  cognito_web_client_id              = module.cognito_auth.web_client_id
   context                            = module.this.context
 }
 

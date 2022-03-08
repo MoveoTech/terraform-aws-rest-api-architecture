@@ -1,26 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Amplify, { Auth } from 'aws-amplify'
+import { Authenticator, Heading, useTheme, Text } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+Amplify.configure({
+  Auth: {
+    region: process.env.REACT_APP_AWS_REGION,
+    userPoolId: process.env.REACT_APP_AWS_POOL_ID,
+    userPoolWebClientId: process.env.REACT_APP_AWS_WEB_CLIENT_ID
+  },
+})
+
+const components = {
+  VerifyUser: {
+    Header() {
+      const { tokens } = useTheme();
+      return (
+        <Heading
+          padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
+          level={3}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          Enter Information:
+        </Heading>
+      );
+    },
+    Footer() {
+      return <Text>Footer Information</Text>;
+    },
+  },
+
+  ConfirmVerifyUser: {
+    Header() {
+      const { tokens } = useTheme();
+      return (
+        <Heading
+          padding={`${tokens.space.xl} 0 0 ${tokens.space.xl}`}
+          level={3}
+        >
+          Enter Information:
+        </Heading>
+      );
+    },
+    Footer() {
+      return <Text>Footer Information</Text>;
+    },
+  },
+};
+
+export default function App() {
+  async function getToken() {
+    const session = await Auth.currentSession()
+    const accesstoken = session.getAccessToken().getJwtToken();
+    const idtoken = session.getIdToken().getJwtToken();
+    console.log('idtoken: ', idtoken)
+    console.log('accesstoken: ', accesstoken)
+  }
+  return (
+    <Authenticator loginMechanisms={['email']} components={components} hideSignUp={true}>
+      {({ signOut, user }) => (
+        <main>
+          <h1>Hello {user.username}</h1>
+          <button onClick={getToken}>getToken</button>
+          <button onClick={signOut}>Sign out</button>
+        </main>
+      )}
+    </Authenticator>
   );
 }
-
-export default App;

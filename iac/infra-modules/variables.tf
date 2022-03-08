@@ -116,3 +116,8 @@ variable "server_repository_name" {
 variable "server_branch_name" {
   type = string
 }
+
+variable "cognito_default_user_email" {
+  type = string
+  description = "This is a default user to be able to login to the system"
+}

@@ -21,3 +21,8 @@ variable "client_logout_urls" {
   type        = list(string)
   default     = ["http://localhost:3000/logout"]
 }
+
+variable "cognito_default_user_email" {
+  type = string
+  description = "This is a default user to be able to login to the system"
+}
