@@ -45,7 +45,15 @@ variable "configuration" {
   type        = any
   description = "Deployment configuration"
 }
+variable "bucket_name" {
+  type        = any
+  description = "Pipline bucket name"
+}
 
 variable "context" {
   type = any
+}
+variable "deploy_provider" {
+  type = string
+  description = "This is the deploy provider type"
 }

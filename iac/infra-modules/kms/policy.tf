@@ -96,4 +96,45 @@ data "aws_iam_policy_document" "kms_permissions" {
       values   = ["arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:*"]
     }
   }
+
+  statement {
+    sid = "Allow Codepipeline"
+    principals {
+      type        = "Service"
+      identifiers = ["codepipeline.${var.region}.amazonaws.com"]
+    }
+    actions = [
+      "kms:Encrypt*",
+      "kms:Decrypt*",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Describe*"
+    ]
+    resources = ["*"]
+    condition {
+      test     = "ArnLike"
+      variable = "kms:EncryptionContext:aws:codepipeline:arn"
+      values   = ["arn:aws:codepipeline:${var.region}:${data.aws_caller_identity.current.account_id}:*"]
+    }
+  }
+  statement {
+    sid = "Allow Codebuild"
+    principals {
+      type        = "Service"
+      identifiers = ["codebuild.${var.region}.amazonaws.com"]
+    }
+    actions = [
+      "kms:Encrypt*",
+      "kms:Decrypt*",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Describe*"
+    ]
+    resources = ["*"]
+    condition {
+      test     = "ArnLike"
+      variable = "kms:EncryptionContext:aws:codebuild:arn"
+      values   = ["arn:aws:codebuild:${var.region}:${data.aws_caller_identity.current.account_id}:*"]
+    }
+  }
 }

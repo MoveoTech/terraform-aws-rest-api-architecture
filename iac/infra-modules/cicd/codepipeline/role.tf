@@ -51,6 +51,22 @@ data "aws_iam_policy_document" "codepipeline_mutlicontainer_app" {
     effect = "Allow"
 
     actions = [
+      "kms:Encrypt*",
+      "kms:Decrypt*",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Describe*"
+    ]
+
+    resources = [
+      "arn:aws:kms:*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
       "codebuild:StartBuild",
       "codebuild:StopBuild",
       "codebuild:BatchGetBuilds",

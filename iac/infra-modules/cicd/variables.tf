@@ -50,10 +50,6 @@ variable "codebuild_name" {
   description = "Pipline name"
   default     = null
 }
-variable "pipline_type" {
-  type        = string
-  description = "The pipline type can be `server` or `client`"
-}
 
 variable "client_bucket_name" {
   type = string

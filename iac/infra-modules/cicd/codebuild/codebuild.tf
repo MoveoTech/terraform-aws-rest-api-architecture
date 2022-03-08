@@ -9,7 +9,7 @@ resource "random_string" "random" {
   special = false
 }
 resource "aws_codebuild_project" "main" {
-  name          = "${module.label.name}-${module.label.stage}-${random_string.random.result}"
+  name          = var.name
   service_role  = aws_iam_role.main.arn
   build_timeout = "10"
 
@@ -17,7 +17,7 @@ resource "aws_codebuild_project" "main" {
     type = "CODEPIPELINE"
   }
 
-  # encryption_key = var.kms_arn
+  encryption_key = var.kms_arn
   environment {
     compute_type    = "BUILD_GENERAL1_SMALL"
     image           = var.image
@@ -32,6 +32,6 @@ resource "aws_codebuild_project" "main" {
 
   source {
     type      = "CODEPIPELINE"
-    buildspec = "buildspec.yml"
+    buildspec = var.buildspec_path
   }
 }

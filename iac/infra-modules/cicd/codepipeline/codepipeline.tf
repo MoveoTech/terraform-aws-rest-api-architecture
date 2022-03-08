@@ -17,13 +17,13 @@ module "s3_bucket" {
   user_enabled        = false
   versioning_enabled  = true
   bucket_key_enabled  = true
-
-  context = var.context
+  bucket_name         = var.bucket_name
+  context             = var.context
 }
 
 
 resource "aws_codepipeline" "main" {
-  name     = "${module.label.name}-${module.label.stage}"
+  name     = var.name
   role_arn = aws_iam_role.main.arn
 
   artifact_store {
@@ -49,7 +49,7 @@ resource "aws_codepipeline" "main" {
       configuration = {
         Owner                = var.github_org
         Repo                 = var.repository_name
-        PollForSourceChanges = "true"
+        PollForSourceChanges = "false"
         Branch               = var.branch_name
         OAuthToken           = var.github_token
       }
@@ -81,18 +81,15 @@ resource "aws_codepipeline" "main" {
     name = "Deploy"
 
     action {
-      name             = "Deploy"
-      category         = "Deploy"
-      owner            = "AWS"
-      provider         = "ElasticBeanstalk"
-      input_artifacts  = ["BuildArtifact"]
-      version          = "1"
+      name            = "Deploy"
+      category        = "Deploy"
+      owner           = "AWS"
+      provider        = var.deploy_provider
+      input_artifacts = ["BuildArtifact"]
+      version         = "1"
 
-      configuration = {
-        ApplicationName = var.elastic_beanstalk_application_name
-        EnvironmentName = var.elastic_beanstalk_environment_name
-      }
-      run_order = 3
+      configuration = var.configuration
+      run_order     = 3
     }
   }
 }

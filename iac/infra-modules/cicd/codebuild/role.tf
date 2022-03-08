@@ -63,7 +63,7 @@ data "aws_iam_policy_document" "codebuild_multicontainer_app" {
     ]
 
     resources = [
-      "arn:aws:codebuild:eu-west-2:*"
+      "arn:aws:codebuild:*"
     ]
   }
 
@@ -88,11 +88,15 @@ data "aws_iam_policy_document" "codebuild_multicontainer_app" {
     effect = "Allow"
 
     actions = [
-      "secretsmanager:GetSecretValue"
+      "kms:Encrypt*",
+      "kms:Decrypt*",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:Describe*"
     ]
 
     resources = [
-      "arn:aws:secretsmanager:*"
+      "arn:aws:kms:*"
     ]
   }
 }

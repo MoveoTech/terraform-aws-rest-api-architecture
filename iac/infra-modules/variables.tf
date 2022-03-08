@@ -89,3 +89,30 @@ variable "client_logout_urls" {
   type        = list(string)
   default     = ["http://localhost:3000/logout"]
 }
+
+
+variable "github_secret_name" {
+  type = string
+}
+
+variable "github_org" {
+  type = string
+}
+
+variable "client_repository_name" {
+  type = string
+}
+
+
+variable "client_branch_name" {
+  type = string
+}
+
+variable "server_repository_name" {
+  type = string
+}
+
+
+variable "server_branch_name" {
+  type = string
+}
