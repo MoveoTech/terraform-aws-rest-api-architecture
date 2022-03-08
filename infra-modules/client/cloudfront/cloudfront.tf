@@ -5,7 +5,7 @@ data "aws_canonical_user_id" "current" {
 
 module "s3_bucket" {
   source              = "cloudposse/s3-bucket/aws"
-  version             = "0.36.0"
+  version             = "0.47.1"
   block_public_policy = true
   acl                 = "private"
   force_destroy       = true
@@ -41,7 +41,7 @@ data "aws_cloudfront_cache_policy" "default" {
 
 module "cloudfront_s3_cdn" {
   source                     = "cloudposse/cloudfront-s3-cdn/aws"
-  version                    = "0.82.2"
+  version                    = "0.82.3"
   origin_force_destroy       = true
   web_acl_id                 = module.waf_cloudfront.arn
   aliases                    = var.aliases

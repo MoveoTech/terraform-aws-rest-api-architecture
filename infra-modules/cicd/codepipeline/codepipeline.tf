@@ -1,0 +1,98 @@
+resource "random_string" "random" {
+  length  = 5
+  special = false
+}
+module "label" {
+  source  = "cloudposse/label/null"
+  version = "0.25.0"
+
+  context = var.context
+}
+module "s3_bucket" {
+  source              = "cloudposse/s3-bucket/aws"
+  version             = "0.47.1"
+  block_public_policy = true
+  acl                 = "private"
+  force_destroy       = true
+  user_enabled        = false
+  versioning_enabled  = true
+  bucket_key_enabled  = true
+
+  context = var.context
+}
+
+
+resource "aws_codepipeline" "main" {
+  name     = "${module.label.name}-${module.label.stage}"
+  role_arn = aws_iam_role.main.arn
+
+  artifact_store {
+    location = module.s3_bucket.bucket_id
+    type     = "S3"
+    encryption_key {
+      id   = var.kms_arn
+      type = "KMS"
+    }
+  }
+
+
+  stage {
+    name = "Source"
+    action {
+      name             = "Source"
+      category         = "Source"
+      owner            = "ThirdParty"
+      provider         = "GitHub"
+      version          = "1"
+      output_artifacts = ["SourceArtifact"]
+
+      configuration = {
+        Owner                = var.github_org
+        Repo                 = var.repository_name
+        PollForSourceChanges = "true"
+        Branch               = var.branch_name
+        OAuthToken           = var.github_token
+      }
+    }
+  }
+
+  stage {
+    name = "Build"
+
+    action {
+      name             = "Build"
+      category         = "Build"
+      owner            = "AWS"
+      provider         = "CodeBuild"
+      input_artifacts  = ["SourceArtifact"]
+      output_artifacts = ["BuildArtifact"]
+      version          = "1"
+
+      configuration = {
+        ProjectName   = var.project_name
+        PrimarySource = "SourceArtifact"
+      }
+      run_order = 2
+    }
+  }
+
+
+  stage {
+    name = "Deploy"
+
+    action {
+      name             = "Deploy"
+      category         = "Deploy"
+      owner            = "AWS"
+      provider         = "ElasticBeanstalk"
+      input_artifacts  = ["BuildArtifact"]
+      version          = "1"
+
+      configuration = {
+        ApplicationName = var.elastic_beanstalk_application_name
+        EnvironmentName = var.elastic_beanstalk_environment_name
+      }
+      run_order = 3
+    }
+  }
+}
