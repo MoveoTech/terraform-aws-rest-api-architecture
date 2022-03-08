@@ -9,11 +9,7 @@ phases:
       - cd server
       - npm install --silent --no-progress -g typescript
       - npm install --silent --no-progress
-    post_build:
-     commands:
-      - cd server
-      - tsc    
-      - echo Build completed on `date`
+      - tsc
 # Include only the files required for your application to run.
 artifacts:
   files:
