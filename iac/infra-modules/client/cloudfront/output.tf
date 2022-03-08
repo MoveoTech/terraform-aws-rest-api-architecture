@@ -30,6 +30,6 @@ output "cf_hosted_zone_id" {
 
 output "cf_s3_bucket_name" {
   description = " Cloudfron s3 bucket name"
-  value       = module.s3_bucket.bucket_id
+  value       = module.cloudfront_s3_cdn.s3_bucket
 
 }
