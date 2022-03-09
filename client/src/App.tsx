@@ -1,7 +1,11 @@
+import React, { useEffect } from 'react';
 import './App.css';
 import Amplify, { Auth } from 'aws-amplify'
 import { Authenticator, Heading, useTheme, Text } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
+import NetworkManager from './NetworkManager';
+import { Events } from './events';
+
 
 Amplify.configure({
   Auth: {
@@ -48,6 +52,8 @@ const components = {
 };
 
 export default function App() {
+  useEffect(() => NetworkManager.init(), []);
+
   async function getToken() {
     const session = await Auth.currentSession()
     const accesstoken = session.getAccessToken().getJwtToken();
@@ -62,6 +68,7 @@ export default function App() {
           <h1>Hello {user.username}</h1>
           <button onClick={getToken}>getToken</button>
           <button onClick={signOut}>Sign out</button>
+          <Events/>
         </main>
       )}
     </Authenticator>

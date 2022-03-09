@@ -128,6 +128,7 @@ module "cicd" {
   client_bucket_name                 = module.cloudfront_s3_cdn.cf_s3_bucket_name
   cognito_pool_id                    = module.cognito_auth.user_pool_id
   cognito_web_client_id              = module.cognito_auth.web_client_id
+  invoke_url                         = module.server.invoke_url
   context                            = module.this.context
 }
 

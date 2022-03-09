@@ -79,6 +79,12 @@ module "codebuild_application_client" {
       value = var.cognito_web_client_id
       type  = "PLAINTEXT"
 
+    },
+    {
+      name  = "REACT_APP_API_BASE_URL"
+      value = var.invoke_url
+      type  = "PLAINTEXT"
+
   }]
   kms_arn        = module.kms.key_arn
   buildspec_path = "client/buildspec.yml"
