@@ -7,14 +7,14 @@ const app = express()
 const port = process.env.PORT;
 
 app.get('/v1/app/events', async (req, res) => {
-    console.log(JSON.stringify(req?.headers))
-    console.log(JSON.stringify(req))
+    console.log(req?.headers);
+    console.log(req);
     const events = await getEvents();
     return res.json(events)
 })
 app.post('/v1/app/events', async (req, res) => {
-    console.log(JSON.stringify(req?.headers))
-    console.log(JSON.stringify(req))
+    console.log(req?.headers);
+    console.log(req);
     const events = await createEvents();
     return res.json(events)
 })
