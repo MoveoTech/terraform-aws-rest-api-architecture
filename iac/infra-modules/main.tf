@@ -1,6 +1,12 @@
 provider "aws" {
   region = var.region
 }
+
+provider "aws" {
+  region = "us-east-1"
+  alias  = "east"
+}
+
 locals {
   domain_enabled     = var.parent_zone_id != null && var.domain_name != null
   server_domain_name = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
@@ -55,16 +61,6 @@ resource "aws_secretsmanager_secret_version" "secrets" {
 }
 
 
-
-module "acm_request_certificate_server" {
-  source      = "./acm"
-  enabled     = local.domain_enabled
-  domain_name = local.server_domain_name
-  zone_id     = var.parent_zone_id
-}
-
-
-
 module "cognito_auth" {
   source                      = "./authentication/cognito"
   client_logout_urls          = var.client_logout_urls
@@ -73,6 +69,18 @@ module "cognito_auth" {
   cognito_default_user_email  = var.cognito_default_user_email
   context                     = module.this.context
 }
+
+module "acm_request_certificate_server" {
+  source      = "./acm"
+  enabled     = local.domain_enabled
+  domain_name = local.server_domain_name
+  zone_id     = var.parent_zone_id
+  providers = {
+    aws = aws.east
+  }
+}
+
+
 
 module "server" {
   source                        = "./backend"
@@ -94,12 +102,16 @@ module "server" {
 
 
 
+
 module "acm_request_certificate_client" {
   source                    = "./acm"
   enabled                   = local.domain_enabled
   domain_name               = var.domain_name
   zone_id                   = var.parent_zone_id
   subject_alternative_names = var.subject_alternative_names
+  providers = {
+    aws = aws.east
+  }
 }
 
 

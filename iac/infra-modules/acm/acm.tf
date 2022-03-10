@@ -4,19 +4,13 @@ locals {
   domain_name = local.enabled ? var.domain_name : ""
 }
 
-provider "aws" {
-  region = "us-east-1"
-  alias  = "east"
-}
+
 
 
 # create acm and explicitly set it to us-east-1 provider
 module "acm_request_certificate" {
-  source = "cloudposse/acm-request-certificate/aws"
-  enabled = local.enabled
-  providers = {
-    aws = aws.east
-  }
+  source                            = "cloudposse/acm-request-certificate/aws"
+  enabled                           = local.enabled
   version                           = "0.16.0"
   zone_id                           = var.zone_id
   domain_name                       = local.domain_name
