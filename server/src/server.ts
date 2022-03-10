@@ -1,10 +1,12 @@
 const express = require('express')
+const cors = require('cors')
 
 // ES5 example
 import { getEvents, createEvents, getSecrets } from "./service"
 
 const app = express()
-const port = process.env.PORT;
+app.use(cors())
+const port = process.env.PORT || 3000;
 
 app.get('/v1/app/events', async (req, res) => {
     console.log(req?.headers);

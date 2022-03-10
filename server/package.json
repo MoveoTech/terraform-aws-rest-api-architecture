@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@aws-sdk/client-secrets-manager": "3.51.0",
+    "cors": "^2.8.5",
     "express": "4.17.2",
     "mongodb": "4.3.1"
   }
