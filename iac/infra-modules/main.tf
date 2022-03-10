@@ -87,6 +87,7 @@ module "server" {
   domain_name                   = local.server_domain_name
   zone_id                       = var.parent_zone_id
   acm_request_certificate_arn   = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
+  cors_domain                   = var.subject_alternative_names
   region                        = var.region
   availability_zones            = var.availability_zones
   instance_type                 = var.instance_type

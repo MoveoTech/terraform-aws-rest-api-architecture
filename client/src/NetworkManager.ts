@@ -20,7 +20,7 @@ export default class NetworkManager {
 
     NetworkManager.isInitiate = true;
     //set base url
-    axios.defaults.baseURL = `https://${process.env.REACT_APP_API_BASE_URL}/v1/app`;
+    axios.defaults.baseURL = `${process.env.REACT_APP_API_BASE_URL}/v1/app`;
   }
 }
 

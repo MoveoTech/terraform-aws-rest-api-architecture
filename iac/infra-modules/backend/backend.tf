@@ -35,6 +35,7 @@ module "waf_api_gateway" {
 module "api_gateway" {
   source                              = "./api-gateway"
   domain_name                         = var.domain_name
+  cors_domain                         = var.cors_domain
   zone_id                             = var.zone_id
   acm_request_certificate_arn         = var.acm_request_certificate_arn
   kms_key_arn                         = module.kms.key_arn

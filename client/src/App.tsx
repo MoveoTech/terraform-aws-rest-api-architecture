@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import Amplify, { Auth } from 'aws-amplify'
 import { Authenticator, Heading, useTheme, Text } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import NetworkManager from './NetworkManager';
 import { Events } from './events';
+import axios from 'axios';
 
 
 Amplify.configure({
@@ -53,22 +54,32 @@ const components = {
 
 export default function App() {
   useEffect(() => NetworkManager.init(), []);
+  const [token, setToken] = useState<string>("");
 
   async function getToken() {
     const session = await Auth.currentSession()
     const accesstoken = session.getAccessToken().getJwtToken();
+    setToken(accesstoken)
     const idtoken = session.getIdToken().getJwtToken();
     console.log('idtoken: ', idtoken)
     console.log('accesstoken: ', accesstoken)
   }
+
   return (
     <Authenticator loginMechanisms={['email']} components={components} hideSignUp={true}>
       {({ signOut, user }) => (
         <main>
           <h1>Hello {user.username}</h1>
-          <button onClick={getToken}>getToken</button>
-          <button onClick={signOut}>Sign out</button>
-          <Events/>
+
+          <div>
+            <button onClick={getToken}>Refresh Token </button>
+            <button onClick={signOut}>Sign out</button>
+          </div>
+          <div style={{ width: 400 }}>
+            <h3>Access token :</h3>
+            <p>{token}</p>
+          </div>
+          <Events />
         </main>
       )}
     </Authenticator>

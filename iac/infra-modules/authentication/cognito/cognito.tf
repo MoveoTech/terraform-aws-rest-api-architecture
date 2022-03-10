@@ -120,7 +120,9 @@ module "aws_cognito_user_pool" {
   ]
 
   # tags
-  tags = module.label.tags
+  tags = merge(module.label.tags, {
+    yor_trace = "e8810cd3-cec1-422e-ab28-baba3b8a858f"
+  })
 }
 
 

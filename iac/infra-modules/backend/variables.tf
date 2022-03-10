@@ -67,3 +67,8 @@ variable "user_pool_arn" {
   description = "The ARN of the Cognito user pool"
   type        = string
 }
+
+variable "cors_domain" {
+  description = "List of all cors domain relevant to the api gateway resource, for example if we want to be able to allow request from client `[www.client.com,client.com]` "
+  type        = list(string)
+}

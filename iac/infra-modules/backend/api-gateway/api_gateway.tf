@@ -3,6 +3,7 @@ locals {
   domain_count     = local.domain_enabled ? 1 : 0
   create_log_group = true
   log_group_arn    = module.cloudwatch_log_group.log_group_arn
+
 }
 module "label" {
   source  = "cloudposse/label/null"
@@ -10,6 +11,7 @@ module "label" {
 
   context = var.context
 }
+
 module "account_settings" {
   source = "cloudposse/api-gateway/aws//modules/account-settings"
 
@@ -17,11 +19,20 @@ module "account_settings" {
   name    = "api-gateway-${module.label.stage}"
 
 }
+
+
 resource "aws_api_gateway_rest_api" "main" {
   name = "api-gateway-${module.label.stage}"
   tags = merge(module.label.tags, { Name = "Api Gateway" }, {
     yor_trace = "921a6956-bab5-4ab5-9fca-496360259651"
   })
+}
+module "cors" {
+  source          = "./cors"
+  api_id          = aws_api_gateway_rest_api.main.id
+  api_resource_id = aws_api_gateway_resource.main.id
+  allow_origin    = local.domain_enabled ? "https://${var.cors_domain[0]}" : "*"
+
 }
 
 resource "aws_api_gateway_authorizer" "cognito_auth" {
@@ -138,8 +149,8 @@ resource "aws_api_gateway_method_settings" "main" {
   settings {
     metrics_enabled        = true
     logging_level          = "INFO"
-    throttling_burst_limit = 10000
-    throttling_rate_limit  = 5000
+    throttling_rate_limit  = 10000
+    throttling_burst_limit = 5000
   }
 
   depends_on = [
@@ -189,3 +200,5 @@ resource "aws_route53_record" "server_record" {
     zone_id                = aws_api_gateway_domain_name.server_domain[0].cloudfront_zone_id
   }
 }
+
+
