@@ -1,3 +1,4 @@
+
 # IAM role
 resource "aws_iam_role" "main" {
   name               = "${module.label.name}-role-${module.label.stage}-${random_string.random.result}"
@@ -36,6 +37,19 @@ resource "aws_iam_role_policy_attachment" "mutlicontainer_app" {
 
 data "aws_iam_policy_document" "codepipeline_mutlicontainer_app" {
   statement {
+    effect = "Allow"
+
+    actions = [
+      "lambda:InvokeFunction",
+    ]
+
+    resources = [
+      # "arn:aws:lambda:::*"
+      "arn:aws:lambda:*:${data.aws_caller_identity.current.account_id}:function:*"
+    ]
+  }
+
+    statement {
     effect = "Allow"
 
     actions = [

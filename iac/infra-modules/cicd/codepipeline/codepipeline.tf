@@ -1,3 +1,4 @@
+data "aws_caller_identity" "current" {}
 resource "random_string" "random" {
   length  = 5
   special = false
@@ -90,6 +91,27 @@ resource "aws_codepipeline" "main" {
 
       configuration = var.configuration
       run_order     = 3
+    }
+  }
+
+  dynamic "stage" {
+    for_each = var.cf_distribution_id != null ? ["true"] : []
+    content {
+      name = "cloudfront-revalidation"
+
+      action {
+        name            = "cloudfront-revalidation"
+        category        = "Invoke"
+        owner           = "AWS"
+        provider        = "Lambda"
+        input_artifacts = []
+        version         = "1"
+
+        configuration = {
+          FunctionName   = var.lambda_name
+          UserParameters = "${var.cf_distribution_id}"
+        }
+      }
     }
   }
 }

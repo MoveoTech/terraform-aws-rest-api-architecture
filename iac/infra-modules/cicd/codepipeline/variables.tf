@@ -1,16 +1,16 @@
 variable "name" {
   description = "Name of pipeline"
-  type = string
+  type        = string
 }
 
 variable "repository_name" {
   description = "Name of repository"
-  type = string
+  type        = string
 }
 
 variable "project_name" {
   description = "Name of CodeBuild project"
-  type = string
+  type        = string
 }
 
 
@@ -28,7 +28,7 @@ variable "github_org" {
 
 variable "github_token" {
   description = "Name of github token"
-  type = string
+  type        = string
 }
 
 variable "environment" {
@@ -38,7 +38,7 @@ variable "environment" {
 variable "kms_arn" {
   type        = string
   description = "KMS key to encrypt artifact"
-  default = null
+  default     = null
 }
 
 variable "configuration" {
@@ -54,6 +54,16 @@ variable "context" {
   type = any
 }
 variable "deploy_provider" {
-  type = string
+  type        = string
   description = "This is the deploy provider type"
+}
+variable "lambda_name" {
+  type        = string
+  default     = null
+  description = "Lambda function name for invalidate clodfront"
+}
+variable "cf_distribution_id" {
+  type        = string
+  default     = null
+  description = "Cloudfron distribution id"
 }

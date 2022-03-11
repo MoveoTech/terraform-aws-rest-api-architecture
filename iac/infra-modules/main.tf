@@ -138,11 +138,15 @@ module "cicd" {
   server_branch_name                 = var.server_branch_name
   elastic_beanstalk_application_name = module.server.elastic_beanstalk_application_name
   elastic_beanstalk_environment_name = module.server.elastic_beanstalk_environment_name
-  client_bucket_name                 = module.cloudfront_s3_cdn.cf_s3_bucket_name
+  client_bucket_name                 = module.cloudfront_s3_cdn.s3_bucket
   cognito_pool_id                    = module.cognito_auth.user_pool_id
   cognito_web_client_id              = module.cognito_auth.web_client_id
+  cloudfront_arn                     = module.cloudfront_s3_cdn.cf_arn
+  cf_distribution_id                 = module.cloudfront_s3_cdn.cf_id
   invoke_url                         = module.server.invoke_url
-  context                            = module.this.context
+
+
+  context = module.this.context
 }
 
 
