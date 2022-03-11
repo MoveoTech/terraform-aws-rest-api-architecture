@@ -1,23 +1,13 @@
-import { Request, Response, NextFunction } from 'express';
 import * as express from 'express';
 
 const cors = require('cors')
 
 // ES5 example
 import { getEvents, createEvents, getSecrets } from "./service"
-const accessControlMiddleware = (request: Request, response: Response, next: NextFunction) => {
-    console.log('inside accessControlMiddleware')
-    // const headerValue = process.env.NODE_ENV !== 'production' ? ['*'] : allowList;
 
-    response.header('Access-Control-Allow-Origin', ['*']);
-    response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    response.header('Access-Control-Allow-Methods', 'OPTIONS,POST,GET');
-    next();
-};
 
 const app = express()
-app.use(cors())
-app.use(accessControlMiddleware);
+
 const port = process.env.PORT || 3001;
 
 app.get('/v1/app/events', async (req, res) => {
