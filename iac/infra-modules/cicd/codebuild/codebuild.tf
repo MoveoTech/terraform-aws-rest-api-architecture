@@ -16,6 +16,12 @@ resource "aws_codebuild_project" "main" {
   artifacts {
     type = "CODEPIPELINE"
   }
+  vpc_config {
+    vpc_id = var.vpc_id
+
+    subnets            = var.private_subnet_ids
+    security_group_ids = [var.security_group_id]
+  }
 
   encryption_key = var.kms_arn
   environment {

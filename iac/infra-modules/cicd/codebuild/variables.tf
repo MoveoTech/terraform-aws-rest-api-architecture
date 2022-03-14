@@ -45,3 +45,20 @@ variable "environment_variables" {
 
   description = "A list of maps, that contain the keys 'name', 'value', and 'type' to be used as additional environment variables for the build. Valid types are 'PLAINTEXT', 'PARAMETER_STORE', or 'SECRETS_MANAGER'"
 }
+
+
+variable "vpc_id" {
+  type        = string
+  description = "VPC ID where subnets will be created (e.g. `vpc-aceb2723`)"
+}
+
+
+variable "private_subnet_ids" {
+  type        = list(string)
+  description = "IDs of the created private subnets"
+}
+
+variable "security_group_id" {
+  type        = string
+  description = "IDs of the created security group"
+}

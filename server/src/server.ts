@@ -1,3 +1,4 @@
+import { getConnection } from './db';
 import { Request, Response, NextFunction } from 'express';
 import * as express from 'express';
 
@@ -35,6 +36,8 @@ app.post('/v1/app/events', async (req, res) => {
 
 app.listen(port, async () => {
     const secrets = await getSecrets();
+    const client = await getConnection();
+
     console.log(`Example app listening on port ${port}`)
     console.log(`CONNECTION STRING: ${secrets.db_connection_string}`)
     console.log(`CONNECTION PASS: ${secrets.db_password}`)

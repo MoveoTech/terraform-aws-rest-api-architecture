@@ -92,7 +92,8 @@ data "aws_iam_policy_document" "codepipeline_mutlicontainer_app" {
       "codebuild:ListReports",
       "codebuild:DeleteReport",
       "codebuild:ListReportGroups",
-      "codebuild:BatchPutTestCases"
+      "codebuild:BatchPutTestCases",
+      "codebuild:PutJobSuccessResult"
     ]
 
     resources = ["*"]

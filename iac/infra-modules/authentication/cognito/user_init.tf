@@ -1,3 +1,5 @@
+
+
 data "template_file" "application_bootstrap" {
   template = file("${path.module}/cf_template.json")
 
@@ -8,7 +10,7 @@ data "template_file" "application_bootstrap" {
 }
 
 resource "aws_cloudformation_stack" "test_users" {
-  name = "create-test-users"
+  name = "create-test-users-${module.label.stage}"
 
   template_body = data.template_file.application_bootstrap.rendered
 }

@@ -1,6 +1,7 @@
 
 module "atlas_vpc_endpoint" {
   source = "./vpc-endpoint"
+  count = var.private_endpoint_enabled ? 1:0
 
   project_id         = module.atlas_project.atlas_project_id
   region             = var.region
@@ -18,6 +19,14 @@ resource "mongodbatlas_auditing" "audit" {
   enabled                     = true
 }
 
+resource "mongodbatlas_project_ip_access_list" "ip" {
+  for_each = { for ip in var.atlas_whitelist_ips : ip => ip }
+
+  project_id = module.atlas_project.atlas_project_id
+  ip_address = each.value
+  comment    = "IP Address for accessing the cluster"
+}
+
 resource "mongodbatlas_org_invitation" "invitation" {
   for_each = { for vm in var.atlas_users : vm => vm }
   username = each.value
@@ -25,10 +34,10 @@ resource "mongodbatlas_org_invitation" "invitation" {
   roles    = ["ORG_MEMBER"]
 }
 resource "mongodbatlas_project_invitation" "project_invitation" {
-  for_each = { for vm in var.atlas_users : vm => vm }
-  username = each.value
-  project_id  = module.atlas_project.atlas_project_id
-  roles       = [ "GROUP_DATA_ACCESS_READ_WRITE" ]
+  for_each   = { for vm in var.atlas_users : vm => vm }
+  username   = each.value
+  project_id = module.atlas_project.atlas_project_id
+  roles      = ["GROUP_DATA_ACCESS_READ_WRITE"]
 }
 
 module "atlas_project" {

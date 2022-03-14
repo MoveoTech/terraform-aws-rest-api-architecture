@@ -50,8 +50,3 @@ module "default_security_group" {
   context           = var.context
 }
 
-# resource "aws_network_interface" "eni" {
-#   for_each        = { for subnet_id in module.private_subnets.private_subnet_ids : subnet_id => subnet_id }
-#   subnet_id       = each.value
-#   security_groups = [module.default_security_group.id]
-# }

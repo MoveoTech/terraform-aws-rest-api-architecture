@@ -1,3 +1,4 @@
+data "aws_caller_identity" "current" {}
 
 resource "aws_iam_role" "main" {
   name               = "${module.label.name}-role-${module.label.stage}-${random_string.random.result}"
@@ -35,6 +36,23 @@ resource "aws_iam_role_policy_attachment" "mutlicontainer_app" {
 }
 
 data "aws_iam_policy_document" "codebuild_multicontainer_app" {
+
+  statement {
+    effect = "Allow"
+    actions = [
+        "ec2:CreateNetworkInterface",
+        "ec2:DescribeDhcpOptions",
+        "ec2:DescribeNetworkInterfaces",
+        "ec2:DeleteNetworkInterface",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeVpcs",
+        "ec2:CreateNetworkInterfacePermission"
+    ]
+    resources = [
+      "*"
+    ]
+  }
   statement {
     effect = "Allow"
 
@@ -43,8 +61,11 @@ data "aws_iam_policy_document" "codebuild_multicontainer_app" {
       "logs:CreateLogStream",
       "logs:PutLogEvents"
     ]
+    resources = [
+      "arn:aws:logs:*:${data.aws_caller_identity.current.account_id}:log-group:*",
+      "arn:aws:logs:*:${data.aws_caller_identity.current.account_id}:log-group:*:log-stream:*"
 
-    resources = ["*"]
+    ]
   }
 
   statement {
@@ -61,9 +82,8 @@ data "aws_iam_policy_document" "codebuild_multicontainer_app" {
       "codebuild:ListReportGroups",
       "codebuild:BatchPutTestCases"
     ]
-
     resources = [
-      "arn:aws:codebuild:*"
+      "arn:aws:codebuild:*:${data.aws_caller_identity.current.account_id}:project/*"
     ]
   }
 
@@ -78,9 +98,8 @@ data "aws_iam_policy_document" "codebuild_multicontainer_app" {
       "s3:GetBucketAcl",
       "s3:GetBucketLocation"
     ]
-
     resources = [
-      "arn:aws:s3:::*"
+       "arn:aws:s3:::*"
     ]
   }
 
@@ -94,9 +113,8 @@ data "aws_iam_policy_document" "codebuild_multicontainer_app" {
       "kms:GenerateDataKey*",
       "kms:Describe*"
     ]
-
     resources = [
-      "arn:aws:kms:*"
+      "arn:aws:kms:*:${data.aws_caller_identity.current.account_id}:key/*"
     ]
   }
 }

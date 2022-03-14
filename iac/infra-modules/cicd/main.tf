@@ -25,16 +25,40 @@ module "kms" {
   context = var.context
 }
 
+module "security_group" {
+  source  = "cloudposse/security-group/aws"
+  version = "0.4.3"
+
+  # Security Group names must be unique within a VPC.
+  # This module follows Cloud Posse naming conventions and generates the name
+  # based on the inputs to the null-label module, which means you cannot
+  # reuse the label as-is for more than one security group in the VPC.
+  #
+  # Here we add an attribute to give the security group a unique name.
+  attributes = ["cicd-${module.label.stage}"]
+
+  # Allow unlimited egress
+  allow_all_egress = true
+  vpc_id           = var.vpc_id
+
+  context = var.context
+}
+
+
 
 # Codebuild module for CI
 module "codebuild_application_server" {
-  source         = "./codebuild"
-  name           = "${module.label.stage}-${module.label.name}-server-build"
-  image          = "aws/codebuild/standard:4.0"
-  buildspec_path = "server/buildspec.yml"
-  environment    = module.label.stage
-  kms_arn        = module.kms.key_arn
-  context        = var.context
+  source             = "./codebuild"
+  name               = "${module.label.stage}-${module.label.name}-server-build"
+  image              = "aws/codebuild/standard:4.0"
+  buildspec_path     = "server/buildspec.yml"
+  environment        = module.label.stage
+  kms_arn            = module.kms.key_arn
+  security_group_id  = module.security_group.id
+  private_subnet_ids = var.private_subnet_ids
+  vpc_id             = var.vpc_id
+
+  context = var.context
 }
 
 # CodePipeline module for CICD pipeline
@@ -60,10 +84,13 @@ module "codepipeline_server_app" {
 
 # Codebuild module for CI
 module "codebuild_application_client" {
-  source      = "./codebuild"
-  name        = "${module.label.stage}-${module.label.name}-client-build"
-  image       = "aws/codebuild/standard:4.0"
-  environment = module.label.stage
+  source             = "./codebuild"
+  name               = "${module.label.stage}-${module.label.name}-client-build"
+  image              = "aws/codebuild/standard:4.0"
+  environment        = module.label.stage
+  security_group_id  = module.security_group.id
+  private_subnet_ids = var.private_subnet_ids
+  vpc_id             = var.vpc_id
   environment_variables = [{
     name  = "REACT_APP_AWS_REGION"
     value = var.region
@@ -117,7 +144,11 @@ module "codepipeline_client_app" {
 }
 
 module "cloudfront_invalidation" {
-  source  = "./cloudfron-auto-invalidator"
-  name    = "cloudfront-invalidation-${module.label.stage}"
+  source             = "./cloudfron-auto-invalidator"
+  name               = "cloudfront-invalidation-${module.label.stage}"
+  private_subnet_ids = var.private_subnet_ids
+  vpc_id             = var.vpc_id
+  security_group_id  = module.security_group.id
+
   context = var.context
 }

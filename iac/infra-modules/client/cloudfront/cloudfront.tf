@@ -38,19 +38,6 @@ module "cloudfront_s3_cdn" {
 }
 
 
-resource "aws_s3_bucket_object" "index" {
-  # checkov:skip=CKV_AWS_186: s3 website not support kms
-
-
-  bucket       = module.cloudfront_s3_cdn.s3_bucket
-  key          = "index.html"
-  source       = "${path.module}/index.html"
-  content_type = "text/html"
-  etag         = md5(file("${path.module}/index.html"))
-  tags = merge(var.context.tags, {
-    yor_trace = "ff48c2b4-0d82-4b27-9df5-62db2c595070"
-  })
-}
 provider "aws" {
   region = "us-east-1"
   alias  = "east"
@@ -64,9 +51,10 @@ module "kms" {
 module "waf_cloudfront" {
   source      = "../../waf"
   kms_key_arn = module.kms.key_arn
-  providers = {
+    providers = {
     aws = aws.east
   }
+
   scope   = "CLOUDFRONT"
   type    = "cloudfront"
   context = var.context

@@ -6,6 +6,6 @@ module "label" {
 }
 
 resource "mongodbatlas_project" "project" {
-  name   = module.label.name
+  name   = "${module.label.name}-${module.label.stage}"
   org_id = var.atlas_org_id
 }

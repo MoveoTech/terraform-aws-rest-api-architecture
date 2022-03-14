@@ -121,3 +121,23 @@ variable "cognito_default_user_email" {
   type = string
   description = "This is a default user to be able to login to the system"
 }
+
+
+variable "private_endpoint_enabled" {
+  type        = bool
+  default     = false
+  description = "Private endpoint allow to connect between 2 aws accounts by private network no need to use internet. To use this feature you need to add payment card to your atlas account"
+}
+
+
+variable "enable_atlas_whitelist_ips" {
+  type        = bool
+  default     = false
+  description = "Enable the withelist ip, if it enabled the ip's taken from the AWS EIP"
+}
+
+variable "atlas_whitelist_ips" {
+  type        = list(string)
+  default     = []
+  description = "A list of ip's that need access to this project clusters"
+}

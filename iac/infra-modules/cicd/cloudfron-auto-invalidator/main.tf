@@ -48,22 +48,28 @@ resource "aws_iam_role_policy_attachment" "cloudfront_read" {
 
 data "aws_iam_policy_document" "cloudfront_invalidations" {
 
-
   statement {
+    effect = "Allow"
     actions = [
-
-      "ec2:CreateNetworkInterface",
-      "ec2:DescribeNetworkInterfaces",
-      "ec2:CreateNetworkInterfacePermission",
-      "ec2:DeleteNetworkInterface",
       "cloudfront:CreateInvalidation"
     ]
 
     resources = [
-      "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/*",
-      "arn:aws:ec2:*:${data.aws_caller_identity.current.account_id}:security-group/*",
-      "arn:aws:ec2:*:${data.aws_caller_identity.current.account_id}:network-interface/*",
-      "arn:aws:ec2:*:${data.aws_caller_identity.current.account_id}:subnet/*"
+      "arn:aws:cloudfront::${data.aws_caller_identity.current.account_id}:distribution/*"
+    ]
+  }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "ec2:CreateNetworkInterface",
+      "ec2:DescribeNetworkInterfaces",
+      "ec2:CreateNetworkInterfacePermission",
+      "ec2:DeleteNetworkInterface"
+    ]
+
+    resources = [
+      "*"
     ]
   }
 }
@@ -74,16 +80,22 @@ resource "aws_iam_role_policy" "cloudfront_invalidations" {
   role        = aws_iam_role.this.name
 }
 
-resource "aws_lambda_function" "this" {
-  filename                       = data.archive_file.lambda.output_path
-  function_name                  = var.name
-  handler                        = "app.lambda_handler"
-  memory_size                    = var.memory_size
-  role                           = aws_iam_role.this.arn
-  runtime                        = var.runtime
-  source_code_hash               = data.archive_file.lambda.output_base64sha256
-  timeout                        = var.timeout
 
+
+resource "aws_lambda_function" "this" {
+  filename         = data.archive_file.lambda.output_path
+  function_name    = var.name
+  handler          = "app.lambda_handler"
+  memory_size      = var.memory_size
+  role             = aws_iam_role.this.arn
+  runtime          = var.runtime
+  source_code_hash = data.archive_file.lambda.output_base64sha256
+  timeout          = var.timeout
+  vpc_config {
+    # Every subnet should be able to reach an EFS mount target in the same Availability Zone. Cross-AZ mounts are not permitted.
+    subnet_ids         = var.private_subnet_ids
+    security_group_ids = [var.security_group_id]
+  }
   tracing_config {
     mode = "Active"
   }
