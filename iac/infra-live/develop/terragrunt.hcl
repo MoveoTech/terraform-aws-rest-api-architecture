@@ -58,7 +58,7 @@ include {
 }
 
 terraform {
-  source = "../../infra-modules/backend"
+  source = "../../infra-modules"
 
   extra_arguments "conditional_vars" {
     # built-in function to automatically get the list of 

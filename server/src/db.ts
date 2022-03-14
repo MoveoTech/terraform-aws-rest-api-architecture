@@ -9,14 +9,13 @@ export const getConnection = async () => {
     if (!connection) {
         // Fetch secrets from secretes manager to connect to db
         const secrets = await getSecrets();
-        // connection = await MongoClient.connect(`${secrets.db_connection_string}/${process.env.DATABASE_NAME}`, {
-        connection = await MongoClient.connect(`mongodb+srv://terraform-moveo.l7mku.mongodb.net/terraform-moveo-production`, {
+        connection = await MongoClient.connect(`${secrets.db_connection_string}/${process.env.DATABASE_NAME}`, {
             //@ts-ignore
             useNewUrlParser: true,
             useUnifiedTopology: true,
             auth: {
-                username: "terraform-moveo_production_user",
-                password: "0st0WbJv<x*{eJh):mVwKnBq",
+                username: secrets.db_username,
+                password: secrets.db_password,
             }
         })
             .then(res => {

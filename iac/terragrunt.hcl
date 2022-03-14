@@ -5,7 +5,7 @@ remote_state {
     if_exists = "overwrite_terragrunt"
   }
   config = {
-    bucket = "eliran-terraform-s3"
+    bucket = "moveo-terraform-s3"
 
     key = "${path_relative_to_include()}/terraform.tfstate"
     region = "eu-west-2"

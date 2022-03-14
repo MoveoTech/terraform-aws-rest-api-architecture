@@ -7,8 +7,7 @@ export const getSecrets = () => {
     if (!secretManagerClient) {
         secretManagerClient = new SecretsManagerClient({ region: process.env.REGION });
     }
-    // const command = new GetSecretValueCommand({ SecretId: `secrets/${process.env.NODE_ENV}` });
-    const command = new GetSecretValueCommand({ SecretId: `secrets/production` });
+    const command = new GetSecretValueCommand({ SecretId: `secrets/${process.env.NODE_ENV}` });
     return secretManagerClient.send(command).then(res => JSON.parse(res.SecretString));
 }
 
