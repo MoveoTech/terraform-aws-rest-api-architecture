@@ -3,7 +3,7 @@ inputs = {
         availability_zones = ["eu-west-3a","eu-west-3b"]
 
         instance_type       = "t3.micro"
-        stage = "production"
+        stage = "develop"
         name = "terraform-moveo"
         cognito_default_user_email = "eliran@moveohls.com"
 
@@ -40,9 +40,9 @@ inputs = {
         ########## Certificate Vars ###################
 
         parent_zone_id = "ZZG2X8KI3MIQB"
-        aliases_client =["elirana.moveodevelop.com", "www.elirana.moveodevelop.com"]
-        domain_name                       = "elirana.moveodevelop.com"
-        subject_alternative_names         = ["www.elirana.moveodevelop.com"]
+        aliases_client =["dev.terraform.moveodevelop.com", "www.dev.terraform.moveodevelop.com"]
+        domain_name                       = "dev.terraform.moveodevelop.com"
+        subject_alternative_names         = ["www.dev.terraform.moveodevelop.com"]
         dns_alias_enabled= true
 
         ########## Certificate Vars ###################
