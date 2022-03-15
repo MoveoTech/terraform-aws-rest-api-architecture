@@ -65,7 +65,10 @@ data "aws_iam_policy_document" "cloudfront_invalidations" {
       "ec2:CreateNetworkInterface",
       "ec2:DescribeNetworkInterfaces",
       "ec2:CreateNetworkInterfacePermission",
-      "ec2:DeleteNetworkInterface"
+      "ec2:DeleteNetworkInterface",
+      "codepipeline:PutJobSuccessResult",
+      "codepipeline:PutJobFailureResult",
+      "xray:Put*"
     ]
 
     resources = [

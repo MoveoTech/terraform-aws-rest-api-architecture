@@ -137,7 +137,7 @@ module "cloudfront_s3_cdn" {
   dns_alias_enabled   = var.dns_alias_enabled
   parent_zone_id      = var.parent_zone_id
   acm_certificate_arn = try(module.acm_request_certificate_client.acm_request_certificate_arn, "")
-  context = module.this.context
+  context             = module.this.context
 }
 
 
@@ -160,7 +160,9 @@ module "cicd" {
   invoke_url                         = module.server.invoke_url
   private_subnet_ids                 = module.network.private_subnet_ids
   vpc_id                             = module.network.vpc_id
-
+  depends_on = [
+    aws_secretsmanager_secret.secrets
+  ]
   context = module.this.context
 }
 

@@ -160,7 +160,7 @@ resource "aws_api_gateway_method_settings" "main" {
 
 # Optionally create a VPC Link to allow the API Gateway to communicate with private resources (e.g. ALB)
 resource "aws_api_gateway_vpc_link" "this" {
-  name        = "vpc-link-${module.label.name}"
+  name        = "vpc-link-${module.label.name}-${module.label.stage}"
   description = "VPC Link for ${module.label.name}"
   target_arns = [var.nlb_arn]
   tags = {

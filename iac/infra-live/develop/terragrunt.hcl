@@ -1,6 +1,6 @@
 inputs = {
         region = "eu-west-3"
-        availability_zones = ["eu-west-3a","eu-west-3b"]
+        availability_zones = ["eu-west-3a"]
 
         instance_type       = "t3.micro"
         stage = "develop"
@@ -19,8 +19,7 @@ inputs = {
 
         ########## Atlas Vars        ###################
         atlas_org_id = "5fa7c8259eb40748fa56c20d"
-        public_key="sacyavvy"
-        private_key="278dbc65-037c-42a5-9319-e91d17e294c6"
+
         atlas_users = ["eliran@moveohls.com","eliran@moveo.co.il"]
         private_endpoint_enabled = true
         enable_atlas_whitelist_ips = false

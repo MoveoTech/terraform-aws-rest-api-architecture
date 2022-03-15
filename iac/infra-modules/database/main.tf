@@ -27,12 +27,12 @@ resource "mongodbatlas_project_ip_access_list" "ip" {
   comment    = "IP Address for accessing the cluster"
 }
 
-resource "mongodbatlas_org_invitation" "invitation" {
-  for_each = { for vm in var.atlas_users : vm => vm }
-  username = each.value
-  org_id   = var.atlas_org_id
-  roles    = ["ORG_MEMBER"]
-}
+# resource "mongodbatlas_org_invitation" "invitation" {
+#   for_each = { for vm in var.atlas_users : vm => vm }
+#   username = each.value
+#   org_id   = var.atlas_org_id
+#   roles    = ["ORG_MEMBER"]
+# }
 resource "mongodbatlas_project_invitation" "project_invitation" {
   for_each   = { for vm in var.atlas_users : vm => vm }
   username   = each.value
