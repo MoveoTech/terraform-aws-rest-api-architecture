@@ -18,7 +18,6 @@ inputs = {
 
 
         ########## Atlas Vars        ###################
-        atlas_org_id = "5fa7c8259eb40748fa56c20d"
         atlas_users = ["eliran@moveohls.com","eliran@moveo.co.il"]
         private_endpoint_enabled = true
         enable_atlas_whitelist_ips = false

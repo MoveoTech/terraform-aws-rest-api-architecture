@@ -110,9 +110,14 @@ module "server" {
   private_route_table_ids       = module.network.private_route_table_ids
   associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
   ssm_arn                       = aws_secretsmanager_secret.secrets.arn
-  depends_on                    = [module.network, module.acm_request_certificate_server, module.cognito_auth]
-  user_pool_arn                 = module.cognito_auth.user_pool_arn
-  context                       = module.this.context
+  depends_on = [
+    module.network,
+    module.acm_request_certificate_server,
+    module.cognito_auth,
+    module.atlas_database
+  ]
+  user_pool_arn = module.cognito_auth.user_pool_arn
+  context       = module.this.context
 }
 
 
@@ -160,9 +165,7 @@ module "cicd" {
   invoke_url                         = module.server.invoke_url
   private_subnet_ids                 = module.network.private_subnet_ids
   vpc_id                             = module.network.vpc_id
-  depends_on = [
-    aws_secretsmanager_secret.secrets
-  ]
+
   context = module.this.context
 }
 

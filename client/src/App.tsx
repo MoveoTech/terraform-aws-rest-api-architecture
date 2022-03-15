@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Amplify, { Auth } from 'aws-amplify'
 import { Authenticator, Heading, useTheme, Text } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
 import NetworkManager from './NetworkManager';
 import { Events } from './events';
-import axios from 'axios';
-
 
 Amplify.configure({
   Auth: {
