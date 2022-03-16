@@ -32,7 +32,7 @@ variable "cidr_block" {
 
 variable "private_endpoint_enabled" {
   type        = bool
-  default     = false
+  default     = true
   description = "Private endpoint allow to connect between 2 aws accounts by private network no need to use internet. To use this feature you need to add payment card to your atlas account"
 }
 

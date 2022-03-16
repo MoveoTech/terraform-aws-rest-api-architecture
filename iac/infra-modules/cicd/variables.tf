@@ -9,6 +9,7 @@ variable "region" {
 
 variable "github_secret_name" {
   type = string
+  default = "github_secret"
 }
 
 variable "github_org" {
