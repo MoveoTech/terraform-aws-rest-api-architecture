@@ -20,8 +20,12 @@ export default class NetworkManager {
 
     NetworkManager.isInitiate = true;
     //set base url
-    axios.defaults.baseURL = `https://${process.env.REACT_APP_API_BASE_URL}/v1/app`;
+    axios.defaults.baseURL = createBaseUrl(process.env.REACT_APP_API_BASE_URL as string);
   }
+}
+
+const createBaseUrl = (url: string) => {
+  return url.includes("https://") ? `${url}/v1/app` : `https://${url}/v1/app`
 }
 
 export const axiosRequestInterceptor = async (config: any) => {
