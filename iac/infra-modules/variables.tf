@@ -2,7 +2,24 @@ variable "module" {
   description = "The terraform module used to deploy"
   type        = string
 }
+variable "stage" {
+  type        = string
+  default     = null
+  description = "ID element. Usually used to indicate role, e.g. 'prod', 'staging', 'source', 'build', 'test', 'deploy', 'release'"
+}
+
+variable "name" {
+  type        = string
+  default     = null
+  description = <<-EOT
+    ID element. Usually the component or solution name, e.g. 'app' or 'jenkins'.
+    This is the only ID element not also included as a `tag`.
+    The "name" tag is set to the full `id` string. There is no tag with the value of the `name` input.
+    EOT
+}
+
 variable "region" {
+  default     = "eu-west-3"
   description = "aws region to deploy to"
   type        = string
 }
@@ -44,6 +61,7 @@ variable "subject_alternative_names" {
 
 variable "instance_type" {
   type        = string
+  default     = "t3.micro"
   description = "Instances type"
 }
 
@@ -51,6 +69,7 @@ variable "instance_type" {
 variable "availability_zones" {
   type        = list(string)
   description = "List of availability zones for the selected region"
+  default     = ["eu-west-3a"]
 }
 
 variable "public_key" {
@@ -69,7 +88,8 @@ variable "atlas_org_id" {
 
 
 variable "atlas_users" {
-  type = list(string)
+  type        = list(string)
+  default     = []
   description = "List of emails for all the developer who needs access to this organization project"
 }
 
@@ -83,19 +103,20 @@ variable "client_callback_urls" {
 variable "client_default_redirect_uri" {
   description = "The default redirect URI. Must be in the list of callback URLs"
   type        = string
-  default     = "http://localhost:3000"
+  default     = null
 }
 
 
 variable "client_logout_urls" {
   description = "List of allowed logout URLs for the identity providers"
   type        = list(string)
-  default     = ["http://localhost:3000/logout"]
+  default     = []
 }
 
 
 variable "github_secret_name" {
-  type = string
+  type    = string
+  default = "github_secret"
 }
 
 variable "github_org" {
@@ -121,14 +142,14 @@ variable "server_branch_name" {
 }
 
 variable "cognito_default_user_email" {
-  type = string
+  type        = string
   description = "This is a default user to be able to login to the system"
 }
 
 
 variable "private_endpoint_enabled" {
   type        = bool
-  default     = false
+  default     = true
   description = "Private endpoint allow to connect between 2 aws accounts by private network no need to use internet. To use this feature you need to add payment card to your atlas account"
 }
 

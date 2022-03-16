@@ -20,6 +20,7 @@ variable "domain_name" {
   default     = null
 }
 variable "instance_type" {
+  default     = "t3.micro"
   type        = string
   description = "Instances type"
 }
@@ -54,7 +55,7 @@ variable "private_subnet_ids" {
 
 variable "associated_security_group_ids" {
   type        = string
-  default = "null"
+  default     = "null"
   description = "IDs for private subnets"
 }
 variable "ssm_arn" {
