@@ -222,3 +222,38 @@ module "infrastructure" {
 }
 
 ```
+
+
+
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="region"></a> [region](#region) | aws region to deploy to | `string` | `eu-west-3` | no |
+| <a name="stage"></a> [stage](#stage) | ID element. Usually used to indicate role, e.g. 'prod', 'staging', 'source', 'build', 'test', 'deploy', 'release' | `string` | null | no |
+| <a name="name"></a> [name](#name) | ID element. Usually the component or solution name, e.g. 'app' or 'jenkins'. This is the only ID element not also included as a `tag`. The "name" tag is set to the full `id` string. There is no tag with the value of the `name` input. | `string` | null | no |
+| <a name="parent_zone_id"></a> [parent\_zone\_id](#parent\_zone\_id) | The id of the parent Route53 zone to use for the distribution. | `string` | null | no |
+| <a name="domain_name"></a> [domain\_name](#domain\_name) | A domain name for which the certificate should be issued | `string` | null | no |
+| <a name="aliases_client"></a> [aliases\_client](#aliases\_client) | List of FQDN's - Used to set the Alternate Domain Names (CNAMEs) setting on Cloudfront | `list(string)` | `[]` | no |
+| <a name="aliases_server"></a> [aliases\_server](#aliases\_server) | List of FQDN's - Used to set the Alternate Domain Names (CNAMEs) setting on Cloudfront | `list(string)` | `[]` | no |
+| <a name="dns_alias_enabled"></a> [dns\_alias\_enabled](#dns\_alias\_enabled) | Create a DNS alias for the CDN. Requires `parent_zone_id` or `parent_zone_name` | `bool` | false | no |
+| <a name="subject_alternative_names"></a> [subject\_alternative\_names](#subject\_alternative\_names) | A list of domains that should be SANs in the issued certificate | `list(string)` | `[]` | no |
+| <a name="instance_type"></a> [instance\_type](#instance\_type) | Elastic Beanstalk Instances type | `string` | `t3.micro` | no |
+| <a name="availability_zones"></a> [availability\_zones](#availability\_zones) | List of availability zones for the selected region ex: `eu-west-3a`, `eu-west-3b`,`eu-west-3c` | `list(string)` | `["eu-west-3a"]` | no |
+| <a name="public_key"></a> [public\_key](#public\_key) | The public API key for MongoDB Atlas | `string` |  | yes |
+| <a name="private_key"></a> [private\_key](#private\_key) | The private API key for MongoDB Atlas | `string` |  | yes |
+| <a name="atlas_org_id"></a> [atlas\_org\_id](#atlas\_org\_id) | The ID of your MongoDB Atlas organization | `string` |  | yes |
+| <a name="client_callback_urls"></a> [client\_callback\_urls](#client\_callback\_urls) | List of allowed callback URLs for the identity providers | `list(string)` | `["http://localhost:3000"]`| no |
+| <a name="client_default_redirect_uri"></a> [client\_default\_redirect\_uri](#client\_default\_redirect\_uri) | The default redirect URI. Must be in the list of callback URLs | `string` | null| no |
+| <a name="client_logout_urls"></a> [client\_logout\_urls](#client\_logout\_urls) | List of allowed logout URLs for the identity providers | `list(string)` | `[]` | no |
+| <a name="github_secret_name"></a> [github\_secret\_name](#github\_secret\_name) | Github secret name for the AWS Secret Manager | `string` | `github_secret` | no |
+| <a name="github_org"></a> [github\_org](#github\_org) | Github organization name| `string` |  | yes |
+| <a name="client_repository_name"></a> [client\_repository\_name](#client\_repository\_name) | Repository name for the client code | `string` |  | yes |
+| <a name="client_branch_name"></a> [client\_branch\_name](#client\_branch\_name) | Branch name for the client code `master` | `string` |  | yes |
+| <a name="server_repository_name"></a> [server\_repository\_name](#server\_repository\_name) | Repository name for the server code | `string` |  | yes |
+| <a name="client_branch_name"></a> [server\_branch\_name](#server\_branch\_name) | Branch name for the server code `master` | `string` |  | yes |
+| <a name="cognito_default_user_email"></a> [cognito\_default\_user\_email](#cognito\_default\_user\_email) | This is a default user to be able to login to the system | `string` |  | yes |
+| <a name="private_endpoint_enabled"></a> [private\_endpoint\_enabled](#private\_endpoint\_enabled) | Private endpoint allow to connect between 2 aws accounts by private network no need to use internet. To use this feature you need to add payment card to your atlas account | `bool` | `true` | no |
+| <a name="enable_atlas_whitelist_ips"></a> [enable\_atlas\_whitelist\_ips](#enable\_atlas\_whitelist\_ips) | Enable the whitelist ip, if it enabled the ip's taken from the AWS EIP | `bool` | `false` | no |
+| <a name="atlas_whitelist_ips"></a> [atlas\_whitelist\_ips](#atlas\_whitelist\_ips) | Enable the whitelist ip, if it enabled the ip's taken from the AWS EIP | `list(string)` | `[]` | no |

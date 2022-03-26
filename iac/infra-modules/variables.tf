@@ -81,7 +81,7 @@ variable "private_key" {
 
 
 variable "atlas_org_id" {
-  description = "The ID of your MongoDB Atlas organisation"
+  description = "The ID of your MongoDB Atlas organization"
   type        = string
 }
 
@@ -157,7 +157,7 @@ variable "private_endpoint_enabled" {
 variable "enable_atlas_whitelist_ips" {
   type        = bool
   default     = false
-  description = "Enable the withelist ip, if it enabled the ip's taken from the AWS EIP"
+  description = "Enable the whitelist ip, if it enabled the ip's taken from the AWS EIP"
 }
 
 variable "atlas_whitelist_ips" {
