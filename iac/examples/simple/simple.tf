@@ -5,9 +5,9 @@ module "infrastructure" {
   stage                      = "test"
   name                       = "terraform-moveo"
   cognito_default_user_email = "eliran@moveohls.com"
-  client_repository_name     = "terraform"
+  client_repository_name     = "terraform-rest-api-aws"
   client_branch_name         = "develop"
-  server_repository_name     = "terraform"
+  server_repository_name     = "terraform-rest-api-aws"
   server_branch_name         = "develop"
   github_org                 = "MoveoTech"
   public_key                 = var.public_key
