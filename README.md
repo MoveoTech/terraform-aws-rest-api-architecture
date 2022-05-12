@@ -174,17 +174,17 @@ This example doesn't include the ACM custom domain.
 `simple.tf`
 
 ```hcl
-
 module "infrastructure" {
-  source = "../../infra-modules"
+  source  = "MoveoTech/api-aws/rest"
+  version = "0.0.2"
 
   stage                      = "test"
   name                       = "terraform-moveo"
-  cognito_default_user_email = "< PROVIDE YOUR EMAIL >"
-  client_repository_name     = "terraform"
-  client_branch_name         = "develop"
-  server_repository_name     = "terraform"
-  server_branch_name         = "develop"
+  cognito_default_user_email = "eliran@moveohls.com"
+  client_repository_name     = "terraform-rest-api-aws"
+  client_branch_name         = "main"
+  server_repository_name     = "terraform-rest-api-aws"
+  server_branch_name         = "main"
   github_org                 = "MoveoTech"
   public_key                 = var.public_key
   private_key                = var.private_key
@@ -207,17 +207,19 @@ This example will use a custom domain and all configurable variables.
 
 
 module "infrastructure" {
-  source                     = "../../infra-modules"
+  source  = "MoveoTech/api-aws/rest"
+  version = "0.0.2"
+
   region                     = "eu-west-3"
   availability_zones         = ["eu-west-3a"]
   instance_type              = "t3.micro"
   stage                      = "test"
   name                       = "terraform-moveo"
   cognito_default_user_email = "dev@moveohls.com"
-  client_repository_name     = "terraform"
-  client_branch_name         = "develop"
-  server_repository_name     = "terraform"
-  server_branch_name         = "develop"
+  client_repository_name     = "terraform-rest-api-aws"
+  client_branch_name         = "main"
+  server_repository_name     = "terraform-rest-api-aws"
+  server_branch_name         = "main"
   github_org                 = "MoveoTech"
   public_key                 = var.public_key
   private_key                = var.private_key
