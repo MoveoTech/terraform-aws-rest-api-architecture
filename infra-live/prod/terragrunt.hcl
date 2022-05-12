@@ -1,9 +1,9 @@
 inputs = {
         region = "eu-west-3"
-        availability_zones = ["eu-west-3a"]
+        availability_zones = ["eu-west-3a","eu-west-3b"]
 
         instance_type       = "t3.micro"
-        stage = "staging"
+        stage = "production"
         name = "terraform-moveo"
         cognito_default_user_email = "eliran@moveohls.com"
 
@@ -37,9 +37,9 @@ inputs = {
         ########## Certificate Vars ###################
 
         parent_zone_id = "ZZG2X8KI3MIQB"
-        aliases_client =["staging.terraform.moveodevelop.com", "www.staging.terraform.moveodevelop.com"]
-        domain_name                       = "staging.terraform.moveodevelop.com"
-        subject_alternative_names         = ["www.staging.terraform.moveodevelop.com"]
+        aliases_client =["prod.terraform.moveodevelop.com", "www.prod.terraform.moveodevelop.com"]
+        domain_name                       = "prod.terraform.moveodevelop.com"
+        subject_alternative_names         = ["www.prod.terraform.moveodevelop.com"]
         dns_alias_enabled= true
 
         ########## Certificate Vars ###################
@@ -55,7 +55,7 @@ include {
 }
 
 terraform {
-  source = "../../infra-modules"
+  source = "../../"
 
   extra_arguments "conditional_vars" {
     # built-in function to automatically get the list of 

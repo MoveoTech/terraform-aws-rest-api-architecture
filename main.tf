@@ -27,7 +27,7 @@ locals {
 }
 
 # module "network" {
-#   source = "./network/vpc-private"
+#   source = "./modules/network/vpc-private"
 
 #   availability_zones = var.availability_zones
 #   region             = var.region
@@ -37,14 +37,14 @@ locals {
 # Most of the application you will need to use this network
 # Use this vpc if you need an internet network
 module "network" {
-  source             = "./network/vpc-private-public"
+  source             = "./modules/network/vpc-private-public"
   region             = var.region
   availability_zones = var.availability_zones
   context            = module.this.context
 }
 
 module "atlas_database" {
-  source                   = "./database"
+  source                   = "./modules/database"
   region                   = var.region
   public_key               = var.public_key
   private_key              = var.private_key
@@ -75,7 +75,7 @@ resource "aws_secretsmanager_secret_version" "secrets" {
 
 
 module "cognito_auth" {
-  source                      = "./authentication/cognito"
+  source                      = "./modules/authentication/cognito"
   client_logout_urls          = var.client_logout_urls
   client_default_redirect_uri = var.client_default_redirect_uri
   client_callback_urls        = var.client_callback_urls
@@ -84,7 +84,7 @@ module "cognito_auth" {
 }
 
 module "acm_request_certificate_server" {
-  source      = "./acm"
+  source      = "./modules/acm"
   enabled     = local.domain_enabled
   domain_name = local.server_domain_name
   zone_id     = var.parent_zone_id
@@ -97,7 +97,7 @@ module "acm_request_certificate_server" {
 
 
 module "server" {
-  source                        = "./backend"
+  source                        = "./modules/backend"
   domain_name                   = local.server_domain_name
   zone_id                       = var.parent_zone_id
   acm_request_certificate_arn   = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
@@ -124,7 +124,7 @@ module "server" {
 
 
 module "acm_request_certificate_client" {
-  source                    = "./acm"
+  source                    = "./modules/acm"
   enabled                   = local.domain_enabled
   domain_name               = var.domain_name
   zone_id                   = var.parent_zone_id
@@ -136,7 +136,7 @@ module "acm_request_certificate_client" {
 
 
 module "cloudfront_s3_cdn" {
-  source              = "./client/cloudfront"
+  source              = "./modules/client/cloudfront"
   region              = var.region
   aliases             = var.aliases_client
   dns_alias_enabled   = var.dns_alias_enabled
@@ -147,7 +147,7 @@ module "cloudfront_s3_cdn" {
 
 
 module "cicd" {
-  source                             = "./cicd"
+  source                             = "./modules/cicd"
   region                             = var.region
   github_secret_name                 = var.github_secret_name
   github_org                         = var.github_org

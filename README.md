@@ -127,14 +127,14 @@ After creating the github secret you need to save it in the AWS Secret Manager s
 The name must be: `github_secret`
 
 
-![image description](./secret-manager.png)
+![image description](https://i.ibb.co/kBwpGwq/secret-manager.png)
 
 
 In the secret key use the same key: `GitHubPersonalAccessToken`
 
 And the value will be your key you generated from Github.
 
-![image description](./secrets-value.png)
+![image description](https://i.ibb.co/7Qs3QGS/secrets-value.png)
 
 \
 &nbsp;
