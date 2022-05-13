@@ -1,4 +1,3 @@
-name: release please
 on:
   push:
     branches:
