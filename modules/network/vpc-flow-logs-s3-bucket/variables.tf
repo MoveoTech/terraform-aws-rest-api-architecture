@@ -56,11 +56,6 @@ variable "lifecycle_prefix" {
   default     = ""
 }
 
-variable "lifecycle_tags" {
-  type        = map(string)
-  description = "Tags filter. Used to manage object lifecycle events"
-  default     = {}
-}
 
 variable "lifecycle_rule_enabled" {
   type        = bool
