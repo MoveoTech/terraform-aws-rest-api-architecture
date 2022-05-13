@@ -1,43 +1,60 @@
-variable "region" {
-  description = "The AWS region this distribution should reside in."
-}
+
 variable "context" {
   type = any
-}
-variable "domain_name" {
-  type        = string
-  description = "A domain name for which the certificate should be issued"
-  default     = null
+  default = {
+    enabled             = true
+    namespace           = null
+    tenant              = null
+    environment         = null
+    stage               = null
+    name                = null
+    delimiter           = null
+    attributes          = []
+    tags                = {}
+    additional_tag_map  = {}
+    regex_replace_chars = null
+    label_order         = []
+    id_length_limit     = null
+    label_key_case      = null
+    label_value_case    = null
+    descriptor_formats  = {}
+    # Note: we have to use [] instead of null for unset lists due to
+    # https://github.com/hashicorp/terraform/issues/28137
+    # which was not fixed until Terraform 1.0.0,
+    # but we want the default to be all the labels in `label_order`
+    # and we want users to be able to prevent all tag generation
+    # by setting `labels_as_tags` to `[]`, so we need
+    # a different sentinel to indicate "default"
+    labels_as_tags = ["unset"]
+  }
+  description = <<-EOT
+    Single object for setting entire context at once.
+    See description of individual variables for details.
+    Leave string and numeric variables as `null` to use default value.
+    Individual variable settings (non-null) override settings in context object,
+    except for attributes, tags, and additional_tag_map, which are merged.
+  EOT
+
+  validation {
+    condition     = lookup(var.context, "label_key_case", null) == null ? true : contains(["lower", "title", "upper"], var.context["label_key_case"])
+    error_message = "Allowed values: `lower`, `title`, `upper`."
+  }
+
+  validation {
+    condition     = lookup(var.context, "label_value_case", null) == null ? true : contains(["lower", "title", "upper", "none"], var.context["label_value_case"])
+    error_message = "Allowed values: `lower`, `title`, `upper`, `none`."
+  }
 }
 variable "acm_certificate_arn" {
   type        = string
   description = "Existing ACM Certificate ARN"
   default     = ""
 }
-variable "kms_key_arn" {
-  type        = string
-  default     = null
-  description = "The KMS arn key to encrtypt all logs "
-}
-variable "subject_alternative_names" {
-  type        = list(string)
-  default     = []
-  description = "A list of domains that should be SANs in the issued certificate"
 
-  validation {
-    condition     = length([for name in var.subject_alternative_names : name if can(regex("[A-Z]", name))]) == 0
-    error_message = "All SANs must be lower-case."
-  }
-}
 variable "aliases" {
   type        = list(string)
   description = "List of FQDN's - Used to set the Alternate Domain Names (CNAMEs) setting on Cloudfront"
   default     = []
-}
-variable "parent_zone_name" {
-  description = "The name of the parent Route53 zone to use for the distribution."
-  type        = string
-  default     = null
 }
 variable "parent_zone_id" {
   description = "The id of the parent Route53 zone to use for the distribution."
@@ -48,32 +65,4 @@ variable "dns_alias_enabled" {
   type        = bool
   default     = false
   description = "Create a DNS alias for the CDN. Requires `parent_zone_id` or `parent_zone_name`"
-}
-variable "additional_custom_origins_enabled" {
-  type        = bool
-  description = "Whether or not to enable additional custom origins."
-  default     = false
-}
-
-variable "additional_s3_origins_enabled" {
-  type        = bool
-  description = "Whether or not to enable additional s3 origins."
-  default     = false
-}
-
-variable "origin_group_failover_criteria_status_codes" {
-  type        = list(string)
-  description = "List of HTTP Status Codes to use as the failover criteria for origin groups."
-  default = [
-    403,
-    404,
-    500,
-    502
-  ]
-}
-
-variable "lambda_at_edge_enabled" {
-  type        = bool
-  description = "Whether or not to enable Lambda@Edge functions."
-  default     = false
 }

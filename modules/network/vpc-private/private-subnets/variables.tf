@@ -1,6 +1,3 @@
-variable "context" {
-  type = any
-}
 
 variable "vpc_id" {
   type        = string
@@ -21,13 +18,6 @@ variable "availability_zones" {
     condition     = length(var.availability_zones) > 0
     error_message = "Availability zones must be greater than zero."
   }
-}
-
-
-variable "enabled" {
-  type        = bool
-  default     = true
-  description = "module enabled"
 }
 
 variable "private_subnets_additional_tags" {
@@ -51,11 +41,7 @@ variable "private_network_acl_id" {
   description = "Network ACL ID that will be added to private subnets. If empty, a new ACL will be created"
   default     = ""
 }
-variable "nat_elastic_ips" {
-  type        = list(string)
-  default     = []
-  description = "Existing Elastic IPs to attach to the NAT Gateway(s) or Instance(s) instead of creating new ones."
-}
+
 
 variable "availability_zone_attribute_style" {
   type        = string
@@ -64,6 +50,7 @@ variable "availability_zone_attribute_style" {
 }
 
 variable "max_subnet_count" {
+  type        = number
   default     = 0
   description = "Sets the maximum amount of subnets to deploy. 0 will deploy a subnet for every provided availablility zone (in `availability_zones` variable) within the region"
 }

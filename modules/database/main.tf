@@ -8,8 +8,6 @@ module "atlas_vpc_endpoint" {
   private_subnet_ids = var.private_subnet_ids
   vpc_id             = var.vpc_id
   security_group_id  = module.security_groups.atlas_endpoint_sg_id
-
-  context = var.context
 }
 
 resource "mongodbatlas_auditing" "audit" {

@@ -1,9 +1,4 @@
-module "label" {
-  source  = "cloudposse/label/null"
-  version = "0.25.0"
 
-  context = var.context
-}
 # GitHub secrets
 data "aws_secretsmanager_secret" "github_secret" {
   name = var.github_secret_name
@@ -15,14 +10,9 @@ data "aws_secretsmanager_secret_version" "github_token" {
 
 module "kms" {
   source     = "../kms"
-  alias_name = "codepipline-${module.label.stage}"
+  alias_name = "codepipline-${var.context.stage}"
   region     = var.region
-  service_name = [
-    "codepipeline.amazonaws.com",
-    "codebuild.amazonaws.com",
-    "s3.amazonaws.com",
-  ]
-  context = var.context
+  context    = var.context
 }
 
 module "security_group" {
@@ -35,7 +25,7 @@ module "security_group" {
   # reuse the label as-is for more than one security group in the VPC.
   #
   # Here we add an attribute to give the security group a unique name.
-  attributes = ["cicd-${module.label.stage}"]
+  attributes = ["cicd-${var.context.stage}"]
 
   # Allow unlimited egress
   allow_all_egress = true
@@ -49,10 +39,9 @@ module "security_group" {
 # Codebuild module for CI
 module "codebuild_application_server" {
   source             = "./codebuild"
-  name               = "${module.label.stage}-${module.label.name}-server-build"
+  name               = "${var.context.stage}-${var.context.name}-server-build"
   image              = "aws/codebuild/standard:4.0"
   buildspec_path     = "server/buildspec.yml"
-  environment        = module.label.stage
   kms_arn            = module.kms.key_arn
   security_group_id  = module.security_group.id
   private_subnet_ids = var.private_subnet_ids
@@ -64,15 +53,13 @@ module "codebuild_application_server" {
 # CodePipeline module for CICD pipeline
 module "codepipeline_server_app" {
   source          = "./codepipeline"
-  name            = "${module.label.stage}-${module.label.name}-server-pipline"
+  name            = "${var.context.stage}-${var.context.name}-server-pipline"
   kms_arn         = module.kms.key_arn
   github_org      = var.github_org
   repository_name = var.server_repository_name
   branch_name     = var.server_branch_name
-  environment     = module.label.stage
-  region          = var.region
   project_name    = module.codebuild_application_server.project_name
-  bucket_name     = "${module.label.stage}-${module.label.name}-server-pipline"
+  bucket_name     = "${var.context.stage}-${var.context.name}-server-pipline"
   configuration = {
     ApplicationName = var.elastic_beanstalk_application_name
     EnvironmentName = var.elastic_beanstalk_environment_name
@@ -85,9 +72,8 @@ module "codepipeline_server_app" {
 # Codebuild module for CI
 module "codebuild_application_client" {
   source             = "./codebuild"
-  name               = "${module.label.stage}-${module.label.name}-client-build"
+  name               = "${var.context.stage}-${var.context.name}-client-build"
   image              = "aws/codebuild/standard:4.0"
-  environment        = module.label.stage
   security_group_id  = module.security_group.id
   private_subnet_ids = var.private_subnet_ids
   vpc_id             = var.vpc_id
@@ -122,14 +108,12 @@ module "codebuild_application_client" {
 # CodePipeline module for CICD pipeline
 module "codepipeline_client_app" {
   source          = "./codepipeline"
-  name            = "${module.label.stage}-${module.label.name}-client-pipeline"
+  name            = "${var.context.stage}-${var.context.name}-client-pipeline"
   kms_arn         = module.kms.key_arn
   github_org      = var.github_org
   repository_name = var.client_repository_name
   branch_name     = var.client_branch_name
-  environment     = module.label.stage
-  region          = var.region
-  bucket_name     = "${module.label.stage}-${module.label.name}-client-pipeline"
+  bucket_name     = "${var.context.stage}-${var.context.name}-client-pipeline"
   project_name    = module.codebuild_application_client.project_name
   deploy_provider = "S3"
   configuration = {
@@ -145,9 +129,8 @@ module "codepipeline_client_app" {
 
 module "cloudfront_invalidation" {
   source             = "./cloudfron-auto-invalidator"
-  name               = "cloudfront-invalidation-${module.label.stage}"
+  name               = "cloudfront-invalidation-${var.context.stage}"
   private_subnet_ids = var.private_subnet_ids
-  vpc_id             = var.vpc_id
   security_group_id  = module.security_group.id
 
   context = var.context
