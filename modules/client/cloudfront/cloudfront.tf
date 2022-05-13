@@ -51,7 +51,7 @@ module "kms" {
 module "waf_cloudfront" {
   source      = "../../waf"
   kms_key_arn = module.kms.key_arn
-    providers = {
+  providers = {
     aws = aws.east
   }
 

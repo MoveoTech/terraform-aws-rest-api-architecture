@@ -65,6 +65,6 @@ output "s3_bucket_policy" {
 
 
 output "client_url" {
-  value       = length(module.cloudfront_s3_cdn.aliases) >0 ? module.cloudfront_s3_cdn.aliases : [module.cloudfront_s3_cdn.cf_domain_name]
+  value       = length(module.cloudfront_s3_cdn.aliases) > 0 ? module.cloudfront_s3_cdn.aliases : [module.cloudfront_s3_cdn.cf_domain_name]
   description = "Client url"
 }

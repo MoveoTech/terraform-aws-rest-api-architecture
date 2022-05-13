@@ -1,11 +1,11 @@
 terraform {
   required_providers {
     mongodbatlas = {
-      source  = "mongodb/mongodbatlas"
+      source = "mongodb/mongodbatlas"
     }
 
     random = {
-      source  = "hashicorp/random"
+      source = "hashicorp/random"
     }
   }
 }

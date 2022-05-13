@@ -1,5 +1,5 @@
 variable "context" {
-  type        = any
+  type = any
 }
 
 variable "vpc_id" {

@@ -1,6 +1,6 @@
 
 module "infrastructure" {
-  source  = "../../"
+  source = "../../"
 
   stage                      = "develop"
   name                       = "greenalert-moveo-hls"

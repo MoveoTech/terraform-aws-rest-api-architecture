@@ -34,9 +34,9 @@ module "subnets" {
   context = var.context
 }
 module "flow_logs" {
-    source  = "../vpc-flow-logs-s3-bucket"
-    vpc_id = module.vpc.vpc_id
-    context = var.context
+  source  = "../vpc-flow-logs-s3-bucket"
+  vpc_id  = module.vpc.vpc_id
+  context = var.context
 }
 
 module "default_security_group" {

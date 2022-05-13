@@ -7,6 +7,6 @@ variable "availability_zones" {
 }
 
 variable "region" {
-  type = string
+  type        = string
   description = "AWS region"
 }

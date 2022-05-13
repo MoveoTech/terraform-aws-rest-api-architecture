@@ -49,7 +49,7 @@ data "aws_iam_policy_document" "codepipeline_mutlicontainer_app" {
     ]
   }
 
-    statement {
+  statement {
     effect = "Allow"
 
     actions = [

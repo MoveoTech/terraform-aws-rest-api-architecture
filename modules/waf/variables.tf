@@ -23,11 +23,11 @@ variable "association_resource_arns" {
   DOC
 }
 variable "kms_key_arn" {
-  type = string
+  type        = string
   description = "The KMS arn key to encrtypt all logs "
 }
 variable "type" {
-  type = string
+  type        = string
   description = "This is for the cloud watch naming"
 }
 
