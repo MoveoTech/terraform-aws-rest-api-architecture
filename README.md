@@ -311,6 +311,6 @@ module "infrastructure" {
 
 | Name | Description |
 |------|-------------|
-| <a name="output_client_url"></a> [client\_url](#output\_client\_url) | The client url |
-| <a name="output_server_url"></a> [server\_url](#output\_server\_url) | The server api url |
+| <a name="output_client_url"></a> [client\_url](#output\_client\_url) | Client url |
+| <a name="output_server_url"></a> [server\_url](#output\_server\_url) | Server api url |
 <!-- END_TF_DOCS -->
