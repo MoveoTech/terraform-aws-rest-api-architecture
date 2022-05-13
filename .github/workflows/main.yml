@@ -32,7 +32,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Check examples
         env:
-          EXAMPLES: [simple,complete]
+          EXAMPLES: simple
         run: |
           for EXAMPLE in ${EXAMPLES}
           do
