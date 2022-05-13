@@ -124,7 +124,7 @@ resource "random_string" "random" {
 
 module "cloudwatch_log_group" {
   source      = "cloudposse/cloudwatch-logs/aws"
-  version     = "0.6.4"
+  version     = "0.6.5"
   kms_key_arn = var.kms_key_arn
   context = merge(var.context,
     {
