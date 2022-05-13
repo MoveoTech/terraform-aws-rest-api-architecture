@@ -252,6 +252,7 @@ module "infrastructure" {
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.0 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | 3.74.2 |
+| <a name="requirement_mongodbatlas"></a> [mongodbatlas](#requirement\_mongodbatlas) | >= 1.3.1 |
 
 ## Providers
 
@@ -264,18 +265,16 @@ module "infrastructure" {
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
 | <a name="input_atlas_org_id"></a> [atlas\_org\_id](#input\_atlas\_org\_id) | The ID of your MongoDB Atlas organization | `string` | yes |
-| <a name="input_client_branch_name"></a> [client\_branch\_name](#input\_client\_branch\_name) | n/a | `string` | yes |
-| <a name="input_client_repository_name"></a> [client\_repository\_name](#input\_client\_repository\_name) | n/a | `string` | yes |
+| <a name="input_client_branch_name"></a> [client\_branch\_name](#input\_client\_branch\_name) | Client branch name | `string` | yes |
+| <a name="input_client_repository_name"></a> [client\_repository\_name](#input\_client\_repository\_name) | Client repository name | `string` | yes |
 | <a name="input_cognito_default_user_email"></a> [cognito\_default\_user\_email](#input\_cognito\_default\_user\_email) | This is a default user to be able to login to the system | `string` | yes |
-| <a name="input_github_org"></a> [github\_org](#input\_github\_org) | n/a | `string` | yes |
-| <a name="input_module"></a> [module](#input\_module) | The terraform module used to deploy | `string` | yes |
-| <a name="input_private_key"></a> [private\_key](#input\_private\_key) | The private API key for MongoDB Atlas | `any` | yes |
-| <a name="input_public_key"></a> [public\_key](#input\_public\_key) | The public API key for MongoDB Atlas | `any` | yes |
-| <a name="input_server_branch_name"></a> [server\_branch\_name](#input\_server\_branch\_name) | n/a | `string` | yes |
-| <a name="input_server_repository_name"></a> [server\_repository\_name](#input\_server\_repository\_name) | n/a | `string` | yes |
+| <a name="input_github_org"></a> [github\_org](#input\_github\_org) | Github organization name | `string` | yes |
+| <a name="input_private_key"></a> [private\_key](#input\_private\_key) | The private API key for MongoDB Atlas | `string` | yes |
+| <a name="input_public_key"></a> [public\_key](#input\_public\_key) | The public API key for MongoDB Atlas | `string` | yes |
+| <a name="input_server_branch_name"></a> [server\_branch\_name](#input\_server\_branch\_name) | Server branch name | `string` | yes |
+| <a name="input_server_repository_name"></a> [server\_repository\_name](#input\_server\_repository\_name) | Server repository name | `string` | yes |
 | <a name="input_additional_tag_map"></a> [additional\_tag\_map](#input\_additional\_tag\_map) | Additional key-value pairs to add to each map in `tags_as_list_of_maps`. Not added to `tags` or `id`.<br>This is for some rare cases where resources want additional configuration of tags<br>and therefore take a list of maps with tag key, value, and additional configuration. | `map(string)` | no |
 | <a name="input_aliases_client"></a> [aliases\_client](#input\_aliases\_client) | List of FQDN's - Used to set the Alternate Domain Names (CNAMEs) setting on Cloudfront | `list(string)` | no |
-| <a name="input_aliases_server"></a> [aliases\_server](#input\_aliases\_server) | List of FQDN's - Used to set the Alternate Domain Names (CNAMEs) setting on Cloudfront | `list(string)` | no |
 | <a name="input_atlas_users"></a> [atlas\_users](#input\_atlas\_users) | List of emails for all the developer who needs access to this organization project | `list(string)` | no |
 | <a name="input_atlas_whitelist_ips"></a> [atlas\_whitelist\_ips](#input\_atlas\_whitelist\_ips) | A list of ip's that need access to this project clusters | `list(string)` | no |
 | <a name="input_attributes"></a> [attributes](#input\_attributes) | ID element. Additional attributes (e.g. `workers` or `cluster`) to add to `id`,<br>in the order they appear in the list. New attributes are appended to the<br>end of the list. The elements of the list are joined by the `delimiter`<br>and treated as a single ID element. | `list(string)` | no |
@@ -290,8 +289,7 @@ module "infrastructure" {
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | A domain name for which the certificate should be issued | `string` | no |
 | <a name="input_enable_atlas_whitelist_ips"></a> [enable\_atlas\_whitelist\_ips](#input\_enable\_atlas\_whitelist\_ips) | Enable the whitelist ip, if it enabled the ip's taken from the AWS EIP | `bool` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Set to false to prevent the module from creating any resources | `bool` | no |
-| <a name="input_environment"></a> [environment](#input\_environment) | ID element. Usually used for region e.g. 'uw2', 'us-west-2', OR role 'prod', 'staging', 'dev', 'UAT' | `string` | no |
-| <a name="input_github_secret_name"></a> [github\_secret\_name](#input\_github\_secret\_name) | n/a | `string` | no |
+| <a name="input_github_secret_name"></a> [github\_secret\_name](#input\_github\_secret\_name) | GitHub key name | `string` | no |
 | <a name="input_id_length_limit"></a> [id\_length\_limit](#input\_id\_length\_limit) | Limit `id` to this many characters (minimum 6).<br>Set to `0` for unlimited length.<br>Set to `null` for keep the existing setting, which defaults to `0`.<br>Does not affect `id_full`. | `number` | no |
 | <a name="input_instance_type"></a> [instance\_type](#input\_instance\_type) | Instances type | `string` | no |
 | <a name="input_label_key_case"></a> [label\_key\_case](#input\_label\_key\_case) | Controls the letter case of the `tags` keys (label names) for tags generated by this module.<br>Does not affect keys of tags passed in via the `tags` input.<br>Possible values: `lower`, `title`, `upper`.<br>Default value: `title`. | `string` | no |
