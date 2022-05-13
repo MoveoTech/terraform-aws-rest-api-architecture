@@ -67,7 +67,7 @@ export default function App() {
     <Authenticator loginMechanisms={['email']} components={components} hideSignUp={true}>
       {({ signOut, user }) => (
         <main>
-          <h1>Hello {user.username}</h1>
+          <h1>Hello {user?.username}</h1>
 
           <div>
             <button onClick={getToken}>Refresh Token </button>
