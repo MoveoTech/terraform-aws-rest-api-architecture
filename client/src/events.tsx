@@ -30,7 +30,7 @@ export const Events: React.FC = () => {
             <button onClick={createEvent}>Create events</button>
             <h3>Events from server: </h3>
             <ul>
-                {events?.map(item => <li>{item.events[0].date}</li>)}
+                {events?.map(item => <li>{item?.events[0]?.date + ''}</li>)}
             </ul>
         </main>
     );
