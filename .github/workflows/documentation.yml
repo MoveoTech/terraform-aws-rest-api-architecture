@@ -26,6 +26,7 @@ jobs:
         output-method: inject
         git-push: "true"
 
+
     - name: Render terraform example simple docs and push changes back to PR
       uses: terraform-docs/gh-actions@main
       with:
