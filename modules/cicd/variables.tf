@@ -8,7 +8,7 @@ variable "region" {
 }
 
 variable "github_secret_name" {
-  type = string
+  type    = string
   default = "github_secret"
 }
 
@@ -77,15 +77,15 @@ variable "invoke_url" {
 
 
 variable "cloudfront_arn" {
-  type = string
+  type        = string
   description = "Cloudfront arn"
-  
+
 }
 
 variable "cf_distribution_id" {
-  type = string
+  type        = string
   description = "Cloudfront distribution id"
-  
+
 }
 
 variable "vpc_id" {

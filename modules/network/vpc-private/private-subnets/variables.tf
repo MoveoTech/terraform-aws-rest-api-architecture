@@ -1,5 +1,5 @@
 variable "context" {
-  type        = any
+  type = any
 }
 
 variable "vpc_id" {
@@ -30,7 +30,7 @@ variable "enabled" {
   description = "module enabled"
 }
 
- variable "private_subnets_additional_tags" {
+variable "private_subnets_additional_tags" {
   type        = map(string)
   default     = {}
   description = "Additional tags to be added to private subnets"

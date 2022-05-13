@@ -1,7 +1,7 @@
 
 module "atlas_vpc_endpoint" {
   source = "./vpc-endpoint"
-  count = var.private_endpoint_enabled ? 1:0
+  count  = var.private_endpoint_enabled ? 1 : 0
 
   project_id         = module.atlas_project.atlas_project_id
   region             = var.region

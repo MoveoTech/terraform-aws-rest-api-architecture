@@ -21,12 +21,12 @@ variable "context" {
 variable "kms_arn" {
   type        = string
   description = "KMS key to encrypt artifact"
-  default = null
+  default     = null
 }
 variable "buildspec_path" {
   type        = string
   description = "The build spec path in th context of the github repository project"
-  default = "buildspec.yml"
+  default     = "buildspec.yml"
 }
 variable "environment_variables" {
   type = list(object(

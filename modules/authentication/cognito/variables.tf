@@ -23,6 +23,6 @@ variable "client_logout_urls" {
 }
 
 variable "cognito_default_user_email" {
-  type = string
+  type        = string
   description = "This is a default user to be able to login to the system"
 }
