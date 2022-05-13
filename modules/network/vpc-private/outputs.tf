@@ -1,9 +1,11 @@
 output "vpc_id" {
-  value = module.vpc.vpc_id
+  description = "vpc id"
+  value       = module.vpc.vpc_id
 }
 
 output "vpc_cidr_block" {
-  value = module.vpc.vpc_cidr_block
+  description = "CIDR blocks of the created private subnets"
+  value       = module.vpc.vpc_cidr_block
 }
 
 

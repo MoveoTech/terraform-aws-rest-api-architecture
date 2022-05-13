@@ -10,7 +10,7 @@ data "template_file" "application_bootstrap" {
 }
 
 resource "aws_cloudformation_stack" "test_users" {
-  name = "create-test-users-${module.label.stage}"
+  name = "create-test-users-${var.context.stage}"
 
   template_body = data.template_file.application_bootstrap.rendered
 }

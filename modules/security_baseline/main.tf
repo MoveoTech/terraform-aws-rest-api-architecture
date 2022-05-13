@@ -1,7 +1,3 @@
-provider "aws" {
-  region = var.region
-}
-
 data "aws_caller_identity" "current" {
 }
 
@@ -30,7 +26,7 @@ module "secure_baseline" {
   # This module only configure regions specified in target_regions argument though,
   # all providers still need to be passed to the module.
   providers = {
-    aws                = aws
+    # aws                = aws
     aws.ap-northeast-1 = aws.ap-northeast-1
     aws.ap-northeast-2 = aws.ap-northeast-2
     aws.ap-northeast-3 = aws.ap-northeast-3

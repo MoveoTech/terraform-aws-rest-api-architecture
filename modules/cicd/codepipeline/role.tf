@@ -1,7 +1,7 @@
 
 # IAM role
 resource "aws_iam_role" "main" {
-  name               = "${module.label.name}-role-${module.label.stage}-${random_string.random.result}"
+  name               = "${var.context.name}-role-${var.context.stage}-${random_string.random.result}"
   assume_role_policy = data.aws_iam_policy_document.main.json
 }
 
@@ -25,7 +25,7 @@ data "aws_iam_policy_document" "main" {
 # Policies for different environments
 
 resource "aws_iam_policy" "main" {
-  name        = "${module.label.name}-policy-${module.label.stage}-${random_string.random.result}"
+  name        = "${var.context.name}-policy-${var.context.stage}-${random_string.random.result}"
   description = "Allow AWS Codepipeline deployments for Multicontainer application"
   policy      = data.aws_iam_policy_document.codepipeline_mutlicontainer_app.json
 }

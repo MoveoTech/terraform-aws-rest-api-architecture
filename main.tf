@@ -46,8 +46,6 @@ module "network" {
 module "atlas_database" {
   source                   = "./modules/database"
   region                   = var.region
-  public_key               = var.public_key
-  private_key              = var.private_key
   atlas_org_id             = var.atlas_org_id
   vpc_id                   = module.network.vpc_id
   cidr_block               = module.network.vpc_cidr_block
@@ -103,13 +101,10 @@ module "server" {
   acm_request_certificate_arn   = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
   cors_domain                   = var.subject_alternative_names
   region                        = var.region
-  availability_zones            = var.availability_zones
   instance_type                 = var.instance_type
   vpc_id                        = module.network.vpc_id
   private_subnet_ids            = module.network.private_subnet_ids
-  private_route_table_ids       = module.network.private_route_table_ids
   associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
-  ssm_arn                       = aws_secretsmanager_secret.secrets.arn
   depends_on = [
     module.network,
     module.acm_request_certificate_server,
@@ -137,7 +132,6 @@ module "acm_request_certificate_client" {
 
 module "cloudfront_s3_cdn" {
   source              = "./modules/client/cloudfront"
-  region              = var.region
   aliases             = var.aliases_client
   dns_alias_enabled   = var.dns_alias_enabled
   parent_zone_id      = var.parent_zone_id
@@ -148,7 +142,6 @@ module "cloudfront_s3_cdn" {
 
 module "cicd" {
   source                             = "./modules/cicd"
-  region                             = var.region
   github_secret_name                 = var.github_secret_name
   github_org                         = var.github_org
   client_repository_name             = var.client_repository_name
@@ -160,13 +153,12 @@ module "cicd" {
   client_bucket_name                 = module.cloudfront_s3_cdn.s3_bucket
   cognito_pool_id                    = module.cognito_auth.user_pool_id
   cognito_web_client_id              = module.cognito_auth.web_client_id
-  cloudfront_arn                     = module.cloudfront_s3_cdn.cf_arn
   cf_distribution_id                 = module.cloudfront_s3_cdn.cf_id
   invoke_url                         = module.server.invoke_url
   private_subnet_ids                 = module.network.private_subnet_ids
   vpc_id                             = module.network.vpc_id
-
-  context = module.this.context
+  region                             = var.region
+  context                            = module.this.context
 }
 
 

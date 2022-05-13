@@ -1,13 +1,13 @@
 terraform {
   required_version = ">= 0.13.0"
   required_providers {
-    mongodbatlas = {
-      source = "mongodb/mongodbatlas"
-    }
     aws = {
       source  = "hashicorp/aws"
       version = "3.74.2"
     }
+    mongodbatlas = {
+      source  = "mongodb/mongodbatlas"
+      version = ">= 1.3.1"
+    }
   }
 }
-

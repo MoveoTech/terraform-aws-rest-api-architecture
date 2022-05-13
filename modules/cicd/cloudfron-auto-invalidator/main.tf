@@ -1,10 +1,4 @@
 
-module "label" {
-  source  = "cloudposse/label/null"
-  version = "0.25.0"
-
-  context = var.context
-}
 
 data "aws_caller_identity" "current" {}
 
@@ -31,7 +25,7 @@ resource "aws_iam_role" "this" {
   name_prefix        = "cloudfron-invokation-role-"
   assume_role_policy = data.aws_iam_policy_document.assume.json
 
-  tags = module.label.tags
+  tags = var.context.tags
 }
 
 resource "aws_iam_role_policy_attachment" "basic_execution" {
@@ -100,7 +94,7 @@ resource "aws_lambda_function" "this" {
   tracing_config {
     mode = "Active"
   }
-  tags = module.label.tags
+  tags = var.context.tags
 }
 
 resource "aws_lambda_permission" "this" {

@@ -5,11 +5,13 @@
 
 # var.api_id
 variable "api_id" {
+  type        = string
   description = "API identifier"
 }
 
 # var.api_resource_id
 variable "api_resource_id" {
+  type        = string
   description = "API resource identifier"
 }
 
@@ -63,6 +65,7 @@ variable "allow_max_age" {
 
 # var.allowed_credentials
 variable "allow_credentials" {
+  type        = bool
   description = "Allow credentials"
   default     = false
 }
