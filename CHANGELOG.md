@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.1.5...v0.1.6) (2022-05-14)
+
+
+### Bug Fixes
+
+* change versions in react to succeed complete the build in aws codebuild ([#48](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/48)) ([02ce9b3](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/02ce9b36688619392a520214fa63f9dd0122cb3a))
+
 ### [0.1.5](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.1.4...v0.1.5) (2022-05-14)
 
 
