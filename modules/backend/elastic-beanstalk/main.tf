@@ -66,6 +66,7 @@ module "elastic_beanstalk_environment" {
   prefer_legacy_ssm_policy     = false
   prefer_legacy_service_policy = false
   s3_bucket_encryption_enabled = true
+  s3_bucket_versioning_enabled = true
   managed_actions_enabled      = true
   # Unhealthy threshold count and healthy threshold count must be the same for Network Load Balancers
   healthcheck_healthy_threshold_count   = 3
