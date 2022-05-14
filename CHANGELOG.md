@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.8](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.1.7...v0.1.8) (2022-05-14)
+
+
+### Bug Fixes
+
+* Adding missing libs amplify ([#52](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/52)) ([f88834e](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/f88834ef0ea4a52f7679e215d62def4f0c94883c))
+
 ### [0.1.7](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.1.6...v0.1.7) (2022-05-14)
 
 
