@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.3](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.1.2...v0.1.3) (2022-05-14)
+
+
+### Bug Fixes
+
+* codebuild node version changeing ([#42](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/42)) ([56cc507](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/56cc507576efb25d6f39080d369b29dd1db5dd99))
+
 ### [0.1.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.1.1...v0.1.2) (2022-05-13)
 
 
