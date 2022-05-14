@@ -36,6 +36,7 @@ Security scanning is graciously provided by Bridgecrew. Bridgecrew is the leadin
 
 | Benchmark | Description |
 |--------|---------------|
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/dc0f46bb966d4e3a805d6e769f828849)](https://app.codacy.com/gh/MoveoTech/terraform-aws-rest-api-architecture?utm_source=github.com&utm_medium=referral&utm_content=MoveoTech/terraform-aws-rest-api-architecture&utm_campaign=Badge_Grade_Settings)
 | [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/moveotech/terraform/general)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=MoveoTech%2Fterraform&benchmark=INFRASTRUCTURE+SECURITY) | Infrastructure Security Compliance |
 | [![Infrastructure Tests](https://www.bridgecrew.cloud/badges/github/moveotech/terraform/cis_kubernetes)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=MoveoTech%2Fterraform&benchmark=CIS+KUBERNETES+V1.5) | Center for Internet Security, KUBERNETES Compliance |
 | [![CIS AWS](https://www.bridgecrew.cloud/badges/github/moveotech/terraform/cis_aws)](https://www.bridgecrew.cloud/link/badge?vcs=github&fullRepo=MoveoTech%2Fterraform&benchmark=CIS+AWS+V1.2) | Center for Internet Security, AWS Compliance |
