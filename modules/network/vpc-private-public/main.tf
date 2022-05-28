@@ -1,7 +1,7 @@
 
 module "vpc" {
   source  = "cloudposse/vpc/aws"
-  version = "0.28.1"
+  version = "1.1.0"
 
   cidr_block = "172.16.0.0/16"
 
