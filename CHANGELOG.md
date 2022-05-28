@@ -1,5 +1,17 @@
 # Changelog
 
+### [0.2.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.2.1...v0.2.2) (2022-05-28)
+
+
+### Bug Fixes
+
+* bump @testing-library/user-event from 14.1.1 to 14.2.0 in /client ([#94](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/94)) ([be7de14](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/be7de1414e978028ed7700b955bda733cb40a9f2))
+* bump @types/jest from 27.4.1 to 27.5.1 in /client ([#93](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/93)) ([900a1d9](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/900a1d9d9de30eb55f5cd3ede19e296f906662a7))
+* bump @types/node from 17.0.31 to 17.0.35 in /client ([#72](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/72)) ([0de1c29](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/0de1c29a9375174dd42a78f59db1d29cc148c671))
+* bump @types/node from 17.0.31 to 17.0.36 in /client ([#97](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/97)) ([5a924f2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/5a924f23b8dc06c8e7c8433d605b73e393f7b771))
+* bump @types/react-dom from 18.0.3 to 18.0.5 in /client ([#92](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/92)) ([2262422](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/22624228f3fa26fb0a334b62c418cf76a58e740f))
+* bump typescript from 4.6.4 to 4.7.2 in /client ([#95](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/95)) ([44291c2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/44291c26c8c2d01dea916074b68004f0e7298a32))
+
 ### [0.2.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.2.0...v0.2.1) (2022-05-28)
 
 
