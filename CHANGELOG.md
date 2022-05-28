@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.1.8...v0.2.0) (2022-05-28)
+
+
+### Features
+
+* adding client and server ci on github action ([#89](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/89)) ([844fadd](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/844fadd6f5f7e4825e51b84bd0303d483a4e676a))
+
 ### [0.1.8](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.1.7...v0.1.8) (2022-05-14)
 
 
