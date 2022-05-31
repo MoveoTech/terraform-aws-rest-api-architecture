@@ -4,6 +4,10 @@ variable "region" {
   description = "AWS region"
 }
 
+variable "provider_instance_size_name" {
+  type        = string
+  description = "Atlas provides different instance sizes, each with a default storage capacity and RAM size"
+}
 variable "context" {
   type = any
   default = {
