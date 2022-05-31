@@ -44,16 +44,18 @@ module "network" {
 }
 
 module "atlas_database" {
-  source                   = "./modules/database"
-  region                   = var.region
-  atlas_org_id             = var.atlas_org_id
-  vpc_id                   = module.network.vpc_id
-  cidr_block               = module.network.vpc_cidr_block
-  private_subnet_ids       = module.network.private_subnet_ids
-  private_endpoint_enabled = var.private_endpoint_enabled
-  atlas_users              = var.atlas_users
-  atlas_whitelist_ips      = local.atlas_whitelist_ips
-  context                  = module.this.context
+  source                      = "./modules/database"
+  region                      = var.region
+  atlas_org_id                = var.atlas_org_id
+  vpc_id                      = module.network.vpc_id
+  cidr_block                  = module.network.vpc_cidr_block
+  private_subnet_ids          = module.network.private_subnet_ids
+  private_endpoint_enabled    = var.private_endpoint_enabled
+  atlas_users                 = var.atlas_users
+  atlas_whitelist_ips         = local.atlas_whitelist_ips
+  provider_instance_size_name = var.provider_instance_size_name
+
+  context = module.this.context
 }
 
 resource "aws_secretsmanager_secret" "secrets" {

@@ -17,7 +17,7 @@ resource "mongodbatlas_cluster" "cluster-atlas" {
   # Provider settings
   provider_name               = "AWS"
   disk_size_gb                = 10
-  provider_instance_size_name = "M10"
+  provider_instance_size_name = var.provider_instance_size_name
 }
 
 
