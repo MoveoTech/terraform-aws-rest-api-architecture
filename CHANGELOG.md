@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.2.2...v0.3.0) (2022-05-31)
+
+
+### Features
+
+* Adding mongodb cluster type as a parameter, by default will use… ([#103](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/103)) ([7a1234a](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/7a1234a51feaa2767f98a6fba548efe9a087a9ce))
+
+
+### Bug Fixes
+
+* bump @testing-library/react from 13.2.0 to 13.3.0 in /client ([#99](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/99)) ([d242d21](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/d242d215c8c3078350d8093bfa579f3e1588b8e0))
+
 ### [0.2.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.2.1...v0.2.2) (2022-05-28)
 
 
