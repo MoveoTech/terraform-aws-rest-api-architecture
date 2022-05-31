@@ -1,8 +1,8 @@
 
 variable "provider_instance_size_name" {
-  type = string
+  type        = string
   description = "Atlas provides different instance sizes, each with a default storage capacity and RAM size"
-  default = "M0"
+  default     = "M0"
 }
 
 variable "stage" {
