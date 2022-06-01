@@ -1,6 +1,6 @@
 module "flow_logs" {
   source  = "cloudposse/vpc-flow-logs-s3-bucket/aws"
-  version = "0.16.2"
+  version = "0.17.0"
 
   flow_log_enabled                   = var.flow_log_enabled
   lifecycle_prefix                   = var.lifecycle_prefix
