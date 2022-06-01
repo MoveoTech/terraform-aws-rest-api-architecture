@@ -7,7 +7,7 @@ resource "aws_iam_user" "admin" {
 
 module "secure_baseline" {
   source  = "nozaq/secure-baseline/aws"
-  version = "0.34.0"
+  version = "1.1.0"
 
   audit_log_bucket_name           = var.audit_s3_bucket_name
   aws_account_id                  = data.aws_caller_identity.current.account_id
