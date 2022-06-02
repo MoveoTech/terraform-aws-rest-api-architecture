@@ -11,7 +11,6 @@ module "cloudfront_s3_cdn" {
   source                     = "cloudposse/cloudfront-s3-cdn/aws"
   version                    = "0.82.4"
   origin_force_destroy       = true
-  web_acl_id                 = module.waf_cloudfront.arn
   aliases                    = var.aliases
   dns_alias_enabled          = var.dns_alias_enabled
   parent_zone_id             = var.parent_zone_id
@@ -39,19 +38,3 @@ provider "aws" {
   alias  = "east"
 }
 
-
-module "kms" {
-  source  = "./kms"
-  context = var.context
-}
-module "waf_cloudfront" {
-  source      = "../../waf"
-  kms_key_arn = module.kms.key_arn
-  providers = {
-    aws = aws.east
-  }
-
-  scope   = "CLOUDFRONT"
-  type    = "cloudfront"
-  context = var.context
-}

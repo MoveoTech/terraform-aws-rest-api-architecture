@@ -1,15 +1,16 @@
+
 data "aws_caller_identity" "current" {
 }
 
 resource "aws_iam_user" "admin" {
-  name = "admin"
+  name  = "admin-${var.context.name}"
 }
 
 module "secure_baseline" {
   source  = "nozaq/secure-baseline/aws"
   version = "0.34.0"
 
-  audit_log_bucket_name           = var.audit_s3_bucket_name
+  audit_log_bucket_name           =  var.audit_s3_bucket_name
   aws_account_id                  = data.aws_caller_identity.current.account_id
   region                          = var.region
   support_iam_role_principal_arns = [aws_iam_user.admin.arn]

@@ -3,7 +3,7 @@ module "infrastructure" {
   source = "../../"
 
   stage                      = "develop"
-  name                       = "greenalert-moveo-hls"
+  name                       = "rest-api-architecture-test"
   cognito_default_user_email = "eliran@moveohls.com"
   client_repository_name     = "terraform-aws-rest-api-architecture"
   client_branch_name         = "main"
