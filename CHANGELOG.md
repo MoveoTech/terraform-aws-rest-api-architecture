@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.4.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.3.0...v0.4.0) (2022-06-02)
+
+
+### Features
+
+* adding full path for buildspec.yml file for server and client ([#112](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/112)) ([f74f2c6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/f74f2c60deb1490c7193dc07825362c5bc7dfb74))
+
+
+### Bug Fixes
+
+* bump @types/jest from 27.5.1 to 28.1.0 in /client ([#110](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/110)) ([f48c26e](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/f48c26e805beaef9857c1a2dc7a879db54096da0))
+* bump @types/node from 17.0.36 to 17.0.38 in /client ([#105](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/105)) ([ae5c1cd](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/ae5c1cd4dc5eb1f3d33dcb589fd23faa288b20ee))
+* bump @types/react from 18.0.9 to 18.0.10 in /client ([#106](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/106)) ([8de04a4](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/8de04a454c00220ea7571297b557b4da8983fb70))
+* change default atlas instance name ([#111](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/111)) ([26edc36](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/26edc36073e397d265d6a06130cb70bdd1a94d94))
+
 ## [0.3.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.2.2...v0.3.0) (2022-05-31)
 
 
