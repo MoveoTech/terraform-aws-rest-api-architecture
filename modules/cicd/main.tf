@@ -41,7 +41,7 @@ module "codebuild_application_server" {
   source             = "./codebuild"
   name               = "${var.context.stage}-${var.context.name}-server-build"
   image              = "aws/codebuild/standard:4.0"
-  buildspec_path     = "server/buildspec.yml"
+  buildspec_path     = var.server_buildspec_path
   kms_arn            = module.kms.key_arn
   security_group_id  = module.security_group.id
   private_subnet_ids = var.private_subnet_ids
@@ -100,7 +100,7 @@ module "codebuild_application_client" {
 
   }]
   kms_arn        = module.kms.key_arn
-  buildspec_path = "client/buildspec.yml"
+  buildspec_path = var.client_buildspec_path
   context        = var.context
 
 }

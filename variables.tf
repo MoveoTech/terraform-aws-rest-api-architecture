@@ -1,4 +1,16 @@
 
+variable "server_buildspec_path" {
+  type = string
+  description = "Full path to the place where the buildspec.yml for server ci"
+  default = "server/buildspec.yml"
+  
+}
+variable "client_buildspec_path" {
+  type = string
+  description = "Full path to the place where the buildspec.yml for client ci"
+  default = "client/buildspec.yml"
+}
+
 variable "provider_instance_size_name" {
   type        = string
   description = "Atlas provides different instance sizes, each with a default storage capacity and RAM size"
