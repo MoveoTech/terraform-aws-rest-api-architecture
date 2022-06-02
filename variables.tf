@@ -169,12 +169,6 @@ variable "atlas_whitelist_ips" {
   default     = []
   description = "A list of ip's that need access to this project clusters"
 }
-variable "security_baseline_enabled" {
-  type        = bool
-  description = "Enable securtiy basline"
-  default     = true
-}
-
 
 # Copy contents of cloudposse/terraform-null-label/variables.tf here
 
