@@ -13,6 +13,8 @@ module "elastic_beanstalk" {
   vpc_id                        = var.vpc_id
   private_subnet_ids            = var.private_subnet_ids
   associated_security_group_ids = var.associated_security_group_ids
+  autoscale_max                 = var.autoscale_max
+  autoscale_min                 = var.autoscale_min
   context                       = var.context
 }
 

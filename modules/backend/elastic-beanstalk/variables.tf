@@ -41,13 +41,11 @@ variable "instance_type" {
 
 variable "autoscale_min" {
   type        = number
-  default     = 1
   description = "Minumum instances to launch"
 }
 
 variable "autoscale_max" {
   type        = number
-  default     = 2
   description = "Maximum instances to launch"
 }
 

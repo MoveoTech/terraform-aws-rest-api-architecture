@@ -1,4 +1,16 @@
 
+
+variable "autoscale_min" {
+  type        = number
+  default     = 1
+  description = "Minumum instances to launch"
+}
+
+variable "autoscale_max" {
+  type        = number
+  default     = 2
+  description = "Maximum instances to launch"
+}
 variable "server_buildspec_path" {
   type        = string
   description = "Full path to the place where the buildspec.yml for server ci"

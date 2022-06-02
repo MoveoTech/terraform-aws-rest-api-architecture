@@ -97,3 +97,13 @@ variable "cors_domain" {
   description = "List of all cors domain relevant to the api gateway resource, for example if we want to be able to allow request from client `[www.client.com,client.com]` "
   type        = list(string)
 }
+
+variable "autoscale_min" {
+  type        = number
+  description = "Minumum instances to launch"
+}
+
+variable "autoscale_max" {
+  type        = number
+  description = "Maximum instances to launch"
+}
