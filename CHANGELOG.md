@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.4.0...v0.5.0) (2022-06-02)
+
+
+### Features
+
+* adding default encryption in all account ebs ([#115](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/115)) ([fc6483a](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/fc6483ae98f4351187abdc0639b212b2556399da))
+* adding scaling group as a prameter ([#113](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/113)) ([b667020](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/b6670201336090ae29dfc96af6de38091490d9cb))
+
 ## [0.4.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.3.0...v0.4.0) (2022-06-02)
 
 
