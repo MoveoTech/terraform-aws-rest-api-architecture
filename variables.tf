@@ -1,14 +1,14 @@
 
 variable "server_buildspec_path" {
-  type = string
+  type        = string
   description = "Full path to the place where the buildspec.yml for server ci"
-  default = "server/buildspec.yml"
-  
+  default     = "server/buildspec.yml"
+
 }
 variable "client_buildspec_path" {
-  type = string
+  type        = string
   description = "Full path to the place where the buildspec.yml for client ci"
-  default = "client/buildspec.yml"
+  default     = "client/buildspec.yml"
 }
 
 variable "provider_instance_size_name" {

@@ -129,11 +129,11 @@ variable "private_subnet_ids" {
 }
 
 variable "server_buildspec_path" {
-  type = string
+  type        = string
   description = "Full path to the place where the buildspec.yml for server ci"
-  
+
 }
 variable "client_buildspec_path" {
-  type = string
+  type        = string
   description = "Full path to the place where the buildspec.yml for client ci"
 }
