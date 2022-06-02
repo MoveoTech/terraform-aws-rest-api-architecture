@@ -148,6 +148,8 @@ module "cicd" {
   github_org                         = var.github_org
   client_repository_name             = var.client_repository_name
   client_branch_name                 = var.client_branch_name
+  client_buildspec_path              = var.client_buildspec_path
+  server_buildspec_path              = var.server_buildspec_path
   server_repository_name             = var.server_repository_name
   server_branch_name                 = var.server_branch_name
   elastic_beanstalk_application_name = module.server.elastic_beanstalk_application_name
