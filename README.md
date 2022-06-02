@@ -266,12 +266,14 @@ module "infrastructure" {
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
 | <a name="input_atlas_org_id"></a> [atlas\_org\_id](#input\_atlas\_org\_id) | The ID of your MongoDB Atlas organization | `string` | yes |
+| <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | List of availability zones for the selected region | `list(string)` | yes |
 | <a name="input_client_branch_name"></a> [client\_branch\_name](#input\_client\_branch\_name) | Client branch name | `string` | yes |
 | <a name="input_client_repository_name"></a> [client\_repository\_name](#input\_client\_repository\_name) | Client repository name | `string` | yes |
 | <a name="input_cognito_default_user_email"></a> [cognito\_default\_user\_email](#input\_cognito\_default\_user\_email) | This is a default user to be able to login to the system | `string` | yes |
 | <a name="input_github_org"></a> [github\_org](#input\_github\_org) | Github organization name | `string` | yes |
 | <a name="input_private_key"></a> [private\_key](#input\_private\_key) | The private API key for MongoDB Atlas | `string` | yes |
 | <a name="input_public_key"></a> [public\_key](#input\_public\_key) | The public API key for MongoDB Atlas | `string` | yes |
+| <a name="input_region"></a> [region](#input\_region) | aws region to deploy to | `string` | yes |
 | <a name="input_server_branch_name"></a> [server\_branch\_name](#input\_server\_branch\_name) | Server branch name | `string` | yes |
 | <a name="input_server_repository_name"></a> [server\_repository\_name](#input\_server\_repository\_name) | Server repository name | `string` | yes |
 | <a name="input_additional_tag_map"></a> [additional\_tag\_map](#input\_additional\_tag\_map) | Additional key-value pairs to add to each map in `tags_as_list_of_maps`. Not added to `tags` or `id`.<br>This is for some rare cases where resources want additional configuration of tags<br>and therefore take a list of maps with tag key, value, and additional configuration. | `map(string)` | no |
@@ -279,7 +281,6 @@ module "infrastructure" {
 | <a name="input_atlas_users"></a> [atlas\_users](#input\_atlas\_users) | List of emails for all the developer who needs access to this organization project | `list(string)` | no |
 | <a name="input_atlas_whitelist_ips"></a> [atlas\_whitelist\_ips](#input\_atlas\_whitelist\_ips) | A list of ip's that need access to this project clusters | `list(string)` | no |
 | <a name="input_attributes"></a> [attributes](#input\_attributes) | ID element. Additional attributes (e.g. `workers` or `cluster`) to add to `id`,<br>in the order they appear in the list. New attributes are appended to the<br>end of the list. The elements of the list are joined by the `delimiter`<br>and treated as a single ID element. | `list(string)` | no |
-| <a name="input_availability_zones"></a> [availability\_zones](#input\_availability\_zones) | List of availability zones for the selected region | `list(string)` | no |
 | <a name="input_client_callback_urls"></a> [client\_callback\_urls](#input\_client\_callback\_urls) | List of allowed callback URLs for the identity providers | `list(string)` | no |
 | <a name="input_client_default_redirect_uri"></a> [client\_default\_redirect\_uri](#input\_client\_default\_redirect\_uri) | The default redirect URI. Must be in the list of callback URLs | `string` | no |
 | <a name="input_client_logout_urls"></a> [client\_logout\_urls](#input\_client\_logout\_urls) | List of allowed logout URLs for the identity providers | `list(string)` | no |
@@ -303,7 +304,6 @@ module "infrastructure" {
 | <a name="input_private_endpoint_enabled"></a> [private\_endpoint\_enabled](#input\_private\_endpoint\_enabled) | Private endpoint allow to connect between 2 aws accounts by private network no need to use internet. To use this feature you need to add payment card to your atlas account | `bool` | no |
 | <a name="input_provider_instance_size_name"></a> [provider\_instance\_size\_name](#input\_provider\_instance\_size\_name) | Atlas provides different instance sizes, each with a default storage capacity and RAM size | `string` | no |
 | <a name="input_regex_replace_chars"></a> [regex\_replace\_chars](#input\_regex\_replace\_chars) | Terraform regular expression (regex) string.<br>Characters matching the regex will be removed from the ID elements.<br>If not set, `"/[^a-zA-Z0-9-]/"` is used to remove all characters other than hyphens, letters and digits. | `string` | no |
-| <a name="input_region"></a> [region](#input\_region) | aws region to deploy to | `string` | no |
 | <a name="input_stage"></a> [stage](#input\_stage) | ID element. Usually used to indicate role, e.g. 'prod', 'staging', 'source', 'build', 'test', 'deploy', 'release' | `string` | no |
 | <a name="input_subject_alternative_names"></a> [subject\_alternative\_names](#input\_subject\_alternative\_names) | A list of domains that should be SANs in the issued certificate | `list(string)` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Additional tags (e.g. `{'BusinessUnit': 'XYZ'}`).<br>Neither the tag keys nor the tag values will be modified by this module. | `map(string)` | no |

@@ -1,8 +1,9 @@
+
 data "aws_caller_identity" "current" {
 }
 
 resource "aws_iam_user" "admin" {
-  name = "admin"
+  name = "admin-${var.context.name}"
 }
 
 module "secure_baseline" {

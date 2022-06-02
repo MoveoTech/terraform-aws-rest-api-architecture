@@ -2,8 +2,10 @@
 module "infrastructure" {
   source = "../../"
 
+  region                     = "eu-west-3"
+  availability_zones         = ["eu-west-3a"]
   stage                      = "develop"
-  name                       = "greenalert-moveo-hls"
+  name                       = "rest-api-architecture-test"
   cognito_default_user_email = "eliran@moveohls.com"
   client_repository_name     = "terraform-aws-rest-api-architecture"
   client_branch_name         = "main"

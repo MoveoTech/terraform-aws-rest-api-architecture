@@ -165,7 +165,10 @@ module "cicd" {
 
 
 module "secure_baseline" {
-  source               = "./modules/security_baseline"
+  source = "./modules/security_baseline"
+
   region               = var.region
   audit_s3_bucket_name = var.name
+  context              = module.this.context
+
 }
