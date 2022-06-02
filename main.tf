@@ -98,6 +98,8 @@ module "acm_request_certificate_server" {
 
 module "server" {
   source                        = "./modules/backend"
+  autoscale_max                 = var.autoscale_max
+  autoscale_min                 = var.autoscale_min
   domain_name                   = local.server_domain_name
   zone_id                       = var.parent_zone_id
   acm_request_certificate_arn   = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
