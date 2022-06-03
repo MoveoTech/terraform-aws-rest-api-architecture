@@ -1,5 +1,10 @@
 
 
+variable "enabled_atlas_encryption_at_rest" {
+  type        = bool
+  description = "Flag to enable/disable encryption at rest with kms"
+  default     = false
+}
 variable "autoscale_min" {
   type        = number
   default     = 1

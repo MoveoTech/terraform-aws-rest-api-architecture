@@ -93,3 +93,9 @@ variable "atlas_users" {
   type        = list(string)
   description = "List of emails for all the developer who needs access to this organization project"
 }
+
+variable "enabled_atlas_encryption_at_rest" {
+  type        = bool
+  description = "Flag to enable/disable encryption at rest with kms"
+
+}

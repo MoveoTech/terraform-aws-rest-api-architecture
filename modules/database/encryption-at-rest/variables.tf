@@ -1,13 +1,13 @@
-variable "deletion_window_in_days" {
-  description = "Deletion time in days"
-  type = number
-  default = 7
-}
-variable "alias_name" {
-  description = "KMS alias name"
-  default     = null
+
+variable "project_id" {
   type        = string
+  description = "Atlas project ID"
 }
+variable "atlas_region" {
+  type        = string
+  description = "Atlas Region"
+}
+
 variable "context" {
   type = any
   default = {
@@ -53,13 +53,4 @@ variable "context" {
     condition     = lookup(var.context, "label_value_case", null) == null ? true : contains(["lower", "title", "upper", "none"], var.context["label_value_case"])
     error_message = "Allowed values: `lower`, `title`, `upper`, `none`."
   }
-}
-variable "region" {
-  description = "AWS region"
-  type        = string
-}
-variable "multi_region" {
-  type        = bool
-  default     = false
-  description = "Indicates whether the KMS key is a multi-Region (true) or regional (false) key."
 }

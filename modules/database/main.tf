@@ -69,3 +69,13 @@ module "atlas_cluster" {
   context    = var.context
 
 }
+
+module "encryption-at-rest" {
+  source = "./encryption-at-rest"
+  count  = var.enabled_atlas_encryption_at_rest ? 1 : 0
+
+  atlas_region = var.region
+  project_id   = module.atlas_project.atlas_project_id
+  context      = var.context
+
+}

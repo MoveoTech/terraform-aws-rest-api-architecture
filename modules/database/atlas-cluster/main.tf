@@ -14,6 +14,11 @@ resource "mongodbatlas_cluster" "cluster-atlas" {
       read_only_nodes = 0
     }
   }
+
+  advanced_configuration {
+    javascript_enabled           = false
+    minimum_enabled_tls_protocol = "TLS1_2"
+  }
   # Provider settings
   provider_name               = "AWS"
   disk_size_gb                = 10
