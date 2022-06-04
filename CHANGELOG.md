@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.5.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.5.0...v0.5.1) (2022-06-04)
+
+
+### Bug Fixes
+
+* bump @aws-amplify/ui-react from 2.18.3 to 2.19.0 in /client ([#116](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/116)) ([6be0c44](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/6be0c440077e74366417f9ec52237c8aa811d2c4))
+* remove the check only for a specific rule ([#121](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/121)) ([d73c722](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/d73c722ebe3e3add34e1d2663001fa3ecd39108e))
+
 ## [0.5.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.4.0...v0.5.0) (2022-06-02)
 
 
