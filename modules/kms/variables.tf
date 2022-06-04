@@ -1,4 +1,8 @@
-
+variable "deletion_window_in_days" {
+  description = "Deletion time in days"
+  type        = number
+  default     = 7
+}
 variable "alias_name" {
   description = "KMS alias name"
   default     = null

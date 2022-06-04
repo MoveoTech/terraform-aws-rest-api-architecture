@@ -96,7 +96,7 @@ variable "expiration_days" {
 variable "traffic_type" {
   type        = string
   description = "The type of traffic to capture. Valid values: `ACCEPT`, `REJECT`, `ALL`"
-  default     = "ALL"
+  default     = "REJECT"
 }
 
 variable "allow_ssl_requests_only" {

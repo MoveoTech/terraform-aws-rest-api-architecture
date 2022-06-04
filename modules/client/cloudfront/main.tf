@@ -31,10 +31,3 @@ module "cloudfront_s3_cdn" {
   acm_certificate_arn = var.acm_certificate_arn
   context             = var.context
 }
-
-
-provider "aws" {
-  region = "us-east-1"
-  alias  = "east"
-}
-

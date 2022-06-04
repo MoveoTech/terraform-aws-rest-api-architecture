@@ -1,4 +1,5 @@
 
+
 resource "mongodbatlas_cluster" "cluster-atlas" {
   project_id                   = var.atlas_project_id
   name                         = var.context.name
@@ -13,6 +14,11 @@ resource "mongodbatlas_cluster" "cluster-atlas" {
       priority        = 7
       read_only_nodes = 0
     }
+  }
+
+  advanced_configuration {
+    javascript_enabled           = false
+    minimum_enabled_tls_protocol = "TLS1_2"
   }
   # Provider settings
   provider_name               = "AWS"

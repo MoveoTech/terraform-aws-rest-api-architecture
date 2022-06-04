@@ -54,8 +54,7 @@ module "atlas_database" {
   atlas_users                 = var.atlas_users
   atlas_whitelist_ips         = local.atlas_whitelist_ips
   provider_instance_size_name = var.provider_instance_size_name
-
-  context = module.this.context
+  context                     = module.this.context
 }
 
 resource "aws_secretsmanager_secret" "secrets" {
@@ -165,6 +164,10 @@ module "cicd" {
   vpc_id                             = module.network.vpc_id
   region                             = var.region
   context                            = module.this.context
+
+  # depends_on = [
+  #   module.server
+  # ]
 }
 
 

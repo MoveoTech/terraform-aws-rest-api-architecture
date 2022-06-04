@@ -5,7 +5,7 @@ module "kms_key" {
 
   multi_region            = var.multi_region
   description             = "KMS key for secrets manager"
-  deletion_window_in_days = 7
+  deletion_window_in_days = var.deletion_window_in_days
   enable_key_rotation     = true
   alias                   = "alias/${var.alias_name}"
   policy                  = data.aws_iam_policy_document.kms_permissions.json

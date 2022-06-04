@@ -93,3 +93,4 @@ variable "atlas_users" {
   type        = list(string)
   description = "List of emails for all the developer who needs access to this organization project"
 }
+

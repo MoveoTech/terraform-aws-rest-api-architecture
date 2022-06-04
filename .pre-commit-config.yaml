@@ -7,6 +7,6 @@ repos:
         args:
           - --args=--config=.terraform-docs.yml
       - id: terraform_tflint
-        exclude: "test/"
+        exclude: infra-live/
         args:
           - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl

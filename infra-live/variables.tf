@@ -1,31 +1,7 @@
-
-variable "autoscale_min" {
-  type        = number
-  default     = 1
-  description = "Minumum instances to launch"
-}
-
-variable "autoscale_max" {
-  type        = number
-  default     = 2
-  description = "Maximum instances to launch"
-}
-variable "server_buildspec_path" {
-  type        = string
-  description = "Full path to the place where the buildspec.yml for server ci"
-  default     = "server/buildspec.yml"
-
-}
-variable "client_buildspec_path" {
-  type        = string
-  description = "Full path to the place where the buildspec.yml for client ci"
-  default     = "client/buildspec.yml"
-}
-
 variable "provider_instance_size_name" {
   type        = string
   description = "Atlas provides different instance sizes, each with a default storage capacity and RAM size"
-  default     = "M10"
+  default     = "M0"
 }
 
 variable "stage" {
@@ -45,6 +21,7 @@ variable "name" {
 }
 
 variable "region" {
+  default     = "eu-west-3"
   description = "aws region to deploy to"
   type        = string
 }
@@ -89,6 +66,7 @@ variable "instance_type" {
 variable "availability_zones" {
   type        = list(string)
   description = "List of availability zones for the selected region"
+  default     = ["eu-west-3a"]
 }
 
 variable "public_key" {
@@ -192,6 +170,7 @@ variable "atlas_whitelist_ips" {
   default     = []
   description = "A list of ip's that need access to this project clusters"
 }
+
 
 # Copy contents of cloudposse/terraform-null-label/variables.tf here
 

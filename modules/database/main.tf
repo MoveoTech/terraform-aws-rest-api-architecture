@@ -64,8 +64,8 @@ module "atlas_cluster" {
   region                      = var.region
   atlas_project_id            = module.atlas_project.atlas_project_id
   provider_instance_size_name = var.provider_instance_size_name
-
-  depends_on = [module.atlas_vpc_endpoint]
-  context    = var.context
+  depends_on                  = [module.atlas_vpc_endpoint]
+  context                     = var.context
 
 }
+

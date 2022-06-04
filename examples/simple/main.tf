@@ -5,7 +5,7 @@ module "infrastructure" {
   region                     = "eu-west-3"
   availability_zones         = ["eu-west-3a"]
   stage                      = "develop"
-  name                       = "rest-api-architecture-test"
+  name                       = "terraform-moveohls"
   cognito_default_user_email = "eliran@moveohls.com"
   client_repository_name     = "terraform-aws-rest-api-architecture"
   client_branch_name         = "main"
