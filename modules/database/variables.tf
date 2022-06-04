@@ -94,8 +94,11 @@ variable "atlas_users" {
   description = "List of emails for all the developer who needs access to this organization project"
 }
 
-variable "enabled_atlas_encryption_at_rest" {
-  type        = bool
-  description = "Flag to enable/disable encryption at rest with kms"
-
+variable "public_key" {
+  type        = string
+  description = "The public API key for MongoDB Atlas"
+}
+variable "private_key" {
+  type        = string
+  description = "The private API key for MongoDB Atlas"
 }

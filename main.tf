@@ -47,6 +47,8 @@ module "atlas_database" {
   source                           = "./modules/database"
   region                           = var.region
   atlas_org_id                     = var.atlas_org_id
+  public_key                       = var.public_key
+  private_key                      = var.private_key
   vpc_id                           = module.network.vpc_id
   cidr_block                       = module.network.vpc_cidr_block
   private_subnet_ids               = module.network.private_subnet_ids
@@ -54,7 +56,6 @@ module "atlas_database" {
   atlas_users                      = var.atlas_users
   atlas_whitelist_ips              = local.atlas_whitelist_ips
   provider_instance_size_name      = var.provider_instance_size_name
-  enabled_atlas_encryption_at_rest = var.enabled_atlas_encryption_at_rest
   context                          = module.this.context
 }
 
@@ -165,6 +166,10 @@ module "cicd" {
   vpc_id                             = module.network.vpc_id
   region                             = var.region
   context                            = module.this.context
+
+  # depends_on = [
+  #   module.server
+  # ]
 }
 
 
