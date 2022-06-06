@@ -8,8 +8,9 @@ provider "aws" {
 }
 
 locals {
-  domain_enabled     = var.parent_zone_id != null && var.domain_name != null
-  server_domain_name = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
+  s3_bucket_access_log_bucket_name = module.secure_baseline.s3_audit_bucket.bucket
+  domain_enabled                   = var.parent_zone_id != null && var.domain_name != null
+  server_domain_name               = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
 }
 
 provider "mongodbatlas" {
@@ -116,24 +117,27 @@ module "acm_request_certificate_server" {
 
 
 module "server" {
-  source                        = "./modules/backend"
-  autoscale_max                 = var.autoscale_max
-  autoscale_min                 = var.autoscale_min
-  domain_name                   = local.server_domain_name
-  zone_id                       = var.parent_zone_id
-  acm_request_certificate_arn   = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
-  cors_domain                   = var.subject_alternative_names
-  region                        = var.region
-  instance_type                 = var.instance_type
-  vpc_id                        = module.network.vpc_id
-  private_subnet_ids            = module.network.private_subnet_ids
-  associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
+  source                           = "./modules/backend"
+  autoscale_max                    = var.autoscale_max
+  autoscale_min                    = var.autoscale_min
+  domain_name                      = local.server_domain_name
+  zone_id                          = var.parent_zone_id
+  acm_request_certificate_arn      = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
+  cors_domain                      = var.subject_alternative_names
+  region                           = var.region
+  instance_type                    = var.instance_type
+  vpc_id                           = module.network.vpc_id
+  private_subnet_ids               = module.network.private_subnet_ids
+  associated_security_group_ids    = module.atlas_database.atlas_resource_sg_id
+  s3_bucket_access_log_bucket_name = local.s3_bucket_access_log_bucket_name
   depends_on = [
     module.network,
     module.acm_request_certificate_server,
     module.cognito_auth,
     module.atlas_database
+
   ]
+
   user_pool_arn = module.cognito_auth.user_pool_arn
   context       = module.this.context
 }
@@ -154,12 +158,13 @@ module "acm_request_certificate_client" {
 
 
 module "cloudfront_s3_cdn" {
-  source              = "./modules/client/cloudfront"
-  aliases             = var.aliases_client
-  dns_alias_enabled   = var.dns_alias_enabled
-  parent_zone_id      = var.parent_zone_id
-  acm_certificate_arn = try(module.acm_request_certificate_client.acm_request_certificate_arn, "")
-  context             = module.this.context
+  source                           = "./modules/client/cloudfront"
+  aliases                          = var.aliases_client
+  dns_alias_enabled                = var.dns_alias_enabled
+  parent_zone_id                   = var.parent_zone_id
+  acm_certificate_arn              = try(module.acm_request_certificate_client.acm_request_certificate_arn, "")
+  s3_bucket_access_log_bucket_name = local.s3_bucket_access_log_bucket_name
+  context = module.this.context
 }
 
 
@@ -184,10 +189,7 @@ module "cicd" {
   private_subnet_ids                 = module.network.private_subnet_ids
   vpc_id                             = module.network.vpc_id
   region                             = var.region
-  context                            = module.this.context
-
-  # depends_on = [
-  #   module.server
-  # ]
+  s3_bucket_access_log_bucket_name   = local.s3_bucket_access_log_bucket_name
+  context = module.this.context
 }
 

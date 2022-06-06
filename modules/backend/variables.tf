@@ -107,3 +107,8 @@ variable "autoscale_max" {
   type        = number
   description = "Maximum instances to launch"
 }
+
+variable "s3_bucket_access_log_bucket_name" {
+  type        = string
+  description = "Name of the S3 bucket where s3 access log will be sent to"
+}

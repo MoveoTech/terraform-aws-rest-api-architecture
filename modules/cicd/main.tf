@@ -57,14 +57,15 @@ module "codebuild_application_server" {
 
 # CodePipeline module for CICD pipeline
 module "codepipeline_server_app" {
-  source          = "./codepipeline"
-  name            = "${var.context.stage}-${var.context.name}-server-pipline"
-  kms_arn         = module.kms.key_arn
-  github_org      = var.github_org
-  repository_name = var.server_repository_name
-  branch_name     = var.server_branch_name
-  project_name    = module.codebuild_application_server.project_name
-  bucket_name     = "${var.context.stage}-${var.context.name}-server-pipline"
+  source                           = "./codepipeline"
+  name                             = "${var.context.stage}-${var.context.name}-server-pipline"
+  kms_arn                          = module.kms.key_arn
+  github_org                       = var.github_org
+  repository_name                  = var.server_repository_name
+  branch_name                      = var.server_branch_name
+  s3_bucket_access_log_bucket_name = var.s3_bucket_access_log_bucket_name
+  project_name                     = module.codebuild_application_server.project_name
+  bucket_name                      = "${var.context.stage}-${var.context.name}-server-pipline"
   configuration = {
     ApplicationName = var.elastic_beanstalk_application_name
     EnvironmentName = var.elastic_beanstalk_environment_name
@@ -112,14 +113,16 @@ module "codebuild_application_client" {
 
 # CodePipeline module for CICD pipeline
 module "codepipeline_client_app" {
-  source          = "./codepipeline"
-  name            = "${var.context.stage}-${var.context.name}-client-pipeline"
-  kms_arn         = module.kms.key_arn
-  github_org      = var.github_org
-  repository_name = var.client_repository_name
-  branch_name     = var.client_branch_name
-  bucket_name     = "${var.context.stage}-${var.context.name}-client-pipeline"
-  project_name    = module.codebuild_application_client.project_name
+  source                           = "./codepipeline"
+  name                             = "${var.context.stage}-${var.context.name}-client-pipeline"
+  kms_arn                          = module.kms.key_arn
+  github_org                       = var.github_org
+  repository_name                  = var.client_repository_name
+  branch_name                      = var.client_branch_name
+  bucket_name                      = "${var.context.stage}-${var.context.name}-client-pipeline"
+  project_name                     = module.codebuild_application_client.project_name
+  s3_bucket_access_log_bucket_name = var.s3_bucket_access_log_bucket_name
+
   deploy_provider = "S3"
   configuration = {
     BucketName = var.client_bucket_name

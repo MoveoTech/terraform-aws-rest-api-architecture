@@ -96,10 +96,3 @@ resource "aws_lambda_function" "this" {
   }
   tags = var.context.tags
 }
-
-resource "aws_lambda_permission" "this" {
-  statement_id  = "AllowExecutionFromS3Bucket"
-  action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.this.arn
-  principal     = "s3.amazonaws.com"
-}

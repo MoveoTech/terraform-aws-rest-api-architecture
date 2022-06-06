@@ -61,13 +61,14 @@ module "elastic_beanstalk_environment" {
     "NODE_ENV"      = "${var.context.stage}"
     "DATABASE_NAME" = "${var.context.name}-${var.context.stage}"
   }
-  enable_stream_logs           = true
-  extended_ec2_policy_document = data.aws_iam_policy_document.minimal_s3_permissions.json
-  prefer_legacy_ssm_policy     = false
-  prefer_legacy_service_policy = false
-  s3_bucket_encryption_enabled = true
-  s3_bucket_versioning_enabled = true
-  managed_actions_enabled      = true
+  enable_stream_logs               = true
+  extended_ec2_policy_document     = data.aws_iam_policy_document.minimal_s3_permissions.json
+  prefer_legacy_ssm_policy         = false
+  prefer_legacy_service_policy     = false
+  s3_bucket_encryption_enabled     = true
+  s3_bucket_versioning_enabled     = true
+  managed_actions_enabled          = true
+  s3_bucket_access_log_bucket_name = var.s3_bucket_access_log_bucket_name
   # Unhealthy threshold count and healthy threshold count must be the same for Network Load Balancers
   healthcheck_healthy_threshold_count   = 3
   healthcheck_unhealthy_threshold_count = 3

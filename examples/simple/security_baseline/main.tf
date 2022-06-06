@@ -16,10 +16,10 @@ module "secure_baseline" {
   region                          = var.region
   support_iam_role_principal_arns = [aws_iam_user.admin.arn]
   target_regions                  = [var.region]
-
-  vpc_flow_logs_destination_type = "s3"
-  audit_log_bucket_key_enabled   = true
-
+  vpc_flow_logs_destination_type  = "s3"
+  audit_log_bucket_key_enabled    = true
+  # s3_restrict_public_buckets      = true
+  # vpc_flow_logs_retention_in_days = 365
   # Setting it to true means all audit logs are automatically deleted
   #   when you run `terraform destroy`.
   # Note that it might be inappropriate for highly secured environment.

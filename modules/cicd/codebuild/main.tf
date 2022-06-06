@@ -23,7 +23,7 @@ resource "aws_codebuild_project" "main" {
     compute_type    = "BUILD_GENERAL1_SMALL"
     image           = var.image
     type            = "LINUX_CONTAINER"
-    privileged_mode = true
+    privileged_mode = false
 
     environment_variable {
       name  = "STAGE_NAME"

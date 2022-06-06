@@ -5,16 +5,19 @@ resource "random_string" "random" {
 }
 
 module "s3_bucket" {
-  source              = "cloudposse/s3-bucket/aws"
-  version             = "1.0.0"
-  block_public_policy = true
-  acl                 = "private"
-  force_destroy       = true
-  user_enabled        = false
-  versioning_enabled  = true
-  bucket_key_enabled  = true
-  bucket_name         = var.bucket_name
-  context             = var.context
+  source  = "cloudposse/s3-log-storage/aws"
+  version = "0.27.0"
+
+  name                     = var.bucket_name
+  block_public_policy      = true
+  allow_ssl_requests_only  = true
+  versioning_enabled       = true
+  acl                      = "private"
+  sse_algorithm            = "aws:kms"
+  access_log_bucket_prefix = "/pipline-logs"
+  access_log_bucket_name   = var.s3_bucket_access_log_bucket_name
+
+  context = var.context
 }
 
 
