@@ -8,9 +8,8 @@ provider "aws" {
 }
 
 locals {
-  domain_enabled      = var.parent_zone_id != null && var.domain_name != null
-  server_domain_name  = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
-  atlas_whitelist_ips = var.enable_atlas_whitelist_ips ? concat(var.atlas_whitelist_ips, try(module.network.nat_gateway_public_ips, [])) : []
+  domain_enabled     = var.parent_zone_id != null && var.domain_name != null
+  server_domain_name = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
 }
 
 provider "mongodbatlas" {
@@ -50,10 +49,11 @@ module "atlas_database" {
   vpc_id                      = module.network.vpc_id
   cidr_block                  = module.network.vpc_cidr_block
   private_subnet_ids          = module.network.private_subnet_ids
+  atlas_whitelist_ips         = module.network.nat_gateway_public_ips
   private_endpoint_enabled    = var.private_endpoint_enabled
   atlas_users                 = var.atlas_users
-  atlas_whitelist_ips         = local.atlas_whitelist_ips
   provider_instance_size_name = var.provider_instance_size_name
+  enable_atlas_whitelist_ips  = var.enable_atlas_whitelist_ips
   context                     = module.this.context
 }
 

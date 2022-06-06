@@ -4,6 +4,10 @@ variable "region" {
   description = "AWS region"
 }
 
+variable "enable_atlas_whitelist_ips" {
+  type        = bool
+  description = "Enable the whitelist ip, if it enabled the ip's taken from the AWS EIP"
+}
 variable "provider_instance_size_name" {
   type        = string
   description = "Atlas provides different instance sizes, each with a default storage capacity and RAM size"

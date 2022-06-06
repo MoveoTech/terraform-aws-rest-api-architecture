@@ -16,3 +16,7 @@ output "atlas_resource_sg_id" {
   description = "ID's of the created security group"
   value       = module.security_groups.atlas_resource_sg_id
 }
+output "atlas_project_id" {
+  description = "ID's of the created cluster project"
+  value       = module.atlas_project.atlas_project_id
+}

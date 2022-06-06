@@ -184,14 +184,9 @@ variable "private_endpoint_enabled" {
 variable "enable_atlas_whitelist_ips" {
   type        = bool
   default     = false
-  description = "Enable the whitelist ip, if it enabled the ip's taken from the AWS EIP"
+  description = "Enable the whitelist ip, if it enabled the ip's taken from the AWS EIP and allow this ip access to atlas cluster"
 }
 
-variable "atlas_whitelist_ips" {
-  type        = list(string)
-  default     = []
-  description = "A list of ip's that need access to this project clusters"
-}
 
 # Copy contents of cloudposse/terraform-null-label/variables.tf here
 

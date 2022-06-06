@@ -22,7 +22,6 @@ module "infrastructure" {
   atlas_users                = ["dev@moveohls.com"]
   private_endpoint_enabled   = true
   enable_atlas_whitelist_ips = false
-  atlas_whitelist_ips        = []
 
   client_logout_urls          = ["https://www.test.terraform.moveodevelop.com/logout"]
   client_default_redirect_uri = "https://www.test.terraform.moveodevelop.com"

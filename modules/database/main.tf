@@ -18,11 +18,11 @@ resource "mongodbatlas_auditing" "audit" {
 }
 
 resource "mongodbatlas_project_ip_access_list" "ip" {
-  for_each = { for ip in var.atlas_whitelist_ips : ip => ip }
+  count = var.enable_atlas_whitelist_ips ? 1 : 0
 
   project_id = module.atlas_project.atlas_project_id
-  ip_address = each.value
-  comment    = "IP Address for accessing the cluster"
+  ip_address = one(var.atlas_whitelist_ips)
+  comment    = "AWS NAT gateway ip address for accessing the cluster"
 }
 
 # resource "mongodbatlas_org_invitation" "invitation" {
