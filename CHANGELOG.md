@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.5.1...v0.5.2) (2022-06-06)
+
+
+### Bug Fixes
+
+* update paramter name in vpc module ([#130](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/130)) ([3baa484](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/3baa48415210313f6a2fc55fb00b4b92910c5f4f))
+
 ## [0.5.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.5.0...v0.5.1) (2022-06-04)
 
 
