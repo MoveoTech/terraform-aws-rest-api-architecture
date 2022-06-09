@@ -9,7 +9,7 @@ locals {
 module "account_settings" {
   source = "cloudposse/api-gateway/aws//modules/account-settings"
 
-  version = "0.3.0"
+  version = "0.3.1"
   name    = "api-gateway-${var.context.stage}"
 
 }
