@@ -194,8 +194,8 @@ variable "atlas_whitelist_ips" {
 }
 
 variable "client_env_prefix" {
-  type = string
-  default = "REACT"
+  type        = string
+  default     = "REACT"
   description = "Prefix for react envoiremnt variable, this added for supporting NX prefix"
 }
 

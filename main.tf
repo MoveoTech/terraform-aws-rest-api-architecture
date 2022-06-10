@@ -147,6 +147,7 @@ module "cicd" {
   source                             = "./modules/cicd"
   github_secret_name                 = var.github_secret_name
   github_org                         = var.github_org
+  client_env_prefix                  = var.client_env_prefix
   client_repository_name             = var.client_repository_name
   client_branch_name                 = var.client_branch_name
   client_buildspec_path              = var.client_buildspec_path
