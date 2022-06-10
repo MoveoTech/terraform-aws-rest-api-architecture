@@ -286,6 +286,7 @@ module "infrastructure" {
 | <a name="input_client_buildspec_path"></a> [client\_buildspec\_path](#input\_client\_buildspec\_path) | Full path to the place where the buildspec.yml for client ci | `string` | no |
 | <a name="input_client_callback_urls"></a> [client\_callback\_urls](#input\_client\_callback\_urls) | List of allowed callback URLs for the identity providers | `list(string)` | no |
 | <a name="input_client_default_redirect_uri"></a> [client\_default\_redirect\_uri](#input\_client\_default\_redirect\_uri) | The default redirect URI. Must be in the list of callback URLs | `string` | no |
+| <a name="input_client_env_prefix"></a> [client\_env\_prefix](#input\_client\_env\_prefix) | Prefix for react envoiremnt variable, this added for supporting NX prefix | `string` | no |
 | <a name="input_client_logout_urls"></a> [client\_logout\_urls](#input\_client\_logout\_urls) | List of allowed logout URLs for the identity providers | `list(string)` | no |
 | <a name="input_context"></a> [context](#input\_context) | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | `any` | no |
 | <a name="input_delimiter"></a> [delimiter](#input\_delimiter) | Delimiter to be used between ID elements.<br>Defaults to `-` (hyphen). Set to `""` to use no delimiter at all. | `string` | no |

@@ -1,3 +1,8 @@
+
+variable "client_env_prefix" {
+  type        = string
+  description = "Prefix for react envoiremnt variable, this added for supporting NX prefix"
+}
 variable "context" {
   type = any
   default = {
