@@ -78,23 +78,23 @@ module "codebuild_application_client" {
   private_subnet_ids = var.private_subnet_ids
   vpc_id             = var.vpc_id
   environment_variables = [{
-    name  = "REACT_APP_AWS_REGION"
+    name  = "${var.client_env_prefix}_APP_AWS_REGION"
     value = var.region
     type  = "PLAINTEXT"
     },
     {
-      name  = "REACT_APP_AWS_POOL_ID"
+      name  = "${var.client_env_prefix}_APP_AWS_POOL_ID"
       value = var.cognito_pool_id
       type  = "PLAINTEXT"
     },
     {
-      name  = "REACT_APP_AWS_WEB_CLIENT_ID"
+      name  = "${var.client_env_prefix}_APP_AWS_WEB_CLIENT_ID"
       value = var.cognito_web_client_id
       type  = "PLAINTEXT"
 
     },
     {
-      name  = "REACT_APP_API_BASE_URL"
+      name  = "${var.client_env_prefix}_APP_API_BASE_URL"
       value = var.invoke_url
       type  = "PLAINTEXT"
 

@@ -193,6 +193,12 @@ variable "atlas_whitelist_ips" {
   description = "A list of ip's that need access to this project clusters"
 }
 
+variable "client_env_prefix" {
+  type = string
+  default = "REACT"
+  description = "Prefix for react envoiremnt variable, this added for supporting NX prefix"
+}
+
 # Copy contents of cloudposse/terraform-null-label/variables.tf here
 
 variable "context" {
