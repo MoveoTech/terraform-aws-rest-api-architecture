@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.6.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.5.2...v0.6.0) (2022-06-10)
+
+
+### Features
+
+* adding support for NX env file ([#140](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/140)) ([967ef5b](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/967ef5b5b366360c60943c7e1709feb0c5ba689e))
+
+
+### Bug Fixes
+
+* bump @aws-amplify/ui-react from 2.19.0 to 2.19.1 in /client ([#138](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/138)) ([b9e1539](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/b9e1539b913eb0a03eee248e275052afc5614b20))
+* bump @aws-sdk/client-secrets-manager in /server ([#135](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/135)) ([1be967e](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/1be967ecaffec5c69863ec30f2b0b1b7206d9d59))
+* bump @types/jest from 28.1.0 to 28.1.1 in /client ([#126](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/126)) ([8384866](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/83848668e293a4780f6a431f56ec85ca435be354))
+* bump @types/node from 17.0.38 to 17.0.40 in /client ([#127](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/127)) ([9187975](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/9187975ca1627ef2817e3ce0d398d76f10ef501c))
+* bump @types/node from 17.0.40 to 17.0.41 in /client ([#137](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/137)) ([054d4d2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/054d4d2c2ca76436ea6ca7d4d7036435f9e2798c))
+* bump @types/react from 18.0.10 to 18.0.12 in /client ([#125](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/125)) ([030774e](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/030774ed48e0cff83a27d4ced95d972b35abf8cf))
+* bump mongodb from 4.6.0 to 4.7.0 in /server ([#136](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/136)) ([69a9e30](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/69a9e307ac401212b8839934520db745e767eeb3))
+* bump typescript from 4.7.2 to 4.7.3 in /client ([#124](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/124)) ([c3c7a91](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/c3c7a91f0e941a6947e08130d3d4bd0490f37acd))
+
 ## [0.5.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.5.1...v0.5.2) (2022-06-06)
 
 
