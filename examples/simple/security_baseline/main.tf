@@ -1,12 +1,10 @@
 
 data "aws_caller_identity" "current" {
 }
-resource "aws_ebs_encryption_by_default" "default" {
-  enabled = true
-}
+
 
 resource "aws_iam_user" "admin" {
-  name = "admin-${var.context.name}"
+  name = "admin"
 }
 
 module "secure_baseline" {
