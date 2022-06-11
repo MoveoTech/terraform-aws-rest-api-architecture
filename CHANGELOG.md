@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.6.0...v0.7.0) (2022-06-11)
+
+
+### Features
+
+* adding env variable for server build ([#141](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/141)) ([c290371](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/c2903711e40b06d9beed341fe0ca8eabab58cd6d))
+
 ## [0.6.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.5.2...v0.6.0) (2022-06-10)
 
 
