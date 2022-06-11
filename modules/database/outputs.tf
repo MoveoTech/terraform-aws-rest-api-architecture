@@ -2,6 +2,10 @@ output "db_connection_string" {
   value       = module.atlas_cluster.connection_string
   description = "The private endpoint-aware cluster connection string"
 }
+output "connection_string_srv" {
+  value       = module.atlas_cluster.connection_string_srv
+  description = "The srv connection string. Example return string: standard_srv = `mongodb+srv://cluster-atlas.ygo1m.mongodb.net`"
+}
 output "db_username" {
   value       = module.db_users.user_db
   description = "The username of the account with which to access the database"
