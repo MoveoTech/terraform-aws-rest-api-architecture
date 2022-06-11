@@ -46,6 +46,11 @@ module "codebuild_application_server" {
   security_group_id  = module.security_group.id
   private_subnet_ids = var.private_subnet_ids
   vpc_id             = var.vpc_id
+  environment_variables = [{
+    name  = "ENVIRONMENT"
+    value = var.context.stage
+    type  = "PLAINTEXT"
+  }]
 
   context = var.context
 }
