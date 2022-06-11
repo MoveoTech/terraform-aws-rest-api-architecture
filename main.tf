@@ -8,9 +8,8 @@ provider "aws" {
 }
 
 locals {
-  domain_enabled      = var.parent_zone_id != null && var.domain_name != null
-  server_domain_name  = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
-  atlas_whitelist_ips = var.enable_atlas_whitelist_ips ? concat(var.atlas_whitelist_ips, try(module.network.nat_gateway_public_ips, [])) : []
+  domain_enabled     = var.parent_zone_id != null && var.domain_name != null
+  server_domain_name = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
 }
 
 provider "mongodbatlas" {
@@ -22,7 +21,12 @@ locals {
   secrets = {
     db_username          = module.atlas_database.db_username
     db_password          = module.atlas_database.db_password
-    db_connection_string = module.atlas_database.db_connection_string
+    db_connection_string = length(module.atlas_database.db_connection_string) > 0 ? module.atlas_database.db_connection_string : module.atlas_database.connection_string_srv
+  }
+  secrets_local = {
+    db_username          = module.atlas_database.db_username
+    db_password          = module.atlas_database.db_password
+    db_connection_string = module.atlas_database.connection_string_srv
   }
 }
 
@@ -50,10 +54,11 @@ module "atlas_database" {
   vpc_id                      = module.network.vpc_id
   cidr_block                  = module.network.vpc_cidr_block
   private_subnet_ids          = module.network.private_subnet_ids
+  atlas_whitelist_ips         = module.network.nat_gateway_public_ips
   private_endpoint_enabled    = var.private_endpoint_enabled
   atlas_users                 = var.atlas_users
-  atlas_whitelist_ips         = local.atlas_whitelist_ips
   provider_instance_size_name = var.provider_instance_size_name
+  enable_atlas_whitelist_ips  = var.enable_atlas_whitelist_ips
   context                     = module.this.context
 }
 
@@ -66,12 +71,24 @@ resource "aws_secretsmanager_secret" "secrets" {
     yor_trace = "f225cf4e-e1e9-4c5c-a479-f5d907e634f1"
   })
 }
-
 resource "aws_secretsmanager_secret_version" "secrets" {
   secret_id     = aws_secretsmanager_secret.secrets.id
   secret_string = jsonencode(local.secrets)
 }
+resource "aws_secretsmanager_secret" "secrets_local" {
+  name                    = "secrets/local"
+  description             = "Envoironment secrets"
+  recovery_window_in_days = 0
+  kms_key_id              = module.server.eb_kms_id
+  tags = merge(module.this.tags, {
+    yor_trace = "f225cf4e-e1e9-4c5c-a479-f5d907e634f1"
+  })
+}
 
+resource "aws_secretsmanager_secret_version" "secrets_local" {
+  secret_id     = aws_secretsmanager_secret.secrets_local.id
+  secret_string = jsonencode(local.secrets_local)
+}
 
 module "cognito_auth" {
   source                      = "./modules/authentication/cognito"

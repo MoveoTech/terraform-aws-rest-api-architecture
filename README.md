@@ -279,7 +279,6 @@ module "infrastructure" {
 | <a name="input_additional_tag_map"></a> [additional\_tag\_map](#input\_additional\_tag\_map) | Additional key-value pairs to add to each map in `tags_as_list_of_maps`. Not added to `tags` or `id`.<br>This is for some rare cases where resources want additional configuration of tags<br>and therefore take a list of maps with tag key, value, and additional configuration. | `map(string)` | no |
 | <a name="input_aliases_client"></a> [aliases\_client](#input\_aliases\_client) | List of FQDN's - Used to set the Alternate Domain Names (CNAMEs) setting on Cloudfront | `list(string)` | no |
 | <a name="input_atlas_users"></a> [atlas\_users](#input\_atlas\_users) | List of emails for all the developer who needs access to this organization project | `list(string)` | no |
-| <a name="input_atlas_whitelist_ips"></a> [atlas\_whitelist\_ips](#input\_atlas\_whitelist\_ips) | A list of ip's that need access to this project clusters | `list(string)` | no |
 | <a name="input_attributes"></a> [attributes](#input\_attributes) | ID element. Additional attributes (e.g. `workers` or `cluster`) to add to `id`,<br>in the order they appear in the list. New attributes are appended to the<br>end of the list. The elements of the list are joined by the `delimiter`<br>and treated as a single ID element. | `list(string)` | no |
 | <a name="input_autoscale_max"></a> [autoscale\_max](#input\_autoscale\_max) | Maximum instances to launch | `number` | no |
 | <a name="input_autoscale_min"></a> [autoscale\_min](#input\_autoscale\_min) | Minumum instances to launch | `number` | no |
@@ -293,7 +292,7 @@ module "infrastructure" {
 | <a name="input_descriptor_formats"></a> [descriptor\_formats](#input\_descriptor\_formats) | Describe additional descriptors to be output in the `descriptors` output map.<br>Map of maps. Keys are names of descriptors. Values are maps of the form<br>`{<br>   format = string<br>   labels = list(string)<br>}`<br>(Type is `any` so the map values can later be enhanced to provide additional options.)<br>`format` is a Terraform format string to be passed to the `format()` function.<br>`labels` is a list of labels, in order, to pass to `format()` function.<br>Label values will be normalized before being passed to `format()` so they will be<br>identical to how they appear in `id`.<br>Default is `{}` (`descriptors` output will be empty). | `any` | no |
 | <a name="input_dns_alias_enabled"></a> [dns\_alias\_enabled](#input\_dns\_alias\_enabled) | Create a DNS alias for the CDN. Requires `parent_zone_id` or `parent_zone_name` | `bool` | no |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | A domain name for which the certificate should be issued | `string` | no |
-| <a name="input_enable_atlas_whitelist_ips"></a> [enable\_atlas\_whitelist\_ips](#input\_enable\_atlas\_whitelist\_ips) | Enable the whitelist ip, if it enabled the ip's taken from the AWS EIP | `bool` | no |
+| <a name="input_enable_atlas_whitelist_ips"></a> [enable\_atlas\_whitelist\_ips](#input\_enable\_atlas\_whitelist\_ips) | Enable the whitelist ip, if it enabled the ip's taken from the AWS EIP and allow this ip access to atlas cluster | `bool` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Set to false to prevent the module from creating any resources | `bool` | no |
 | <a name="input_github_secret_name"></a> [github\_secret\_name](#input\_github\_secret\_name) | GitHub key name | `string` | no |
 | <a name="input_id_length_limit"></a> [id\_length\_limit](#input\_id\_length\_limit) | Limit `id` to this many characters (minimum 6).<br>Set to `0` for unlimited length.<br>Set to `null` for keep the existing setting, which defaults to `0`.<br>Does not affect `id_full`. | `number` | no |
@@ -318,6 +317,7 @@ module "infrastructure" {
 
 | Name | Description |
 |------|-------------|
+| <a name="output_atlas_project_id"></a> [atlas\_project\_id](#output\_atlas\_project\_id) | ID's of the created cluster project |
 | <a name="output_client_url"></a> [client\_url](#output\_client\_url) | Client url |
 | <a name="output_server_url"></a> [server\_url](#output\_server\_url) | Server api url |
 <!-- END_TF_DOCS -->
