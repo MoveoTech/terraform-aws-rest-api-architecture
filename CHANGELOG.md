@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.7.1...v0.8.0) (2022-06-11)
+
+
+### Features
+
+* removing security base line from module added as a side module ([#144](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/144)) ([768f842](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/768f842992711d05533107e680703956ff5dbe24))
+
 ## [0.7.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.7.0...v0.7.1) (2022-06-11)
 
 
