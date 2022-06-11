@@ -25,6 +25,16 @@ provider "mongodbatlas" {
 }
 
 
+
+# module "secure_baseline" {
+#   source = "./security_baseline"
+
+#   region               = var.region
+#   audit_s3_bucket_name = var.name
+#   context              = module.this.context
+
+# }
+
 resource "mongodbatlas_project_ip_access_list" "ip" {
   project_id = module.infrastructure.atlas_project_id
   ip_address = "93.157.85.78"

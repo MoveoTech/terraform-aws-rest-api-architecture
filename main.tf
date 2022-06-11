@@ -29,6 +29,9 @@ locals {
     db_connection_string = module.atlas_database.connection_string_srv
   }
 }
+resource "aws_ebs_encryption_by_default" "default" {
+  enabled = true
+}
 
 # module "network" {
 #   source = "./modules/network/vpc-private"
@@ -188,12 +191,3 @@ module "cicd" {
   # ]
 }
 
-
-module "secure_baseline" {
-  source = "./modules/security_baseline"
-
-  region               = var.region
-  audit_s3_bucket_name = var.name
-  context              = module.this.context
-
-}
