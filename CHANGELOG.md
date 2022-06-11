@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.7.0...v0.7.1) (2022-06-11)
+
+
+### Bug Fixes
+
+* Change the way we implement white list ip's. now if enable the `… ([#132](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/132)) ([683851b](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/683851b8eb571a40f3ef4231cdf728df068bf51f))
+
 ## [0.7.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.6.0...v0.7.0) (2022-06-11)
 
 
