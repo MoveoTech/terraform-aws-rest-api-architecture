@@ -6,7 +6,7 @@ resource "random_string" "random" {
 
 module "s3_bucket" {
   source              = "cloudposse/s3-bucket/aws"
-  version             = "1.0.0"
+  version             = "2.0.2"
   block_public_policy = true
   acl                 = "private"
   force_destroy       = true
