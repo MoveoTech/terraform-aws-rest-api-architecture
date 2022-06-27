@@ -8,8 +8,9 @@ provider "aws" {
 }
 
 locals {
-  domain_enabled     = var.parent_zone_id != null && var.domain_name != null
-  server_domain_name = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
+  s3_bucket_access_log_bucket_name = module.s3_bucket_access_logs.bucket_id
+  domain_enabled                   = var.parent_zone_id != null && var.domain_name != null
+  server_domain_name               = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
 }
 
 provider "mongodbatlas" {
@@ -37,9 +38,24 @@ resource "aws_ebs_encryption_by_default" "default" {
 #   source = "./modules/network/vpc-private"
 
 #   availability_zones = var.availability_zones
-#   region             = var.region
+#   region             = var.region§
 #   context            = module.this.context
 # }
+
+module "s3_bucket_access_logs" {
+  source  = "cloudposse/s3-log-storage/aws"
+  version = "0.27.0"
+
+  name                    = "${module.this.context.name}-${module.this.context.stage}-s3-access-logs"
+  block_public_policy     = true
+  allow_ssl_requests_only = true
+  versioning_enabled      = true
+  acl                     = "private"
+  sse_algorithm           = "aws:kms"
+
+
+  context = var.context
+}
 
 # Most of the application you will need to use this network
 # Use this vpc if you need an internet network
@@ -116,24 +132,27 @@ module "acm_request_certificate_server" {
 
 
 module "server" {
-  source                        = "./modules/backend"
-  autoscale_max                 = var.autoscale_max
-  autoscale_min                 = var.autoscale_min
-  domain_name                   = local.server_domain_name
-  zone_id                       = var.parent_zone_id
-  acm_request_certificate_arn   = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
-  cors_domain                   = var.subject_alternative_names
-  region                        = var.region
-  instance_type                 = var.instance_type
-  vpc_id                        = module.network.vpc_id
-  private_subnet_ids            = module.network.private_subnet_ids
-  associated_security_group_ids = module.atlas_database.atlas_resource_sg_id
+  source                           = "./modules/backend"
+  autoscale_max                    = var.autoscale_max
+  autoscale_min                    = var.autoscale_min
+  domain_name                      = local.server_domain_name
+  zone_id                          = var.parent_zone_id
+  acm_request_certificate_arn      = try(module.acm_request_certificate_server.acm_request_certificate_arn, "")
+  cors_domain                      = var.subject_alternative_names
+  region                           = var.region
+  instance_type                    = var.instance_type
+  vpc_id                           = module.network.vpc_id
+  private_subnet_ids               = module.network.private_subnet_ids
+  associated_security_group_ids    = module.atlas_database.atlas_resource_sg_id
+  s3_bucket_access_log_bucket_name = local.s3_bucket_access_log_bucket_name
   depends_on = [
     module.network,
     module.acm_request_certificate_server,
     module.cognito_auth,
     module.atlas_database
+
   ]
+
   user_pool_arn = module.cognito_auth.user_pool_arn
   context       = module.this.context
 }
@@ -154,12 +173,13 @@ module "acm_request_certificate_client" {
 
 
 module "cloudfront_s3_cdn" {
-  source              = "./modules/client/cloudfront"
-  aliases             = var.aliases_client
-  dns_alias_enabled   = var.dns_alias_enabled
-  parent_zone_id      = var.parent_zone_id
-  acm_certificate_arn = try(module.acm_request_certificate_client.acm_request_certificate_arn, "")
-  context             = module.this.context
+  source                           = "./modules/client/cloudfront"
+  aliases                          = var.aliases_client
+  dns_alias_enabled                = var.dns_alias_enabled
+  parent_zone_id                   = var.parent_zone_id
+  acm_certificate_arn              = try(module.acm_request_certificate_client.acm_request_certificate_arn, "")
+  s3_bucket_access_log_bucket_name = local.s3_bucket_access_log_bucket_name
+  context                          = module.this.context
 }
 
 
@@ -184,10 +204,7 @@ module "cicd" {
   private_subnet_ids                 = module.network.private_subnet_ids
   vpc_id                             = module.network.vpc_id
   region                             = var.region
+  s3_bucket_access_log_bucket_name   = local.s3_bucket_access_log_bucket_name
   context                            = module.this.context
-
-  # depends_on = [
-  #   module.server
-  # ]
 }
 

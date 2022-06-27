@@ -41,9 +41,9 @@ module "flow_logs" {
 module "default_security_group" {
   source = "../security-group"
 
+  s3_prefix_list_id = module.vpc_endpoints.aws_vpc_endpoint_s3
   vpc_id            = module.vpc.vpc_id
   vpc_cidr_block    = module.vpc.vpc_cidr_block
-  s3_prefix_list_id = module.vpc_endpoints.aws_vpc_endpoint_s3
   context           = var.context
 }
 

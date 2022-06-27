@@ -7,15 +7,16 @@ module "kms" {
 }
 
 module "elastic_beanstalk" {
-  source                        = "./elastic-beanstalk"
-  region                        = var.region
-  instance_type                 = var.instance_type
-  vpc_id                        = var.vpc_id
-  private_subnet_ids            = var.private_subnet_ids
-  associated_security_group_ids = var.associated_security_group_ids
-  autoscale_max                 = var.autoscale_max
-  autoscale_min                 = var.autoscale_min
-  context                       = var.context
+  source                           = "./elastic-beanstalk"
+  region                           = var.region
+  instance_type                    = var.instance_type
+  vpc_id                           = var.vpc_id
+  private_subnet_ids               = var.private_subnet_ids
+  associated_security_group_ids    = var.associated_security_group_ids
+  autoscale_max                    = var.autoscale_max
+  autoscale_min                    = var.autoscale_min
+  s3_bucket_access_log_bucket_name = var.s3_bucket_access_log_bucket_name
+  context                          = var.context
 }
 
 module "waf_api_gateway" {

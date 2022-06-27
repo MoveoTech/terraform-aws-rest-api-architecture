@@ -1,4 +1,8 @@
 
+variable "s3_bucket_access_log_bucket_name" {
+  type        = string
+  description = "Name of the S3 bucket where s3 access log will be sent to"
+}
 variable "context" {
   type = any
   default = {

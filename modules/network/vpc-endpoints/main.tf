@@ -100,6 +100,19 @@ resource "aws_vpc_endpoint" "secretsmanager" {
 
 }
 
+resource "aws_vpc_endpoint" "ec2" {
+  vpc_id              = var.vpc_id
+  service_name        = "com.amazonaws.${var.region}.ec2"
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = var.private_subnet_ids
+  private_dns_enabled = true
+
+  security_group_ids = [var.default_security_group]
+  tags = merge(var.context.tags, { Name = "EC2 Endpoint Interface - ${var.context.stage}" }, {
+    yor_trace = "1e1ed177-ac56-4e32-86bb-d4eceacded22"
+  })
+
+}
 # S3
 resource "aws_vpc_endpoint" "s3" {
   vpc_id            = var.vpc_id

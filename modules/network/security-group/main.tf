@@ -1,6 +1,4 @@
 
-# Traffic to the ECS Cluster should only come from the ALB
-# or AWS services through an AWS PrivateLink
 resource "aws_security_group" "default" {
   name        = "${var.context.name}-${var.context.stage}"
   description = "${var.context.name}-${var.context.stage} Default security group"
@@ -17,28 +15,15 @@ resource "aws_security_group" "default" {
     to_port     = 443
     cidr_blocks = [var.vpc_cidr_block]
   }
-  egress {
-    description = "Allow all https outgoing trafic"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = [var.vpc_cidr_block]
-    prefix_list_ids = [
-      var.s3_prefix_list_id
-    ]
-  }
-  egress {
-    description = "Allow all https outgoing trafic"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = [var.vpc_cidr_block]
-  }
+
   egress {
     description = "Allow all outgoing trafic"
     protocol    = "-1"
     from_port   = 0
     to_port     = 0
+    prefix_list_ids = [
+      var.s3_prefix_list_id
+    ]
     cidr_blocks = ["0.0.0.0/0"]
   }
 }

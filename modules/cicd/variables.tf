@@ -3,6 +3,10 @@ variable "client_env_prefix" {
   type        = string
   description = "Prefix for react envoiremnt variable, this added for supporting NX prefix"
 }
+variable "s3_bucket_access_log_bucket_name" {
+  type        = string
+  description = "Name of the S3 bucket where s3 access log will be sent to"
+}
 variable "context" {
   type = any
   default = {
