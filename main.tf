@@ -8,7 +8,7 @@ provider "aws" {
 }
 
 locals {
-  s3_bucket_access_log_bucket_name = module.secure_baseline.s3_audit_bucket.bucket
+  s3_bucket_access_log_bucket_name = module.s3_bucket_access_logs.bucket_id
   domain_enabled                   = var.parent_zone_id != null && var.domain_name != null
   server_domain_name               = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
 }
@@ -38,9 +38,24 @@ resource "aws_ebs_encryption_by_default" "default" {
 #   source = "./modules/network/vpc-private"
 
 #   availability_zones = var.availability_zones
-#   region             = var.region
+#   region             = var.region§
 #   context            = module.this.context
 # }
+
+module "s3_bucket_access_logs" {
+  source  = "cloudposse/s3-log-storage/aws"
+  version = "0.27.0"
+
+  name                    = "${module.this.context.name}-${module.this.context.stage}-s3-access-logs"
+  block_public_policy     = true
+  allow_ssl_requests_only = true
+  versioning_enabled      = true
+  acl                     = "private"
+  sse_algorithm           = "aws:kms"
+
+
+  context = var.context
+}
 
 # Most of the application you will need to use this network
 # Use this vpc if you need an internet network
@@ -164,7 +179,7 @@ module "cloudfront_s3_cdn" {
   parent_zone_id                   = var.parent_zone_id
   acm_certificate_arn              = try(module.acm_request_certificate_client.acm_request_certificate_arn, "")
   s3_bucket_access_log_bucket_name = local.s3_bucket_access_log_bucket_name
-  context = module.this.context
+  context                          = module.this.context
 }
 
 
@@ -190,6 +205,6 @@ module "cicd" {
   vpc_id                             = module.network.vpc_id
   region                             = var.region
   s3_bucket_access_log_bucket_name   = local.s3_bucket_access_log_bucket_name
-  context = module.this.context
+  context                            = module.this.context
 }
 
