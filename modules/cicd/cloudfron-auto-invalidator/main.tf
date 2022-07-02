@@ -94,5 +94,10 @@ resource "aws_lambda_function" "this" {
   tracing_config {
     mode = "Active"
   }
+  environment {
+    variables = {
+      REGION = "${var.region}"
+    }
+  }
   tags = var.context.tags
 }

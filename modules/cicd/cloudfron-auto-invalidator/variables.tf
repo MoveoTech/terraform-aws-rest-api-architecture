@@ -44,6 +44,10 @@ variable "context" {
     error_message = "Allowed values: `lower`, `title`, `upper`, `none`."
   }
 }
+variable "region" {
+  description = "aws region to deploy to"
+  type        = string
+}
 
 variable "memory_size" {
   default     = 128

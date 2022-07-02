@@ -3,13 +3,14 @@ import boto3
 import json
 import urllib
 import time
+import os
 from botocore.config import Config
 
 aws_config_cf = Config(
     region_name = 'us-east-1'
 )
 aws_config_pipeline = Config(
-    region_name = 'eu-west-3'
+    region_name = os.environ['REGION']
 )
 cloudfront_client = boto3.client('cloudfront', config=aws_config_cf)
 code_pipeline = boto3.client('codepipeline', config=aws_config_pipeline)
