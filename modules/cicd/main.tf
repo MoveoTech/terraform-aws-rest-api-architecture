@@ -140,6 +140,7 @@ module "cloudfront_invalidation" {
   name               = "cloudfront-invalidation-${var.context.stage}"
   private_subnet_ids = var.private_subnet_ids
   security_group_id  = module.security_group.id
+  region             = var.region
 
   context = var.context
 }
