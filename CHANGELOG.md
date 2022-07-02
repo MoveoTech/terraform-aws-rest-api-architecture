@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.8.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.8.1...v0.8.2) (2022-07-02)
+
+
+### Bug Fixes
+
+* bump @aws-amplify/ui-react from 3.0.2 to 3.0.3 in /client ([#179](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/179)) ([54d3e97](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/54d3e97cdb61587ebf95adc890136b512b0fcedb))
+* bump @aws-sdk/client-secrets-manager in /server ([#173](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/173)) ([a3456d6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/a3456d6a1acd1498edcb450ed168978d7bf360af))
+* bump @aws-sdk/client-secrets-manager in /server ([#178](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/178)) ([34a57c8](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/34a57c8dc96110dbc75216697e46cd389fec0dfc))
+* bump @types/jest from 28.1.3 to 28.1.4 in /client ([#180](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/180)) ([20e3ef7](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/20e3ef74209d0e1f3c3ae4f098841fa74a2a9341))
+* **lambda:** Add Environment ([#181](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/181)) ([d326938](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/d326938046e3c7a084eacf3785153c4a98a53ede))
+
 ## [0.8.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.8.0...v0.8.1) (2022-06-27)
 
 
