@@ -95,7 +95,7 @@ resource "aws_secretsmanager_secret_version" "secrets" {
   secret_string = jsonencode(local.secrets)
 }
 resource "aws_secretsmanager_secret" "secrets_local" {
-  name                    = "secrets/local"
+  name                    = "secrets/local-${module.this.stage}"
   description             = "Envoironment secrets"
   recovery_window_in_days = 0
   kms_key_id              = module.server.eb_kms_id
