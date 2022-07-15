@@ -133,14 +133,6 @@ variable "client_logout_urls" {
   type        = list(string)
   default     = []
 }
-
-
-variable "github_secret_name" {
-  description = "GitHub key name"
-  type        = string
-  default     = "github_secret"
-}
-
 variable "github_org" {
   description = "Github organization name"
   type        = string

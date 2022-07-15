@@ -9,6 +9,11 @@ inputs = {
   server_repository_name     = "terraform-aws-rest-api-architecture"
   server_branch_name         = "main"
   github_org                 = "MoveoTech"
+  private_endpoint_enabled   = false
+  enable_atlas_whitelist_ips  =true
+  provider_instance_size_name ="M10"
+  server_buildspec_path = "apps/server/buildspec.yml"
+  client_buildspec_path = "apps/client/buildspec.yml"
 }
 
 include {

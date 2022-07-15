@@ -19,8 +19,6 @@ module "s3_bucket" {
 
   context = var.context
 }
-
-
 resource "aws_codepipeline" "main" {
   name     = var.name
   role_arn = aws_iam_role.main.arn
@@ -40,17 +38,15 @@ resource "aws_codepipeline" "main" {
     action {
       name             = "Source"
       category         = "Source"
-      owner            = "ThirdParty"
-      provider         = "GitHub"
+      owner            = "AWS"
+      provider         = "CodeStarSourceConnection"
       version          = "1"
       output_artifacts = ["SourceArtifact"]
 
       configuration = {
-        Owner                = var.github_org
-        Repo                 = var.repository_name
-        PollForSourceChanges = "false"
-        Branch               = var.branch_name
-        OAuthToken           = var.github_token
+        ConnectionArn    = var.codestarconnections_connection_arn
+        FullRepositoryId = "${var.github_org}/${var.repository_name}"
+        BranchName       = var.branch_name
       }
     }
   }

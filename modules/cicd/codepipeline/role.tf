@@ -146,52 +146,14 @@ data "aws_iam_policy_document" "codepipeline_mutlicontainer_app" {
 
     resources = ["*"]
   }
-
   statement {
     effect = "Allow"
-
     actions = [
-      "devicefarm:ListProjects",
-      "devicefarm:ListDevicePools",
-      "devicefarm:GetRun",
-      "devicefarm:GetUpload",
-      "devicefarm:CreateUpload",
-      "devicefarm:ScheduleRun"
+      "codestar-connections:UseConnection"
     ]
-
-    resources = ["*"]
+    resources = [var.codestarconnections_connection_arn]
   }
 
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "opsworks:CreateDeployment",
-      "opsworks:DescribeApps",
-      "opsworks:DescribeCommands",
-      "opsworks:DescribeDeployments",
-      "opsworks:DescribeInstances",
-      "opsworks:DescribeStacks",
-      "opsworks:UpdateApp",
-      "opsworks:UpdateStack"
-    ]
-
-    resources = ["*"]
-  }
-
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "servicecatalog:ListProvisioningArtifacts",
-      "servicecatalog:CreateProvisioningArtifact",
-      "servicecatalog:DescribeProvisioningArtifact",
-      "servicecatalog:DeleteProvisioningArtifact",
-      "servicecatalog:UpdateProduct"
-    ]
-
-    resources = ["*"]
-  }
 }
 
 

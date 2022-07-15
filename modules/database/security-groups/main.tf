@@ -1,7 +1,7 @@
 
 resource "aws_security_group" "atlas_resource" {
   vpc_id      = var.vpc_id
-  name        = "${var.context.name}-${var.context.stage}-atlas-resource-security-group"
+  name        = "${var.context.stage}-atlas-resource-security-group"
   description = "The security group for resources that need to communicate with the Atlas private endpoint"
 
   egress {
@@ -18,7 +18,7 @@ resource "aws_security_group" "atlas_resource" {
 
 resource "aws_security_group" "atlas_endpoint" {
   vpc_id      = var.vpc_id
-  name        = "${var.context.name}-${var.context.stage}-atlas-endpoint-security-group"
+  name        = "${var.context.stage}-atlas-endpoint-security-group"
   description = "The security group for the Atlas private endpoint, allowing it to communicate with VPC resources"
 
   ingress {

@@ -29,11 +29,6 @@ variable "github_org" {
   type        = string
 }
 
-variable "github_token" {
-  description = "Name of github token"
-  type        = string
-}
-
 variable "kms_arn" {
   type        = string
   description = "KMS key to encrypt artifact"
@@ -47,6 +42,11 @@ variable "configuration" {
 variable "bucket_name" {
   type        = any
   description = "Pipline bucket name"
+}
+
+variable "codestarconnections_connection_arn" {
+  type        = string
+  description = "Codestar connection arn"
 }
 
 variable "context" {

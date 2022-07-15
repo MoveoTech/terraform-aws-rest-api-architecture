@@ -1,7 +1,7 @@
 
 module "infrastructure" {
-  source  = "MoveoTech/rest-api-architecture/aws"
-  version = "0.5.0"
+  source = "../"
+
 
 
   stage                       = var.stage

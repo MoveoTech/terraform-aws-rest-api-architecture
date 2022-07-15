@@ -1,13 +1,4 @@
 
-# GitHub secrets
-data "aws_secretsmanager_secret" "github_secret" {
-  name = var.github_secret_name
-}
-
-data "aws_secretsmanager_secret_version" "github_token" {
-  secret_id = data.aws_secretsmanager_secret.github_secret.id
-}
-
 module "kms" {
   source     = "../kms"
   alias_name = "codepipline-${var.context.stage}"
@@ -36,6 +27,11 @@ module "security_group" {
 
 
 
+resource "aws_codestarconnections_connection" "main" {
+  name          = "${var.context.stage}-connection"
+  provider_type = "GitHub"
+}
+
 # Codebuild module for CI
 module "codebuild_application_server" {
   source             = "./codebuild"
@@ -57,21 +53,21 @@ module "codebuild_application_server" {
 
 # CodePipeline module for CICD pipeline
 module "codepipeline_server_app" {
-  source                           = "./codepipeline"
-  name                             = "${var.context.stage}-${var.context.name}-server-pipline"
-  kms_arn                          = module.kms.key_arn
-  github_org                       = var.github_org
-  repository_name                  = var.server_repository_name
-  branch_name                      = var.server_branch_name
-  s3_bucket_access_log_bucket_name = var.s3_bucket_access_log_bucket_name
-  project_name                     = module.codebuild_application_server.project_name
-  bucket_name                      = "${var.context.stage}-${var.context.name}-server-pipline"
+  source                             = "./codepipeline"
+  name                               = "${var.context.stage}-${var.context.name}-server-pipline"
+  codestarconnections_connection_arn = aws_codestarconnections_connection.main.arn
+  kms_arn                            = module.kms.key_arn
+  github_org                         = var.github_org
+  repository_name                    = var.server_repository_name
+  branch_name                        = var.server_branch_name
+  s3_bucket_access_log_bucket_name   = var.s3_bucket_access_log_bucket_name
+  project_name                       = module.codebuild_application_server.project_name
+  bucket_name                        = "${var.context.stage}-${var.context.name}-server-pipline"
   configuration = {
     ApplicationName = var.elastic_beanstalk_application_name
     EnvironmentName = var.elastic_beanstalk_environment_name
   }
   deploy_provider = "ElasticBeanstalk"
-  github_token    = jsondecode(data.aws_secretsmanager_secret_version.github_token.secret_string)["GitHubPersonalAccessToken"]
   context         = var.context
 }
 
@@ -113,15 +109,16 @@ module "codebuild_application_client" {
 
 # CodePipeline module for CICD pipeline
 module "codepipeline_client_app" {
-  source                           = "./codepipeline"
-  name                             = "${var.context.stage}-${var.context.name}-client-pipeline"
-  kms_arn                          = module.kms.key_arn
-  github_org                       = var.github_org
-  repository_name                  = var.client_repository_name
-  branch_name                      = var.client_branch_name
-  bucket_name                      = "${var.context.stage}-${var.context.name}-client-pipeline"
-  project_name                     = module.codebuild_application_client.project_name
-  s3_bucket_access_log_bucket_name = var.s3_bucket_access_log_bucket_name
+  source                             = "./codepipeline"
+  name                               = "${var.context.stage}-${var.context.name}-client-pipeline"
+  codestarconnections_connection_arn = aws_codestarconnections_connection.main.arn
+  kms_arn                            = module.kms.key_arn
+  github_org                         = var.github_org
+  repository_name                    = var.client_repository_name
+  branch_name                        = var.client_branch_name
+  bucket_name                        = "${var.context.stage}-${var.context.name}-client-pipeline"
+  project_name                       = module.codebuild_application_client.project_name
+  s3_bucket_access_log_bucket_name   = var.s3_bucket_access_log_bucket_name
 
   deploy_provider = "S3"
   configuration = {
@@ -131,7 +128,6 @@ module "codepipeline_client_app" {
 
   lambda_name        = module.cloudfront_invalidation.function_name
   cf_distribution_id = var.cf_distribution_id
-  github_token       = jsondecode(data.aws_secretsmanager_secret_version.github_token.secret_string)["GitHubPersonalAccessToken"]
   context            = var.context
 }
 

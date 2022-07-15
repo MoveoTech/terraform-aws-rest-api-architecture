@@ -57,13 +57,6 @@ variable "region" {
   description = "aws region to deploy to"
   type        = string
 }
-
-variable "github_secret_name" {
-  description = "Secret key name"
-  type        = string
-  default     = "github_secret"
-}
-
 variable "github_org" {
   description = "Github organization name"
   type        = string
