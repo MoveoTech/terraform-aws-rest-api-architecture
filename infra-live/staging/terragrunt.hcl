@@ -8,7 +8,6 @@ inputs = {
         cognito_default_user_email = "eliran@moveohls.com"
 
         ########## Github Vars        ###################
-        github_secret_name ="github_secret"
         client_repository_name    = "terraform"
         client_branch_name    = "develop"
         server_repository_name    = "terraform"
