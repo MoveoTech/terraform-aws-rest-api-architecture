@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.9.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.8.3...v0.9.0) (2022-07-15)
+
+
+### Features
+
+* Codestar connection Github v2 ([#201](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/201)) ([df1e9ee](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/df1e9eeef2f7b1af3e4058748bc83d244ddc9602))
+
+
+### Bug Fixes
+
+* bump @aws-amplify/ui-react from 3.0.4 to 3.1.0 in /client ([#194](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/194)) ([d79dca6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/d79dca6d61afec551f7d094dbf6e9ae403916f26))
+* bump @aws-sdk/client-secrets-manager in /server ([#195](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/195)) ([f9079e9](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/f9079e94e36a6854c4a49f4c74dde7f9d7ee5fb3))
+* bump @aws-sdk/client-secrets-manager in /server ([#200](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/200)) ([61f59ea](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/61f59eab584bda99ae4a93b2db4348172de0a0f4))
+* bump @testing-library/user-event from 14.2.1 to 14.2.3 in /client ([#199](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/199)) ([1030ab9](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/1030ab9b28272c30564a9925cefd6071b50ea26d))
+* bump @types/node from 18.0.3 to 18.0.4 in /client ([#196](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/196)) ([8885aee](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/8885aee64ea8b0d54dc1a366137233887c74f01b))
+* bump mongodb from 4.7.0 to 4.8.0 in /server ([#197](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/197)) ([52b603b](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/52b603b5fc4359397837ca70895e010175375421))
+
 ## [0.8.3](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.8.2...v0.8.3) (2022-07-10)
 
 
