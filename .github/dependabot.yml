@@ -6,22 +6,6 @@
 version: 2
 updates:
 
-  - package-ecosystem: "npm"
-    directory: "/server"
-    commit-message:
-      prefix: "fix"
-    rebase-strategy: "auto"
-    schedule:
-      interval: "daily"
-
-  - package-ecosystem: "npm"
-    directory: "/client"
-    commit-message:
-      prefix: "fix"
-    rebase-strategy: "auto"
-    schedule:
-      interval: "daily"
-
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
