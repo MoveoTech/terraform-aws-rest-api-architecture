@@ -103,7 +103,7 @@ resource "aws_codepipeline" "main" {
 
         configuration = {
           FunctionName   = var.lambda_name
-          UserParameters = "${var.cf_distribution_id}"
+          UserParameters = var.cf_distribution_id
         }
       }
     }
