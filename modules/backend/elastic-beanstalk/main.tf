@@ -58,7 +58,7 @@ module "elastic_beanstalk_environment" {
   additional_settings = var.additional_settings
   env_vars = {
     "REGION"        = var.region
-    "NODE_ENV"      = "${var.context.stage}"
+    "NODE_ENV"      = var.context.stage
     "DATABASE_NAME" = "${var.context.name}-${var.context.stage}"
   }
   enable_stream_logs               = true

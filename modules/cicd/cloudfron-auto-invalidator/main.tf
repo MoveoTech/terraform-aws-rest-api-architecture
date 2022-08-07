@@ -96,7 +96,7 @@ resource "aws_lambda_function" "this" {
   }
   environment {
     variables = {
-      REGION = "${var.region}"
+      REGION = var.region
     }
   }
   tags = var.context.tags
