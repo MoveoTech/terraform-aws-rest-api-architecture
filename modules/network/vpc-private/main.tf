@@ -1,7 +1,7 @@
 
 module "vpc" {
   source  = "cloudposse/vpc/aws"
-  version = "1.1.0"
+  version = "1.1.1"
 
   cidr_block               = "172.16.0.0/16"
   enable_dns_support       = true
