@@ -21,7 +21,7 @@ module "vpc_endpoints" {
 
 module "subnets" {
   source  = "cloudposse/dynamic-subnets/aws"
-  version = "2.0.0"
+  version = "2.0.2"
 
   availability_zones   = var.availability_zones
   vpc_id               = module.vpc.vpc_id
