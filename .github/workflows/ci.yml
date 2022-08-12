@@ -129,4 +129,4 @@ jobs:
       - uses: fastify/github-action-merge-dependabot@v3.2.0
         if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
         with:
-          github-token: ${{ secrets.AUTO_MRGE_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
