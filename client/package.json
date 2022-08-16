@@ -11,7 +11,7 @@
     "@types/node": "18.7.3",
     "@types/react": "18.0.17",
     "@types/react-dom": "18.0.6",
-    "aws-amplify": "4.3.30",
+    "aws-amplify": "4.3.31",
     "axios": "0.27.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
