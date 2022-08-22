@@ -1,0 +1,50 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 12
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
+      - cd server
+      - npm install --silent --no-progress -g typescript
+      - npm install --silent --no-progress
+      - tsc
+      - echo Installing docker...
+      - sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+      - sudo service docker start
+      - echo preparing OWASP dependency check...
+      - DC_VERSION="latest"
+      - DC_DIRECTORY=$CODEBUILD_SRC_DIR/OWASP-Dependency-Check
+      - DC_PROJECT="dependency-check scan"
+      - DATA_DIRECTORY="$DC_DIRECTORY/data"
+      - mkdir -p "$DATA_DIRECTORY"
+      - CACHE_DIRECTORY="$DC_DIRECTORY/data/cache"
+      - mkdir -p "$CACHE_DIRECTORY"
+      - sudo docker pull owasp/dependency-check:$DC_VERSION
+  build:
+    commands: 
+      - sudo docker run --rm \
+          -e user=$USER \
+          -u $(id -u ${USER}):$(id -g ${USER}) \
+          --volume $CODEBUILD_SRC_DIR:/src:z \
+          --volume "$DATA_DIRECTORY":/usr/share/dependency-check/data:z \
+          --volume $CODEBUILD_SRC_DIR/odc-reports:/report:z \
+          owasp/dependency-check:$DC_VERSION \
+          --scan /src \
+          --format "JUNIT" \
+          --project "$DC_PROJECT" \
+          --out /report
+      - echo OWASP dependency check completed... 
+artifacts:
+  files:
+    - dist/**/*
+    - package.json
+    - package-lock.json
+    - node_modules/**/*
+  base-directory: 'server'
+reports:
+  owaspdependencycheckreports:
+    files:
+      - $CODEBUILD_SRC_DIR/odc-reports/dependency-check-junit.xml
+    file-format: JunitXml

@@ -56,11 +56,11 @@ module "elastic_beanstalk_environment" {
   solution_stack_name = data.aws_elastic_beanstalk_solution_stack.solution_stack_name.name
 
   additional_settings = var.additional_settings
-  env_vars = {
+  env_vars = merge({
     "REGION"        = var.region
     "NODE_ENV"      = var.context.stage
     "DATABASE_NAME" = "${var.context.name}-${var.context.stage}"
-  }
+  }, var.env_vars)
   enable_stream_logs               = true
   extended_ec2_policy_document     = data.aws_iam_policy_document.minimal_s3_permissions.json
   prefer_legacy_ssm_policy         = false

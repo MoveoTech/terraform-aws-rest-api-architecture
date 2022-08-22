@@ -16,6 +16,7 @@ module "elastic_beanstalk" {
   autoscale_max                    = var.autoscale_max
   autoscale_min                    = var.autoscale_min
   s3_bucket_access_log_bucket_name = var.s3_bucket_access_log_bucket_name
+  env_vars                         = var.env_vars
   context                          = var.context
 }
 

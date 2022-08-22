@@ -42,11 +42,11 @@ module "codebuild_application_server" {
   security_group_id  = module.security_group.id
   private_subnet_ids = var.private_subnet_ids
   vpc_id             = var.vpc_id
-  environment_variables = [{
+  environment_variables = [merge({
     name  = "ENVIRONMENT"
     value = var.context.stage
     type  = "PLAINTEXT"
-  }]
+  }, var.codebuild_server_env_vars)]
 
   context = var.context
 }
@@ -79,7 +79,7 @@ module "codebuild_application_client" {
   security_group_id  = module.security_group.id
   private_subnet_ids = var.private_subnet_ids
   vpc_id             = var.vpc_id
-  environment_variables = [{
+  environment_variables = [merge({
     name  = "${var.client_env_prefix}_APP_AWS_REGION"
     value = var.region
     type  = "PLAINTEXT"
@@ -100,7 +100,7 @@ module "codebuild_application_client" {
       value = var.invoke_url
       type  = "PLAINTEXT"
 
-  }]
+  }, var.codebuild_client_env_vars)]
   kms_arn        = module.kms.key_arn
   buildspec_path = var.client_buildspec_path
   context        = var.context
