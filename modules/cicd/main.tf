@@ -79,7 +79,7 @@ module "codebuild_application_client" {
   security_group_id  = module.security_group.id
   private_subnet_ids = var.private_subnet_ids
   vpc_id             = var.vpc_id
-  environment_variables = [merege({
+  environment_variables = [merge({
     name  = "${var.client_env_prefix}_APP_AWS_REGION"
     value = var.region
     type  = "PLAINTEXT"
