@@ -144,6 +144,7 @@ module "server" {
   vpc_id                           = module.network.vpc_id
   private_subnet_ids               = module.network.private_subnet_ids
   associated_security_group_ids    = module.atlas_database.atlas_resource_sg_id
+  env_vars                         = var.env_vars
   s3_bucket_access_log_bucket_name = local.s3_bucket_access_log_bucket_name
   depends_on = [
     module.network,
@@ -204,6 +205,8 @@ module "cicd" {
   vpc_id                             = module.network.vpc_id
   region                             = var.region
   s3_bucket_access_log_bucket_name   = local.s3_bucket_access_log_bucket_name
+  codebuild_server_env_vars          = var.codebuild_server_env_vars
+  codebuild_client_env_vars          = var.codebuild_client_env_vars
   context                            = module.this.context
 }
 

@@ -7,6 +7,14 @@ variable "s3_bucket_access_log_bucket_name" {
   type        = string
   description = "Name of the S3 bucket where s3 access log will be sent to"
 }
+variable "codebuild_server_env_vars" {
+  type        = map(string)
+  description = "Map of custom ENV variables to be provided to the application running on Elastic Beanstalk, e.g. env_vars = { DB_USER = 'admin' DB_PASS = 'xxxxxx' }"
+}
+variable "codebuild_client_env_vars" {
+  type        = map(string)
+  description = "Map of custom ENV variables to be provided to the application running on Elastic Beanstalk, e.g. env_vars = { DB_USER = 'admin' DB_PASS = 'xxxxxx' }"
+}
 variable "context" {
   type = any
   default = {
