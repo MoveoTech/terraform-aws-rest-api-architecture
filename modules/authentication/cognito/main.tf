@@ -38,6 +38,10 @@ module "aws_cognito_user_pool" {
     device_only_remembered_on_user_prompt = true
   }
 
+  username_configuration = {
+    case_sensitive = false
+  }
+
   password_policy = {
     minimum_length                   = 10
     require_lowercase                = true

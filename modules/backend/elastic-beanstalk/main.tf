@@ -1,4 +1,4 @@
-
+data "aws_caller_identity" "current" {}
 module "elastic_beanstalk_application" {
   source      = "cloudposse/elastic-beanstalk-application/aws"
   version     = "0.11.1"
@@ -80,6 +80,92 @@ module "elastic_beanstalk_environment" {
 }
 
 data "aws_iam_policy_document" "minimal_s3_permissions" {
+
+  statement {
+    sid = "AllowCognitoReadWritePermissions"
+    actions = ["cognito-idp:UpdateAuthEventFeedback",
+      "cognito-idp:AdminCreateUser",
+      "cognito-idp:ListIdentityProviders",
+      "cognito-idp:DisassociateWebACL",
+      "cognito-idp:CreateUserImportJob",
+      "cognito-idp:GetIdentityProviderByIdentifier",
+      "cognito-idp:AdminSetUserSettings",
+      "cognito-idp:AdminLinkProviderForUser",
+      "cognito-idp:CreateIdentityProvider",
+      "cognito-idp:DeleteUserPoolDomain",
+      "cognito-idp:AdminConfirmSignUp",
+      "cognito-idp:ListUsersInGroup",
+      "cognito-idp:DescribeUserPool",
+      "cognito-idp:AdminListUserAuthEvents",
+      "cognito-idp:ListResourceServers",
+      "cognito-idp:AdminListDevices",
+      "cognito-idp:GetWebACLForResource",
+      "cognito-idp:AdminDisableUser",
+      "cognito-idp:AdminRemoveUserFromGroup",
+      "cognito-idp:DeleteGroup",
+      "cognito-idp:AdminDeleteUserAttributes",
+      "cognito-idp:GetSigningCertificate",
+      "cognito-idp:UpdateResourceServer",
+      "cognito-idp:SetUICustomization",
+      "cognito-idp:DeleteResourceServer",
+      "cognito-idp:SetRiskConfiguration",
+      "cognito-idp:GetCSVHeader",
+      "cognito-idp:DeleteUserPoolClient",
+      "cognito-idp:UpdateUserPoolClient",
+      "cognito-idp:StartUserImportJob",
+      "cognito-idp:AdminSetUserPassword",
+      "cognito-idp:GetGroup",
+      "cognito-idp:DescribeRiskConfiguration",
+      "cognito-idp:AdminUpdateUserAttributes",
+      "cognito-idp:CreateResourceServer",
+      "cognito-idp:ListResourcesForWebACL",
+      "cognito-idp:CreateUserPoolClient",
+      "cognito-idp:AdminListGroupsForUser",
+      "cognito-idp:ListUsers",
+      "cognito-idp:AdminGetDevice",
+      "cognito-idp:UpdateUserPoolDomain",
+      "cognito-idp:AdminUserGlobalSignOut",
+      "cognito-idp:DeleteUserPool",
+      "cognito-idp:AddCustomAttributes",
+      "cognito-idp:CreateGroup",
+      "cognito-idp:AdminForgetDevice",
+      "cognito-idp:AdminAddUserToGroup",
+      "cognito-idp:AdminRespondToAuthChallenge",
+      "cognito-idp:UpdateIdentityProvider",
+      "cognito-idp:GetUICustomization",
+      "cognito-idp:AdminGetUser",
+      "cognito-idp:ListUserPoolClients",
+      "cognito-idp:CreateUserPoolDomain",
+      "cognito-idp:AdminEnableUser",
+      "cognito-idp:ListGroups",
+      "cognito-idp:DescribeIdentityProvider",
+      "cognito-idp:AdminUpdateDeviceStatus",
+      "cognito-idp:UpdateGroup",
+      "cognito-idp:DescribeResourceServer",
+      "cognito-idp:StopUserImportJob",
+      "cognito-idp:DescribeUserImportJob",
+      "cognito-idp:AdminUpdateAuthEventFeedback",
+      "cognito-idp:DescribeUserPoolClient",
+      "cognito-idp:AdminInitiateAuth",
+      "cognito-idp:AdminDeleteUser",
+      "cognito-idp:DeleteIdentityProvider",
+      "cognito-idp:AdminSetUserMFAPreference",
+      "logs:DeleteLogGroup",
+      "cognito-idp:ListTagsForResource",
+      "cognito-idp:GetUserPoolMfaConfig",
+      "cognito-idp:AdminDisableProviderForUser",
+      "cognito-idp:SetUserPoolMfaConfig",
+      "cognito-idp:AssociateWebACL",
+      "cognito-idp:UpdateUserPool",
+      "cognito-idp:AdminResetUserPassword",
+      "cognito-idp:ListUserImportJobs"
+    ]
+    resources = [
+      "arn:aws:logs:*:*:log-group:/aws/elasticbeanstalk*",
+      "arn:aws:cognito-idp:*:${data.aws_caller_identity.current.account_id}:userpool/*",
+      "arn:aws:wafv2:*:${data.aws_caller_identity.current.account_id}:*/webacl/*/*"
+    ]
+  }
   statement {
     sid = "AllowS3OperationsOnElasticBeanstalkBuckets"
     actions = [
