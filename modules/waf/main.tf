@@ -199,7 +199,7 @@ module "waf" {
       priority = 40
 
       statement = {
-        limit              = 100
+        limit              = 10000
         aggregate_key_type = "IP"
       }
 
