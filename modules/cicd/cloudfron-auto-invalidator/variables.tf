@@ -61,7 +61,7 @@ variable "name" {
 }
 
 variable "runtime" {
-  default     = "python3.6"
+  default     = "python3.9"
   description = "Lambda runtime to use"
   type        = string
 }
