@@ -18,6 +18,30 @@ module "infrastructure" {
   private_key                 = var.private_key
   atlas_org_id                = var.atlas_org_id
   provider_instance_size_name = "M10"
+  codebuild_server_env_vars = [{
+    name  = "ENV1"
+    value = "this is my value"
+    type  = "PLAINTEXT"
+    },
+
+    {
+      name  = "ENV2"
+      value = "this is my second value"
+      type  = "PLAINTEXT"
+    }
+  ]
+  codebuild_client_env_vars = [{
+    name  = "ENV1"
+    value = "this is my value"
+    type  = "PLAINTEXT"
+    },
+
+    {
+      name  = "ENV2"
+      value = "this is my second value"
+      type  = "PLAINTEXT"
+    }
+  ]
 }
 
 provider "mongodbatlas" {
