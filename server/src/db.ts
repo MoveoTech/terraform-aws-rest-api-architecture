@@ -7,25 +7,22 @@ let connection;
 export const getConnection = async () => {
 
     if (!connection) {
-        // Fetch secrets from secretes manager to connect to db
-        const secrets = await getSecrets();
-        connection = await MongoClient.connect(`${secrets.db_connection_string}/${process.env.DATABASE_NAME}`, {
-            //@ts-ignore
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-            auth: {
-                username: secrets.db_username,
-                password: secrets.db_password,
-            }
-        })
-            .then(res => {
-                console.log('Connection success')
-                return res;
+        try {
+            // Fetch secrets from secretes manager to connect to db
+            const secrets = await getSecrets();
+            connection = await MongoClient.connect(`${secrets.db_connection_string}/${process.env.DATABASE_NAME}`, {
+                //@ts-ignore
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                auth: {
+                    username: secrets.db_username,
+                    password: secrets.db_password,
+                }
             })
-            .catch(error => {
-                console.log('Connection error: ', error);
-                throw error;
-            });
+            console.log('Connection success')
+        } catch (error) {
+            console.log('Connection error: ', error);
+        }
     }
 
     return connection;
