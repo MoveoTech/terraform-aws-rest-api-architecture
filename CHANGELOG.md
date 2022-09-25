@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.11.2...v0.12.0) (2022-09-25)
+
+
+### Features
+
+* **elastic beanstalk:** adding iam policy for ec2 ([#332](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/332)) ([d190135](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/d1901351a2aa8d4d1f4cf113d69f6edad215a2ba))
+
 ## [0.11.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.11.1...v0.11.2) (2022-09-23)
 
 
