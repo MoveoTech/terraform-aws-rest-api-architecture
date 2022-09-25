@@ -248,3 +248,9 @@ variable "associated_security_group_ids" {
   default     = "null"
   description = "IDs for private subnets"
 }
+
+variable "extended_ec2_policy_document" {
+  type        = string
+  default     = "{}"
+  description = "Extensions or overrides for the IAM role assigned to EC2 instances"
+}

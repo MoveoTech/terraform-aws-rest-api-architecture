@@ -115,3 +115,10 @@ variable "s3_bucket_access_log_bucket_name" {
   type        = string
   description = "Name of the S3 bucket where s3 access log will be sent to"
 }
+
+
+variable "extended_ec2_policy_document" {
+  type        = string
+  default     = "{}"
+  description = "Extensions or overrides for the IAM role assigned to EC2 instances"
+}

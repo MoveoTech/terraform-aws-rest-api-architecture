@@ -146,6 +146,7 @@ module "server" {
   associated_security_group_ids    = module.atlas_database.atlas_resource_sg_id
   env_vars                         = var.env_vars
   s3_bucket_access_log_bucket_name = local.s3_bucket_access_log_bucket_name
+  extended_ec2_policy_document     = var.extended_ec2_policy_document
   depends_on = [
     module.network,
     module.acm_request_certificate_server,
