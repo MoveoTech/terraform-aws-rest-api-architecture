@@ -17,6 +17,7 @@ module "elastic_beanstalk" {
   autoscale_min                    = var.autoscale_min
   s3_bucket_access_log_bucket_name = var.s3_bucket_access_log_bucket_name
   env_vars                         = var.env_vars
+  extended_ec2_policy_document     = var.extended_ec2_policy_document
   context                          = var.context
 }
 

@@ -62,7 +62,7 @@ module "elastic_beanstalk_environment" {
     "DATABASE_NAME" = "${var.context.name}-${var.context.stage}"
   }, var.env_vars)
   enable_stream_logs               = true
-  extended_ec2_policy_document     = data.aws_iam_policy_document.minimal_s3_permissions.json
+  extended_ec2_policy_document     = data.aws_iam_policy_document.extended.json
   prefer_legacy_ssm_policy         = false
   prefer_legacy_service_policy     = false
   s3_bucket_encryption_enabled     = true
@@ -75,7 +75,9 @@ module "elastic_beanstalk_environment" {
 
   # Health check interval must be either 10 seconds or 30 seconds for Network Load Balancers
   healthcheck_interval = 30
-
+  depends_on = [
+    data.aws_iam_policy_document.extended
+  ]
   context = var.context
 }
 
@@ -83,7 +85,8 @@ data "aws_iam_policy_document" "minimal_s3_permissions" {
 
   statement {
     sid = "AllowCognitoReadWritePermissions"
-    actions = ["cognito-idp:UpdateAuthEventFeedback",
+    actions = [
+      "cognito-idp:UpdateAuthEventFeedback",
       "cognito-idp:AdminCreateUser",
       "cognito-idp:ListIdentityProviders",
       "cognito-idp:DisassociateWebACL",
@@ -185,6 +188,12 @@ data "aws_iam_policy_document" "minimal_s3_permissions" {
     ]
     resources = ["*"]
   }
+}
+
+
+data "aws_iam_policy_document" "extended" {
+  source_json   = join("", data.aws_iam_policy_document.minimal_s3_permissions.*.json)
+  override_json = var.extended_ec2_policy_document
 }
 
 
