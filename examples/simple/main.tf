@@ -22,6 +22,7 @@ module "infrastructure" {
   atlas_org_id                 = var.atlas_org_id
   provider_instance_size_name  = "M10"
   extended_ec2_policy_document = data.aws_iam_policy_document.service.json
+  cognito_enabled              = true
   codebuild_server_env_vars = [{
     name  = "ENV1"
     value = "this is my value"

@@ -147,6 +147,7 @@ module "server" {
   env_vars                         = var.env_vars
   s3_bucket_access_log_bucket_name = local.s3_bucket_access_log_bucket_name
   extended_ec2_policy_document     = var.extended_ec2_policy_document
+  cognito_enabled                  = var.cognito_enabled
   depends_on = [
     module.network,
     module.acm_request_certificate_server,

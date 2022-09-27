@@ -61,7 +61,11 @@ variable "name" {
     The "name" tag is set to the full `id` string. There is no tag with the value of the `name` input.
     EOT
 }
-
+variable "cognito_enabled" {
+  type        = bool
+  description = "Allow cognito authorization on api gateway routes"
+  default     = false
+}
 variable "region" {
   description = "aws region to deploy to"
   type        = string

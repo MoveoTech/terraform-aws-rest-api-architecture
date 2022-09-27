@@ -44,5 +44,6 @@ module "api_gateway" {
   elastic_beanstalk_application_name  = var.context.name
   depends_on                          = [module.elastic_beanstalk.elastic_beanstalk_application]
   user_pool_arn                       = var.user_pool_arn
+  cognito_enabled                     = var.cognito_enabled
   context                             = var.context
 }

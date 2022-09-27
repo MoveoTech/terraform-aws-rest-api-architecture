@@ -8,6 +8,11 @@ variable "domain_name" {
   description = "A domain name for which the certificate should be issued"
   default     = null
 }
+variable "cognito_enabled" {
+  type        = bool
+  description = "Allow cognito authorization on api gateway routes"
+  default     = false
+}
 variable "acm_request_certificate_arn" {
   description = "Certificate manager ARN"
   type        = string
