@@ -122,3 +122,8 @@ variable "extended_ec2_policy_document" {
   default     = "{}"
   description = "Extensions or overrides for the IAM role assigned to EC2 instances"
 }
+variable "cognito_enabled" {
+  type        = bool
+  description = "Allow cognito authorization on api gateway routes"
+  default     = false
+}

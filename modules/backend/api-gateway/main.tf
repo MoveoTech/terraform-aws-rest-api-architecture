@@ -1,9 +1,11 @@
 locals {
-  domain_enabled   = var.domain_name != null && var.domain_name != "" ? true : false
-  domain_count     = local.domain_enabled ? 1 : 0
-  create_log_group = true
-  log_group_arn    = module.cloudwatch_log_group.log_group_arn
-
+  domain_enabled       = var.domain_name != null && var.domain_name != "" ? true : false
+  domain_count         = local.domain_enabled ? 1 : 0
+  create_log_group     = true
+  log_group_arn        = module.cloudwatch_log_group.log_group_arn
+  authorization        = var.cognito_enabled ? "COGNITO_USER_POOLS" : "NONE"
+  authorization_scopes = var.cognito_enabled ? ["aws.cognito.signin.user.admin"] : null
+  authorizer_id        = var.cognito_enabled ? aws_api_gateway_authorizer.cognito_auth[0].id : null
 }
 
 module "account_settings" {
@@ -30,6 +32,7 @@ module "cors" {
 }
 
 resource "aws_api_gateway_authorizer" "cognito_auth" {
+  count         = var.cognito_enabled ? 1 : 0
   name          = "cognito_auth"
   rest_api_id   = aws_api_gateway_rest_api.main.id
   type          = "COGNITO_USER_POOLS"
@@ -49,9 +52,9 @@ resource "aws_api_gateway_method" "main" {
   rest_api_id          = aws_api_gateway_rest_api.main.id
   resource_id          = aws_api_gateway_resource.main.id
   http_method          = "ANY"
-  authorization        = "COGNITO_USER_POOLS"
-  authorization_scopes = ["aws.cognito.signin.user.admin"]
-  authorizer_id        = aws_api_gateway_authorizer.cognito_auth.id
+  authorization        = local.authorization
+  authorization_scopes = local.authorization_scopes
+  authorizer_id        = local.authorizer_id
   request_parameters = {
     "method.request.path.proxy" = true
   }

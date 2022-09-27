@@ -179,18 +179,48 @@ module "infrastructure" {
   source  = "MoveoTech/api-aws/rest"
   version = "0.0.2"
 
-  stage                      = "test"
-  name                       = "terraform-moveo"
-  cognito_default_user_email = "eliran@moveohls.com"
-  client_repository_name     = "terraform-rest-api-aws"
-  client_branch_name         = "main"
-  server_repository_name     = "terraform-rest-api-aws"
-  server_branch_name         = "main"
-  github_org                 = "MoveoTech"
-  public_key                 = var.public_key
-  private_key                = var.private_key
-  atlas_org_id               = var.atlas_org_id
-  module                     = var.module
+ region                       = "eu-west-3"
+  availability_zones           = ["eu-west-3a"]
+  stage                        = "develop"
+  name                         = "terraform-moveohls"
+  cognito_default_user_email   = "email@email.com"
+  client_repository_name       = "terraform-aws-rest-api-architecture"
+  client_branch_name           = "main"
+  server_repository_name       = "terraform-aws-rest-api-architecture"
+  server_branch_name           = "main"
+  github_org                   = "MoveoTech"
+  private_endpoint_enabled     = true
+  enable_atlas_whitelist_ips   = true
+  public_key                   = var.public_key
+  private_key                  = var.private_key
+  atlas_org_id                 = var.atlas_org_id
+  provider_instance_size_name  = "M10"
+  extended_ec2_policy_document = data.aws_iam_policy_document.service.json
+  cognito_enabled              = true
+  codebuild_server_env_vars = [{
+    name  = "ENV1"
+    value = "this is my value"
+    type  = "PLAINTEXT"
+    },
+
+    {
+      name  = "ENV2"
+      value = "this is my second value"
+      type  = "PLAINTEXT"
+    }
+  ]
+  codebuild_client_env_vars = [{
+    name  = "ENV1"
+    value = "this is my value"
+    type  = "PLAINTEXT"
+    },
+
+    {
+      name  = "ENV2"
+      value = "this is my second value"
+      type  = "PLAINTEXT"
+    }
+  ]
 }
 ```
 
@@ -289,6 +319,7 @@ module "infrastructure" {
 | <a name="input_client_logout_urls"></a> [client\_logout\_urls](#input\_client\_logout\_urls) | List of allowed logout URLs for the identity providers | `list(string)` | no |
 | <a name="input_codebuild_client_env_vars"></a> [codebuild\_client\_env\_vars](#input\_codebuild\_client\_env\_vars) | Map of custom ENV variables to be provided to the application running on Elastic Beanstalk, e.g. env\_vars = { DB\_USER = 'admin' DB\_PASS = 'xxxxxx' } | `list(object({ name = string, value = string, type = string }))` | no |
 | <a name="input_codebuild_server_env_vars"></a> [codebuild\_server\_env\_vars](#input\_codebuild\_server\_env\_vars) | Map of custom ENV variables to be provided to the application running on Elastic Beanstalk, e.g. env\_vars = { DB\_USER = 'admin' DB\_PASS = 'xxxxxx' } | `list(object({ name = string, value = string, type = string }))` | no |
+| <a name="input_cognito_enabled"></a> [cognito\_enabled](#input\_cognito\_enabled) | Allow cognito authorization on api gateway routes | `bool` | no |
 | <a name="input_context"></a> [context](#input\_context) | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | `any` | no |
 | <a name="input_delimiter"></a> [delimiter](#input\_delimiter) | Delimiter to be used between ID elements.<br>Defaults to `-` (hyphen). Set to `""` to use no delimiter at all. | `string` | no |
 | <a name="input_descriptor_formats"></a> [descriptor\_formats](#input\_descriptor\_formats) | Describe additional descriptors to be output in the `descriptors` output map.<br>Map of maps. Keys are names of descriptors. Values are maps of the form<br>`{<br>   format = string<br>   labels = list(string)<br>}`<br>(Type is `any` so the map values can later be enhanced to provide additional options.)<br>`format` is a Terraform format string to be passed to the `format()` function.<br>`labels` is a list of labels, in order, to pass to `format()` function.<br>Label values will be normalized before being passed to `format()` so they will be<br>identical to how they appear in `id`.<br>Default is `{}` (`descriptors` output will be empty). | `any` | no |
