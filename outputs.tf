@@ -13,3 +13,7 @@ output "atlas_project_id" {
   description = "ID's of the created cluster project"
   value       = module.atlas_database.atlas_project_id
 }
+output "atlas_x509_user" {
+  description = "user x509"
+  value       = module.atlas_database.db_user_x509
+}

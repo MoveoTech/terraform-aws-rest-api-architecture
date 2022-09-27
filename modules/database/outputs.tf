@@ -16,6 +16,11 @@ output "db_password" {
   description = "The password of the account with which to access the database"
 }
 
+output "db_user_x509" {
+  value       = module.db_users.user_x509
+  description = "The x509 data"
+}
+
 output "atlas_resource_sg_id" {
   description = "ID's of the created security group"
   value       = module.security_groups.atlas_resource_sg_id
