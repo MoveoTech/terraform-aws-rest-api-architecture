@@ -14,7 +14,7 @@ output "db_username" {
 output "db_password" {
   value       = module.db_users.user_db_pass
   description = "The password of the account with which to access the database"
-  sensitive = true
+  sensitive   = true
 }
 
 output "atlas_resource_sg_id" {
