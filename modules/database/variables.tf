@@ -62,6 +62,17 @@ variable "context" {
 variable "atlas_org_id" {
   description = "The ID of your MongoDB Atlas organisation"
   type        = string
+  default     = null
+}
+variable "private_key" {
+  description = "Atlas MongoDB private key for authentication"
+  type        = string
+  default     = null
+}
+variable "public_key" {
+  description = "Atlas MongoDB public key for authentication"
+  type        = string
+  default     = null
 }
 
 

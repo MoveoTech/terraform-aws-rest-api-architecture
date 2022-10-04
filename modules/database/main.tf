@@ -1,4 +1,23 @@
 
+provider "mongodbatlas" {
+  public_key  = local.public_key
+  private_key = local.private_key
+}
+
+locals {
+  public_key   = var.public_key != null ? var.public_key : jsondecode(data.aws_secretsmanager_secret_version.database_tokens.secret_string)["PublicKey"]
+  private_key  = var.private_key != null ? var.private_key : jsondecode(data.aws_secretsmanager_secret_version.database_tokens.secret_string)["PrivateKey"]
+  atlas_org_id = jsondecode(data.aws_secretsmanager_secret_version.database_tokens.secret_string)["OrganizationID"]
+}
+
+data "aws_secretsmanager_secret" "database_secrets" {
+  name = "database"
+}
+
+data "aws_secretsmanager_secret_version" "database_tokens" {
+  secret_id = data.aws_secretsmanager_secret.database_secrets.id
+}
+
 module "atlas_vpc_endpoint" {
   source = "./vpc-endpoint"
   count  = var.private_endpoint_enabled ? 1 : 0
@@ -40,7 +59,7 @@ resource "mongodbatlas_project_invitation" "project_invitation" {
 
 module "atlas_project" {
   source       = "./atlas-project"
-  atlas_org_id = var.atlas_org_id
+  atlas_org_id = local.atlas_org_id
   context      = var.context
 }
 
