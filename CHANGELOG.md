@@ -1,5 +1,30 @@
 # Changelog
 
+## [0.13.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.12.0...v0.13.0) (2022-10-04)
+
+
+### Features
+
+* **cognito:** adding the ability to disable cognito auth on api gateway ([#339](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/339)) ([f3a53de](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/f3a53def918b75cadeaf8e469d05d4a3b4a1c267))
+
+
+### Bug Fixes
+
+* adding sensitive keyword to mongodb password db ([#357](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/357)) ([67ed69e](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/67ed69e3615e3bbdf83bd3e67e587fda6ae49985))
+* bump @aws-sdk/client-secrets-manager in /server ([#335](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/335)) ([beface1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/beface13a824eb03061f6f10579279fc7d4dac11))
+* bump @aws-sdk/client-secrets-manager in /server ([#338](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/338)) ([095e0e9](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/095e0e972f031597cf46530c929d67d34b426145))
+* bump @aws-sdk/client-secrets-manager in /server ([#342](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/342)) ([af00b85](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/af00b85973ecd639ef7f2cb4ec61e1a99a642205))
+* bump @aws-sdk/client-secrets-manager in /server ([#346](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/346)) ([b2737d5](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/b2737d562469d462ee157fdb5c0978daf61c9f15))
+* bump @aws-sdk/client-secrets-manager in /server ([#356](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/356)) ([4e252cb](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/4e252cbfb23edc83fc77b1d753370b974cbc7ef0))
+* bump @types/jest from 29.0.3 to 29.1.0 in /client ([#343](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/343)) ([5e1acb7](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/5e1acb74f7cedcd95a95959d600f1f5787639f28))
+* bump @types/jest from 29.1.0 to 29.1.1 in /client ([#345](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/345)) ([2078d8e](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/2078d8e80f047b936a9fb5cee4454b962485d1a2))
+* bump @types/node from 18.7.18 to 18.7.21 in /client ([#334](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/334)) ([190e765](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/190e7653d870bf34ed972c51d7090a9be294b855))
+* bump @types/node from 18.7.21 to 18.7.23 in /client ([#336](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/336)) ([fd37fc0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/fd37fc01d7daa49bf20986be966ff907f60ce745))
+* bump @types/node from 18.7.23 to 18.8.0 in /client ([#349](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/349)) ([6ce0cdc](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/6ce0cdc4cccc623faf56b9dee4260483d7c7bdf5))
+* bump @types/node from 18.8.0 to 18.8.1 in /client ([#351](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/351)) ([139d949](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/139d949ecdac2b6d5533114eee4d25be07b0f4d1))
+* bump aws-amplify from 4.3.36 to 4.3.37 in /client ([#348](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/348)) ([13bce68](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/13bce681ba0b9f821804efd13e116a1bd6a503f5))
+* bump typescript from 4.8.3 to 4.8.4 in /client ([#341](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/341)) ([5d34605](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/5d346054fb6c76382d15b2b37ab74daa36fe822d))
+
 ## [0.12.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.11.2...v0.12.0) (2022-09-25)
 
 
