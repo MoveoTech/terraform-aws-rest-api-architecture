@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.13.0...v0.14.0) (2022-10-04)
+
+
+### Features
+
+* **mongodb:** fetch secrets from aws secrets management ([#358](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/358)) ([98b2594](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/98b2594734278d3a6999a8fc9ca85ef712af9298))
+
 ## [0.13.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.12.0...v0.13.0) (2022-10-04)
 
 
