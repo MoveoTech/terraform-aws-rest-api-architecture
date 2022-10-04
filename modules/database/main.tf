@@ -7,7 +7,7 @@ provider "mongodbatlas" {
 locals {
   public_key   = var.public_key != null ? var.public_key : jsondecode(data.aws_secretsmanager_secret_version.database_tokens.secret_string)["PublicKey"]
   private_key  = var.private_key != null ? var.private_key : jsondecode(data.aws_secretsmanager_secret_version.database_tokens.secret_string)["PrivateKey"]
-  atlas_org_id = jsondecode(data.aws_secretsmanager_secret_version.database_tokens.secret_string)["OrganizationID"]
+  atlas_org_id = var.atlas_org_id != null ? var.atlas_org_id : jsondecode(data.aws_secretsmanager_secret_version.database_tokens.secret_string)["OrganizationID"]
 }
 
 data "aws_secretsmanager_secret" "database_secrets" {
