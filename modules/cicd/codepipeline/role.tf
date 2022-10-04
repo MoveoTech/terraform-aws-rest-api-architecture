@@ -146,13 +146,7 @@ data "aws_iam_policy_document" "codepipeline_mutlicontainer_app" {
 
     resources = ["*"]
   }
-  statement {
-    effect = "Allow"
-    actions = [
-      "codestar-connections:UseConnection"
-    ]
-    resources = [var.codestarconnections_connection_arn]
-  }
+
 
 }
 

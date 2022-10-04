@@ -1,4 +1,13 @@
-
+variable "enable_database_credentials_secret_manager" {
+  description = "Indicate whether or not creating secret manager from the database module"
+  type        = string
+  default     = false
+}
+variable "elastic_beanstalk_kms_id" {
+  description = "Elastic beanstalk kms key to encrypt the secrets"
+  type        = string
+  default     = null
+}
 variable "region" {
   type        = string
   description = "AWS region"

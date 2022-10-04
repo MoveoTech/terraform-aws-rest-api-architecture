@@ -19,11 +19,6 @@ locals {
     db_password          = module.atlas_database.db_password
     db_connection_string = length(module.atlas_database.db_connection_string) > 0 ? module.atlas_database.db_connection_string : module.atlas_database.connection_string_srv
   }
-  secrets_local = {
-    db_username          = module.atlas_database.db_username
-    db_password          = module.atlas_database.db_password
-    db_connection_string = module.atlas_database.connection_string_srv
-  }
 }
 resource "aws_ebs_encryption_by_default" "default" {
   enabled = true
@@ -90,20 +85,6 @@ resource "aws_secretsmanager_secret" "secrets" {
 resource "aws_secretsmanager_secret_version" "secrets" {
   secret_id     = aws_secretsmanager_secret.secrets.id
   secret_string = jsonencode(local.secrets)
-}
-resource "aws_secretsmanager_secret" "secrets_local" {
-  name                    = "secrets/local-${module.this.stage}"
-  description             = "Envoironment secrets"
-  recovery_window_in_days = 0
-  kms_key_id              = module.server.eb_kms_id
-  tags = merge(module.this.tags, {
-    yor_trace = "f225cf4e-e1e9-4c5c-a479-f5d907e634f1"
-  })
-}
-
-resource "aws_secretsmanager_secret_version" "secrets_local" {
-  secret_id     = aws_secretsmanager_secret.secrets_local.id
-  secret_string = jsonencode(local.secrets_local)
 }
 
 module "cognito_auth" {
