@@ -13,6 +13,11 @@ locals {
   server_domain_name               = local.domain_enabled ? "${var.stage}.api.${var.domain_name}" : ""
 }
 
+provider "mongodbatlas" {
+  public_key  = var.public_key
+  private_key = var.private_key
+}
+
 locals {
   secrets = {
     db_username          = module.atlas_database.db_username
@@ -73,8 +78,6 @@ module "atlas_database" {
   atlas_users                 = var.atlas_users
   provider_instance_size_name = var.provider_instance_size_name
   enable_atlas_whitelist_ips  = var.enable_atlas_whitelist_ips
-  public_key                  = var.public_key
-  private_key                 = var.private_key
   context                     = module.this.context
 }
 
