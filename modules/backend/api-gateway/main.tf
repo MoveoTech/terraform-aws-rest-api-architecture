@@ -121,7 +121,7 @@ resource "aws_api_gateway_stage" "main" {
 resource "random_string" "random" {
   length  = 5
   special = false
-  numeric  = true
+  numeric = true
   upper   = true
 }
 
