@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.14.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.14.0...v0.14.1) (2022-10-05)
+
+
+### Bug Fixes
+
+* bump @aws-amplify/ui-react from 3.5.4 to 3.5.6 in /client ([#362](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/362)) ([43bc143](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/43bc143e34775c830b381dc99c3f0b79c2679f61))
+* bump @types/node from 18.8.1 to 18.8.2 in /client ([#365](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/365)) ([04f5fcc](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/04f5fcc2d9d77a5a5b8ccab8680d500c7b1eb800))
+* bump axios from 0.27.2 to 1.0.0 in /client ([#363](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/363)) ([f1baa0d](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/f1baa0d6531ac8837264f82a896304e345d88326))
+* bump axios from 0.27.2 to 1.0.0 in /server ([#366](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/366)) ([4fea0a7](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/4fea0a70eb21c05b8911a3032001434bfc63dbb4))
+* bump web-vitals from 3.0.2 to 3.0.3 in /client ([#364](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/364)) ([403e73c](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/403e73c29522be03e8826155663ade364669cea7))
+
 ## [0.14.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.13.0...v0.14.0) (2022-10-04)
 
 
