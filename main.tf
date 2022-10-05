@@ -34,7 +34,7 @@ resource "aws_ebs_encryption_by_default" "default" {
 
 module "s3_bucket_access_logs" {
   source  = "cloudposse/s3-log-storage/aws"
-  version = "0.27.0"
+  version = "0.28.2"
 
   name                    = "${module.this.context.name}-${module.this.context.stage}-s3-access-logs"
   block_public_policy     = true
