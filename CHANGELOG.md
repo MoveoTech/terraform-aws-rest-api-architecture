@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.14.1...v0.15.0) (2022-10-05)
+
+
+### Features
+
+* **api-gateway:** adding support to binary files ([#368](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/368)) ([a8ff60d](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/a8ff60db2fab5bf3f4e0fbfdaa2bb71cb1fe99e2))
+
 ## [0.14.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.14.0...v0.14.1) (2022-10-05)
 
 
