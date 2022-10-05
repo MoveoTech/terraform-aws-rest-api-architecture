@@ -56,7 +56,9 @@ resource "aws_api_gateway_method" "main" {
   authorization_scopes = local.authorization_scopes
   authorizer_id        = local.authorizer_id
   request_parameters = {
-    "method.request.path.proxy" = true
+    "method.request.path.proxy"          = true
+    "method.request.header.Accept"       = false
+    "method.request.header.Content-Type" = false
   }
 }
 
@@ -69,7 +71,9 @@ resource "aws_api_gateway_integration" "main" {
   uri                     = "http://${var.elastic_beanstalk_application_name}-$${stageVariables.targetEnv}.${join(".", slice(split(".", var.elastic_beanstalk_environment_cname), 1, length(split(".", var.elastic_beanstalk_environment_cname))))}/{proxy}"
 
   request_parameters = {
-    "integration.request.path.proxy" = "method.request.path.proxy"
+    "integration.request.path.proxy"          = "method.request.path.proxy"
+    "integration.request.header.Accept"       = "method.request.header.Accept"
+    "integration.request.header.Content-Type" = "method.request.header.Content-Type"
   }
   connection_type = "VPC_LINK"
   connection_id   = aws_api_gateway_vpc_link.this.id
