@@ -43,10 +43,9 @@ variable "bucket_name" {
   type        = any
   description = "Pipline bucket name"
 }
-
-variable "codestarconnections_connection_arn" {
+variable "github_token" {
+  description = "Name of github token"
   type        = string
-  description = "Codestar connection arn"
 }
 
 variable "context" {
