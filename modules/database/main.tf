@@ -11,7 +11,7 @@ locals {
 }
 
 data "aws_secretsmanager_secret" "database_secrets" {
-  name = "database"
+  name = "project_keys"
 }
 
 data "aws_secretsmanager_secret_version" "database_tokens" {

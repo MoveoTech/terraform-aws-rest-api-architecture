@@ -1,5 +1,5 @@
 data "aws_secretsmanager_secret" "github_secret" {
-  name = "github_secret"
+  name = "project_keys"
 }
 
 data "aws_secretsmanager_secret_version" "github_token" {
