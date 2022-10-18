@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.15.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.0...v0.15.1) (2022-10-18)
+
+
+### Bug Fixes
+
+* bump @aws-amplify/ui-react from 3.5.7 to 3.5.8 in /client ([#383](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/383)) ([b0c5309](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/b0c53097d15072e7fc5996d54283f015afdd0e52))
+* bump @aws-sdk/client-secrets-manager in /server ([#384](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/384)) ([ef4c4ef](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/ef4c4ef0f7fa9f89c5d83a8ec1e8cd8467827082))
+* bump @aws-sdk/client-secrets-manager in /server ([#390](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/390)) ([315e202](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/315e2025d5a55c18e0622174a1324ea3a55283a6))
+* bump @types/node from 18.8.5 to 18.11.0 in /client ([#387](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/387)) ([762cccd](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/762cccd718b6d493825c90b1707ad17380b5cbe6))
+* bump aws-amplify from 4.3.37 to 4.3.38 in /client ([#382](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/382)) ([1a5a1c4](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/1a5a1c438e8550c144062f5d7925bbc47484816b))
+* bump aws-amplify from 4.3.38 to 4.3.39 in /client ([#385](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/385)) ([6b0e640](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/6b0e640956c576f8618892fcff4cc9680022f7d7))
+* bump axios from 1.1.2 to 1.1.3 in /client ([#386](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/386)) ([fee473d](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/fee473d43f24b933fcae205a4b093c96017b2363))
+* bump axios from 1.1.2 to 1.1.3 in /server ([#388](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/388)) ([bb0bee2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/bb0bee21c7b963b04ca2f6eebad6a0f06bfeb4b4))
+* union the secrets for project ([#391](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/391)) ([d511e29](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/d511e297a44302405885ab8e6a751a5e5e26e30a))
+
 ## [0.15.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.14.1...v0.15.0) (2022-10-05)
 
 
