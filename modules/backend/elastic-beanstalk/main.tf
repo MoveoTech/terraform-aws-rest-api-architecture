@@ -192,7 +192,7 @@ data "aws_iam_policy_document" "minimal_s3_permissions" {
 
 
 data "aws_iam_policy_document" "extended" {
-  source_json   = join("", data.aws_iam_policy_document.minimal_s3_permissions.*.json)
+  source_json   = join("", data.aws_iam_policy_document.minimal_s3_permissions[*].json)
   override_json = var.extended_ec2_policy_document
 }
 

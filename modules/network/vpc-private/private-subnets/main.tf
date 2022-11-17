@@ -40,7 +40,7 @@ module "private_label" {
 }
 
 locals {
-  private_subnet_count        = var.max_subnet_count == 0 ? length(flatten(data.aws_availability_zones.available.*.names)) : var.max_subnet_count
+  private_subnet_count        = var.max_subnet_count == 0 ? length(flatten(data.aws_availability_zones.available[*].names)) : var.max_subnet_count
   private_network_acl_enabled = signum(length(var.private_network_acl_id)) == 0 ? 1 : 0
 }
 
@@ -50,7 +50,7 @@ resource "aws_subnet" "private" {
   availability_zone = element(var.availability_zones, count.index)
 
   cidr_block = cidrsubnet(
-    signum(length(var.cidr_block)) == 1 ? var.cidr_block : join("", data.aws_vpc.default.*.cidr_block),
+    signum(length(var.cidr_block)) == 1 ? var.cidr_block : join("", data.aws_vpc.default[*].cidr_block),
     ceil(log(local.private_subnet_count * 2, 2)),
     count.index
   )
@@ -86,14 +86,14 @@ resource "aws_route_table" "private" {
 
 resource "aws_route_table_association" "private" {
   count          = local.enabled ? local.availability_zones_count : 0
-  subnet_id      = element(aws_subnet.private.*.id, count.index)
-  route_table_id = element(aws_route_table.private.*.id, count.index)
+  subnet_id      = element(aws_subnet.private[*].id, count.index)
+  route_table_id = element(aws_route_table.private[*].id, count.index)
 }
 
 resource "aws_network_acl" "private" {
   count      = local.enabled ? local.private_network_acl_enabled : 0
   vpc_id     = var.vpc_id
-  subnet_ids = aws_subnet.private.*.id
+  subnet_ids = aws_subnet.private[*].id
 
   egress {
     rule_no    = 100
