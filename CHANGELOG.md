@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.15.3](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.2...v0.15.3) (2022-11-17)
+
+
+### Bug Fixes
+
+* bump minimatch and recursive-readdir in /client ([#461](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/461)) ([6570db1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/6570db151464dbcbcfb96875ea7c5ab9018204c0))
+* linter warnings in splant operator (*) ([#459](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/459)) ([f94ad27](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/f94ad279a99c51df718e145145346481a569dde1))
+
 ## [0.15.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.1...v0.15.2) (2022-11-17)
 
 
