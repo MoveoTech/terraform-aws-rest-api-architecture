@@ -69,3 +69,21 @@ variable "cognito_default_user_email" {
   type        = string
   description = "This is a default user to be able to login to the system"
 }
+
+variable "schemas" {
+  description = "A container with the schema attributes of a user pool. Maximum of 50 attributes"
+  type        = list(any)
+  default     = []
+}
+
+variable "string_schemas" {
+  description = "A container with the string schema attributes of a user pool. Maximum of 50 attributes"
+  type        = list(any)
+  default     = []
+}
+
+variable "number_schemas" {
+  description = "A container with the number schema attributes of a user pool. Maximum of 50 attributes"
+  type        = list(any)
+  default     = []
+}
