@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.15.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.1...v0.15.2) (2022-11-17)
+
+
+### Bug Fixes
+
+* bump @aws-amplify/ui-react from 3.5.8 to 3.5.9 in /client ([#395](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/395)) ([a2a3a64](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/a2a3a649e551991112f76304c14e6a84f5606fa3))
+* bump @aws-sdk/client-secrets-manager in /server ([#399](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/399)) ([56739d9](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/56739d979c76371b8858f5986d45d0839c47c764))
+* bump @aws-sdk/client-secrets-manager in /server ([#401](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/401)) ([07ef891](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/07ef891302f645a634ac70c12f9cf81376e311e3))
+* bump @types/jest from 29.1.2 to 29.2.0 in /client ([#394](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/394)) ([bcb2a00](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/bcb2a00d3eaa3fe0c562dd16750963f3f3635e75))
+* bump @types/node from 18.11.0 to 18.11.2 in /client ([#396](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/396)) ([e9f74f6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/e9f74f61b2bb3df2f30ddce48a246f0d1c5bbcc0))
+* bump @types/node from 18.11.2 to 18.11.3 in /client ([#400](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/400)) ([d428ee7](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/d428ee77d589b445953e4f5748527c2d0ccafc83))
+* bump mongodb from 4.10.0 to 4.11.0 in /server ([#398](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/398)) ([f0dd7aa](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/f0dd7aaeb8dcc3c77cec271d3ee4768116558b1f))
+* bump web-vitals from 3.0.3 to 3.0.4 in /client ([#393](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/393)) ([5bda311](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/5bda311b830226d1019441411bb1fd71b549171d))
+
 ## [0.15.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.0...v0.15.1) (2022-10-18)
 
 
