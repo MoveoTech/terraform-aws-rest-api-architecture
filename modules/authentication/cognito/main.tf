@@ -71,23 +71,11 @@ module "aws_cognito_user_pool" {
     }
   ]
 
-  schemas = [
-    {
-      attribute_data_type      = "Boolean"
-      developer_only_attribute = false
-      mutable                  = true
-      name                     = "available"
-      required                 = false
-    },
-    {
-      attribute_data_type      = "Boolean"
-      developer_only_attribute = true
-      mutable                  = true
-      name                     = "registered"
-      required                 = false
-    }
-  ]
+  schemas = var.schemas
 
+  string_schemas = var.string_schemas
+
+  number_schemas = var.number_schemas
 
 
   # user_pool_domain
