@@ -87,3 +87,15 @@ variable "number_schemas" {
   type        = list(any)
   default     = []
 }
+
+variable "client_read_attributes" {
+  description = "List of user pool attributes the application client can read from"
+  type        = list(string)
+  default     = []
+}
+
+variable "client_write_attributes" {
+  description = "List of user pool attributes the application client can write to"
+  type        = list(string)
+  default     = []
+}

@@ -93,9 +93,9 @@ module "aws_cognito_user_pool" {
       generate_secret                      = false
       logout_urls                          = var.client_logout_urls
       name                                 = "web-app"
-      read_attributes                      = ["email"]
+      read_attributes                      = concat(["email"], var.client_read_attributes)
       supported_identity_providers         = ["COGNITO"]
-      write_attributes                     = []
+      write_attributes                     = var.client_write_attributes
       access_token_validity                = 1
       id_token_validity                    = 1
       refresh_token_validity               = 1
