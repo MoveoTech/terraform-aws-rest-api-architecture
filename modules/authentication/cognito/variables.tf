@@ -99,3 +99,11 @@ variable "client_write_attributes" {
   type        = list(string)
   default     = []
 }
+
+
+variable "explicit_auth_flows" {
+  description = "List of explicit auth flows"
+  type        = list(string)
+  default     = []
+}
+

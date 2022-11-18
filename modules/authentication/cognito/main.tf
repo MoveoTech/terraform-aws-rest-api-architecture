@@ -89,7 +89,7 @@ module "aws_cognito_user_pool" {
       prevent_user_existence_errors        = "ENABLED"
       callback_urls                        = var.client_callback_urls
       default_redirect_uri                 = var.client_default_redirect_uri
-      explicit_auth_flows                  = []
+      explicit_auth_flows                  = var.explicit_auth_flows
       generate_secret                      = false
       logout_urls                          = var.client_logout_urls
       name                                 = "web-app"
