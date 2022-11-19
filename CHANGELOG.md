@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.4](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.3...v0.15.4) (2022-11-19)
+
+
+### Bug Fixes
+
+* bump @aws-sdk/client-secrets-manager in /server ([#463](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/463)) ([4b7bcfd](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/4b7bcfd2fe3046e314dbc89725e1b668b361aa04))
+
 ## [0.15.3](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.2...v0.15.3) (2022-11-17)
 
 
