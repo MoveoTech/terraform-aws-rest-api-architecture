@@ -122,6 +122,11 @@ variable "invoke_url" {
   type        = string
 }
 
+variable "client_url" {
+  description = "Teh client url"
+  type        = string
+}
+
 
 variable "cf_distribution_id" {
   type        = string
