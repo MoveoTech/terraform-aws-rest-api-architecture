@@ -161,7 +161,7 @@ data "aws_iam_policy_document" "minimal_s3_permissions" {
       "cognito-idp:AssociateWebACL",
       "cognito-idp:UpdateUserPool",
       "cognito-idp:AdminResetUserPassword",
-      "cognito-idp:ListUserImportJobs"
+      "cognito-idp:ListUserImportJobs",
     ]
     resources = [
       "arn:aws:logs:*:*:log-group:/aws/elasticbeanstalk*",
@@ -169,6 +169,15 @@ data "aws_iam_policy_document" "minimal_s3_permissions" {
       "arn:aws:wafv2:*:${data.aws_caller_identity.current.account_id}:*/webacl/*/*"
     ]
   }
+
+  statement {
+    sid = "AllowLambdaInvoke"
+    actions = [
+      "lambda:InvokeFunction"
+    ]
+    resources = ["*"]
+  }
+
   statement {
     sid = "AllowS3OperationsOnElasticBeanstalkBuckets"
     actions = [
