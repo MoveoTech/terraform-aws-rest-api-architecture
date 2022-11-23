@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.15.5](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.4...v0.15.5) (2022-11-23)
+
+
+### Bug Fixes
+
+* bump @aws-sdk/client-secrets-manager in /server ([#472](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/472)) ([583e331](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/583e33109389481d79fc9321fd0c72e344c364dc))
+* bump @aws-sdk/client-secrets-manager in /server ([#477](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/477)) ([d494c68](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/d494c689b43073044ca0347c256abaf118196860))
+* bump @types/jest from 29.2.0 to 29.2.3 in /client ([#470](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/470)) ([5c5048e](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/5c5048e9c5a9b5b4ec42a32d08b07a98d9ea59f8))
+* bump axios from 1.1.3 to 1.2.0 in /client ([#475](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/475)) ([8166e8f](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/8166e8f54d1b417997df6fb6035f9f71cae7b3fc))
+* bump axios from 1.1.3 to 1.2.0 in /server ([#478](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/478)) ([3701571](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/3701571995b9992303bdfbbd6747b3a8bbba7d62))
+* bump typescript from 4.8.4 to 4.9.3 in /client ([#468](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/468)) ([aa04893](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/aa048937e703ec6e36a0b59e593e913cd2b19bbd))
+* bump web-vitals from 3.0.4 to 3.1.0 in /client ([#469](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/469)) ([efe292b](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/efe292b9b3e4daad090a19ae03e011e603ee1499))
+
 ## [0.15.4](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.3...v0.15.4) (2022-11-19)
 
 
