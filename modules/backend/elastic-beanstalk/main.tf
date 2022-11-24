@@ -173,7 +173,8 @@ data "aws_iam_policy_document" "minimal_s3_permissions" {
   statement {
     sid = "AllowLambdaInvoke"
     actions = [
-      "lambda:InvokeFunction"
+      "lambda:InvokeFunction",
+      "lambda:GetFunction"
     ]
     resources = ["*"]
   }
