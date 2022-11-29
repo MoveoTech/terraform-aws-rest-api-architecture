@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.5...v0.15.6) (2022-11-25)
+
+
+### Bug Fixes
+
+* bump mongodb from 4.11.0 to 4.12.1 in /server ([#481](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/481)) ([a761df4](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/a761df4e934ffb57db4ce325bb996431ca14ce1b))
+
 ## [0.15.5](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.4...v0.15.5) (2022-11-23)
 
 
