@@ -254,3 +254,15 @@ variable "extended_ec2_policy_document" {
   default     = "{}"
   description = "Extensions or overrides for the IAM role assigned to EC2 instances"
 }
+
+variable "aws_elastic_beanstalk_solution_stack" {
+  type        = object({
+    most_recent = bool
+    name_regex  = string
+  })
+  default     = {
+    most_recent = true
+    name_regex = "^64bit Amazon Linux (.*) running Node.js (.*)$"
+  }
+  description = "Name of a elastic beanstalk solution stack"
+}
