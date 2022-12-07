@@ -127,3 +127,9 @@ variable "cognito_enabled" {
   description = "Allow cognito authorization on api gateway routes"
   default     = false
 }
+
+variable "aws_elastic_beanstalk_solution_stack" {
+  type        = string
+  description = "aws elastic beanstalk solution stack environament"
+  default     = "^64bit Amazon Linux (.*) running Node.js (.*)$"
+}
