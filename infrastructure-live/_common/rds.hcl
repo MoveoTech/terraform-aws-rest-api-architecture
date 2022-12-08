@@ -22,26 +22,30 @@ locals {
   environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
   versions_vars = read_terragrunt_config(find_in_parent_folders("versions.hcl"))
 
-  # Extract out common variables for reuse
-  env = local.environment_vars.locals.stage
-  region = local.environment_vars.locals.region
-
-version_number = local.versions_vars.locals.base_architecture_version
+  version_number = local.versions_vars.locals.base_architecture_version
   # Expose the base source URL so different versions of the module can be deployed in different environments. This will
   # be used to construct the terraform block in the child terragrunt configurations.
   base_source_url = "git::git@github.com:MoveoTech/terraform-aws-rest-api-architecture.git//modules/network/vpc-private-public"
 }
 
 dependencies {
-  paths = [ "../context"]
+  paths = ["../context", "../network"]
 }
 
 dependency "context" {
-  config_path   = "../context"
+  config_path = "../context"
+}
+
+dependency "network" {
+  config_path = "../network"
 }
 
 inputs = {
-  region             = local.region
-  availability_zones = ["eu-west-3a","eu-west-3b"]
+  engine             = "postgres"
+  engine_version     = "13.7"
+  instance_class     = "db.t3.micro"
+  db_parameter_group = "postgres13"
+  vpc_id             = dependency.network.outputs.vpc_id
+  private_subnet_ids = dependency.network.outputs.private_subnet_ids
   context            = dependency.context.outputs.context
 }
