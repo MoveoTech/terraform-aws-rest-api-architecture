@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.16.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.0...v0.16.1) (2022-12-08)
+
+
+### Bug Fixes
+
+* bump @aws-sdk/client-secrets-manager in /server ([#504](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/504)) ([8adc694](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/8adc694a3345f1a0c7605d99729dadd98e6ebd7d))
+* bump typescript from 4.9.3 to 4.9.4 in /client ([#503](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/503)) ([daf8089](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/daf80897892dce1d194a1361b8e57eab174a5c89))
+
 ## [0.16.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.6...v0.16.0) (2022-12-07)
 
 
