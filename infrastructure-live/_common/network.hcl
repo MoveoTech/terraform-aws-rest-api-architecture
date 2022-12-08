@@ -42,6 +42,6 @@ dependency "context" {
 
 inputs = {
   region             = local.region
-  availability_zones = ["eu-west-3a","eu-west-3b"]
+  availability_zones = ["${local.region}a", "${local.region}b"]
   context            = dependency.context.outputs.context
 }
