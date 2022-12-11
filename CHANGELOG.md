@@ -1,5 +1,33 @@
 # Changelog
 
+## [0.16.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.0...v0.16.1) (2022-12-08)
+
+
+### Bug Fixes
+
+* bump @aws-sdk/client-secrets-manager in /server ([#504](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/504)) ([8adc694](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/8adc694a3345f1a0c7605d99729dadd98e6ebd7d))
+* bump typescript from 4.9.3 to 4.9.4 in /client ([#503](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/503)) ([daf8089](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/daf80897892dce1d194a1361b8e57eab174a5c89))
+
+## [0.16.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.6...v0.16.0) (2022-12-07)
+
+
+### Features
+
+* **elastic beanstalk:** set aws_elastic_beanstalk_solution_stack as variable ([#500](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/500)) ([6006a9a](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/6006a9ae8476d5ba673427b46ed254eefe06b95f))
+
+
+### Bug Fixes
+
+* bump @aws-sdk/client-secrets-manager in /server ([#488](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/488)) ([3b900eb](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/3b900eb49810912f0555b998278f7a89f1d1059e))
+* bump @aws-sdk/client-secrets-manager in /server ([#494](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/494)) ([13b0259](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/13b025937bf05996c28b6d8e999c64542b6bf8f6))
+* bump @types/jest from 29.2.3 to 29.2.4 in /client ([#492](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/492)) ([0cbb833](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/0cbb833b596e912a2b517e14ee3927f8fc7b890e))
+* bump @types/node from 18.11.10 to 18.11.11 in /client ([#490](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/490)) ([c13ae98](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/c13ae9895238cd2285ff9a8dd23e3bc65e0842b3))
+* bump @types/node from 18.11.3 to 18.11.10 in /client ([#487](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/487)) ([eb6bd77](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/eb6bd77bd8b1165fa7a52bbceb45a04933eaf84a))
+* bump @types/react from 18.0.21 to 18.0.26 in /client ([#497](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/497)) ([68e8d7e](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/68e8d7ed28d8934d7b84c108d11768f44e529290))
+* bump axios from 1.2.0 to 1.2.1 in /client ([#491](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/491)) ([be86129](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/be8612915020bc5e60b8ef7f9c91a8eb8f81e82a))
+* bump axios from 1.2.0 to 1.2.1 in /server ([#493](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/493)) ([5390213](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/5390213cc4f3bf4be47b39807684d9907b14f80f))
+* bump decode-uri-component from 0.2.0 to 0.2.2 in /client ([#489](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/489)) ([a92bb1d](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/a92bb1d60470cff6d8fcc468eea0405beb538cc2))
+
 ## [0.15.6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.15.5...v0.15.6) (2022-11-25)
 
 

@@ -254,3 +254,9 @@ variable "extended_ec2_policy_document" {
   default     = "{}"
   description = "Extensions or overrides for the IAM role assigned to EC2 instances"
 }
+
+variable "aws_elastic_beanstalk_solution_stack" {
+  type        = string
+  default     = "^64bit Amazon Linux (.*) running Node.js (.*)$"
+  description = "aws elastic beanstalk solution stack environment"
+}
