@@ -171,6 +171,16 @@ data "aws_iam_policy_document" "minimal_s3_permissions" {
   }
 
   statement {
+    sid = "AllowS3Access"
+    actions = [
+      "s3:GetObject",
+      "s3:PutObject",
+      "s3:DeleteObject"
+    ]
+    resources = ["*"]
+  }
+
+  statement {
     sid = "AllowLambdaInvoke"
     actions = [
       "lambda:InvokeFunction",
