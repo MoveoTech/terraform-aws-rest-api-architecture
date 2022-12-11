@@ -21,3 +21,9 @@ output "database_user" {
   value       = local.database_user
   description = "Database username"
 }
+
+output "database_password" {
+  value       = local.database_password
+  description = "Database password"
+  sensitive   = true
+}
