@@ -4,7 +4,7 @@ resource "random_password" "db_user_password" {
 }
 
 locals {
-  database_name     = "${var.context.name}-${var.context.stage}"
+  database_name     = "${var.context.name}${var.context.stage}"
   database_user     = "${var.context.name}-${var.context.stage}-user"
   database_password = random_password.db_user_password.result
 
