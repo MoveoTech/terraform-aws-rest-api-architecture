@@ -8,7 +8,6 @@ locals {
   database_name     = "${var.context.name}${var.context.stage}"
   database_user     = "${var.context.name}_${var.context.stage}_user"
   database_password = random_password.db_user_password.result
-
 }
 
 resource "random_string" "random" {
