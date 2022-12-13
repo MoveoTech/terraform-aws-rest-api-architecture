@@ -1,13 +1,13 @@
 
 resource "random_password" "db_user_password" {
-  length = 24
+  length  = 24
+  special = false
 }
 
 locals {
   database_name     = "${var.context.name}${var.context.stage}"
-  database_user     = "${var.context.name}-${var.context.stage}-user"
+  database_user     = "${var.context.name}_${var.context.stage}_user"
   database_password = random_password.db_user_password.result
-
 }
 
 resource "random_string" "random" {
