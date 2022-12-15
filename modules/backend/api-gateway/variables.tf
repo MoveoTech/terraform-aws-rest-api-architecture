@@ -69,6 +69,12 @@ variable "path_part" {
   description = "The last path segment of this API resource"
 }
 
+variable "binary_media_types" {
+  type        = list(string)
+  description = "A list of media types which will be treated as binary types"
+  default     = ["*/*"]
+}
+
 variable "integration_input_type" {
   type        = string
   description = "The integration input's type."
