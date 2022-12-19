@@ -1,12 +1,11 @@
 variable "name" {
   type        = string
-  default     = "app-name"
   description = "name of the application"
 }
 
 variable "enable_auto_build" {
   type        = bool
-  default     = true
+  default     = false
   description = "build automatically"
 }
 
@@ -23,9 +22,4 @@ variable "enable_auto_branch_creation" {
 variable "branch" {
   type        = string
   description = "Which branch to fetch from?"
-}
-
-variable "next_public_base_url" {
-  type        = string
-  description = "Value of next public base url"
 }

@@ -9,7 +9,7 @@ data "aws_secretsmanager_secret_version" "secrets-keys-values" {
 resource "aws_amplify_app" "app_name" {
   name                        = var.name
   repository                  = var.client_repository_name
-  access_token                = nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secrets-keys-values.secret_string).github_personal_access_token)
+  access_token                = jsondecode(data.aws_secretsmanager_secret_version.secrets-keys-values.secret_string).github_personal_access_token
   enable_auto_branch_creation = var.enable_auto_branch_creation
   auto_branch_creation_config {
     # Enable auto build for the created branch.
@@ -42,11 +42,7 @@ resource "aws_amplify_app" "app_name" {
     status = "404"
     target = "/index.html"
   }
-  environment_variables = {
-    GITHUB_PERSONAL_ACCESS_TOKEN = nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secrets-keys-values.secret_string).github_personal_access_token)
-    NEXT_PUBLIC_BASE_URL         = var.next_public_base_url
-    NEXT_PUBLIC_GOOGLE_MAP_KEY   = nonsensitive(jsondecode(data.aws_secretsmanager_secret_version.secrets-keys-values.secret_string).next_public_google_map_key)
-  }
+  # add env_variables for the amplify application
 }
 
 resource "aws_amplify_branch" "develop" {

@@ -9,7 +9,7 @@ locals {
 
   version_number = local.versions_vars.locals.base_architecture_version
   client_repository_name = local.account_vars.locals.client_repository_name
-  client_branch_name = local.account_vars.client_branch_name
+  client_branch_name = local.account_vars.locals.client_branch_name
   # Expose the base source URL so different versions of the module can be deployed in different environments. This will
   # be used to construct the terraform block in the child terragrunt configurations.
   base_source_url = "git::git@github.com:MoveoTech/terraform-aws-rest-api-architecture.git//modules/client/amplify"
@@ -28,7 +28,7 @@ dependency "network" {
 }
 
 inputs = {
-  name                        = dependency.context.outputs.context.name
+  name                        = "${dependency.context.outputs.context.name} ${dependency.context.outputs.context.stage}"
   enable_auto_branch_creation = true
   client_repository_name      = local.client_repository_name
   enable_auto_build           = true
