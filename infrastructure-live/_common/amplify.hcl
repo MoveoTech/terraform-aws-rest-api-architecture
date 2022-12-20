@@ -28,7 +28,7 @@ dependency "network" {
 }
 
 inputs = {
-  name                        = "${dependency.context.outputs.context.name} ${dependency.context.outputs.context.stage}"
+  name                        = "${dependency.context.outputs.context.name}_${dependency.context.outputs.context.stage}"
   enable_auto_branch_creation = true
   client_repository_name      = local.client_repository_name
   enable_auto_build           = true
