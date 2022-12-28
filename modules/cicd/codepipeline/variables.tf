@@ -49,7 +49,7 @@ variable "github_token" {
 }
 
 variable "poll_for_source_changes" {
-  description = "Name of github token"
+  description = "if true, a pipeline execution will be triggered on every push"
   type        = bool
   default     = false
 }
