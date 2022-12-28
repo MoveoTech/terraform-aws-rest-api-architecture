@@ -46,7 +46,7 @@ resource "aws_codepipeline" "main" {
       configuration = {
         Owner                = var.github_org
         Repo                 = var.repository_name
-        PollForSourceChanges = "false"
+        PollForSourceChanges = var.poll_for_source_changes
         Branch               = var.branch_name
         OAuthToken           = var.github_token
 

@@ -48,6 +48,12 @@ variable "github_token" {
   type        = string
 }
 
+variable "poll_for_source_changes" {
+  description = "Name of github token"
+  type        = bool
+  default     = false
+}
+
 variable "context" {
   type = any
   default = {
