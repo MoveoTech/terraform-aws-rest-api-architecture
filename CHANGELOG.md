@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.16.6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.5...v0.16.6) (2022-12-29)
+
+
+### Bug Fixes
+
+* bump @types/node from 18.11.17 to 18.11.18 in /client ([#540](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/540)) ([8267f29](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/8267f29925b6a0224d48d37197f9d3e7f4f42221))
+* bump @types/react-dom from 18.0.6 to 18.0.10 in /client ([#538](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/538)) ([4ac3585](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/4ac358584ee55ce2e5f54790f63012fe569f2992))
+
 ## [0.16.5](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.4...v0.16.5) (2022-12-20)
 
 
