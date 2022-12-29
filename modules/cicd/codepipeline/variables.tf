@@ -48,6 +48,12 @@ variable "github_token" {
   type        = string
 }
 
+variable "poll_for_source_changes" {
+  description = "if true, a pipeline execution will be triggered on every push"
+  type        = bool
+  default     = false
+}
+
 variable "context" {
   type = any
   default = {

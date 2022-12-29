@@ -17,6 +17,13 @@ variable "codebuild_client_env_vars" {
   description = "Map of custom ENV variables to be provided to the application running on Elastic Beanstalk, e.g. env_vars = { DB_USER = 'admin' DB_PASS = 'xxxxxx' }"
   default     = null
 }
+
+variable "poll_for_source_changes" {
+  description = "if true, a pipeline execution will be triggered on every push"
+  type        = bool
+  default     = false
+}
+
 variable "context" {
   type = any
   default = {

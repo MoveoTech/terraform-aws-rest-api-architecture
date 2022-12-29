@@ -131,6 +131,7 @@ module "codepipeline_client_app" {
   bucket_name                      = "${var.context.stage}-${var.context.name}-client-pipeline"
   project_name                     = module.codebuild_application_client.project_name
   s3_bucket_access_log_bucket_name = var.s3_bucket_access_log_bucket_name
+  poll_for_source_changes          = var.poll_for_source_changes
 
   deploy_provider = "S3"
   configuration = {
