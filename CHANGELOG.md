@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.16.7](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.6...v0.16.7) (2023-01-02)
+
+
+### Bug Fixes
+
+* added verification template variable ([#549](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/549)) ([2670b56](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/2670b56b06cea431dce71aa4defeac87e2a8203a))
+* bump @types/jest from 29.2.4 to 29.2.5 in /client ([#548](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/548)) ([03f34a7](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/03f34a7e48f513399ff02f8c6c1f18bfbe804f96))
+* bump axios from 1.2.1 to 1.2.2 in /client ([#545](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/545)) ([659febd](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/659febd7deac1552630366d2e73391ae196ef78c))
+* bump axios from 1.2.1 to 1.2.2 in /server ([#547](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/547)) ([3e17af5](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/3e17af5cb40142bb2b9316187c200b5bffb093d7))
+
 ## [0.16.6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.5...v0.16.6) (2022-12-29)
 
 
