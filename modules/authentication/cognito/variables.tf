@@ -107,3 +107,13 @@ variable "explicit_auth_flows" {
   default     = []
 }
 
+variable "verification_message_template" {
+  description = "The template of the sign-up verification message"
+  type        = object({ default_email_option = string, email_message = optional(string), email_subject = optional(string), sms_message = optional(string) })
+  default = {
+    default_email_option = "CONFIRM_WITH_CODE"
+    email_message        = "{username}, your verification code is `{####}`"
+    email_subject        = "Your verification code"
+    sms_message          = "This is the verification message {####}."
+  }
+}

@@ -56,9 +56,7 @@ module "aws_cognito_user_pool" {
     advanced_security_mode = "ENFORCED"
   }
 
-  verification_message_template = {
-    default_email_option = "CONFIRM_WITH_CODE"
-  }
+  verification_message_template = var.verification_message_template
 
   recovery_mechanisms = [
     {
