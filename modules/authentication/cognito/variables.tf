@@ -117,3 +117,13 @@ variable "verification_message_template" {
     sms_message          = "This is the verification message {####}."
   }
 }
+
+variable "admin_create_user_config" {
+  description = "The configuration for AdminCreateUser requests"
+  type        = map(any)
+  default = {
+    email_message = "Dear {username}, your verification code is {####}."
+    email_subject = "Verification code"
+    sms_message   = "Your username is {username} and temporary password is {####}."
+  }
+}

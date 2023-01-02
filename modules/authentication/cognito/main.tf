@@ -27,11 +27,7 @@ module "aws_cognito_user_pool" {
     enabled = true
   }
 
-  admin_create_user_config = {
-    email_message = "Dear {username}, your verification code is {####}."
-    email_subject = "Verification code"
-    sms_message   = "Your username is {username} and temporary password is {####}."
-  }
+  admin_create_user_config = var.admin_create_user_config
 
   device_configuration = {
     challenge_required_on_new_device      = true
