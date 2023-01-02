@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.8](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.7...v0.16.8) (2023-01-02)
+
+
+### Bug Fixes
+
+* added "admin_create_user_config" variable ([#551](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/551)) ([912a680](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/912a680d7757781daa5479e7b422daa40bde426e))
+
 ## [0.16.7](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.6...v0.16.7) (2023-01-02)
 
 
