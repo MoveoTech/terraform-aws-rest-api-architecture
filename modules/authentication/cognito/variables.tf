@@ -82,6 +82,12 @@ variable "string_schemas" {
   default     = []
 }
 
+variable "generate_secret" {
+  description = "Generate a user secret."
+  type        = bool
+  default     = false
+}
+
 variable "number_schemas" {
   description = "A container with the number schema attributes of a user pool. Maximum of 50 attributes"
   type        = list(any)
