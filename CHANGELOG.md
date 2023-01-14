@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.16.9](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.8...v0.16.9) (2023-01-14)
+
+
+### Bug Fixes
+
+* bump json5 from 1.0.1 to 1.0.2 in /client ([#555](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/555)) ([0fbd55f](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/0fbd55fce8cebcbd079ccdc01f0fcebb423d2a93))
+* bump web-vitals from 3.1.0 to 3.1.1 in /client ([#559](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/559)) ([74b5a8c](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/74b5a8c0491caf48d992bcbf9d076f384cb9ad5e))
+
 ## [0.16.8](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.7...v0.16.8) (2023-01-02)
 
 
