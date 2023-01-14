@@ -84,7 +84,7 @@ module "aws_cognito_user_pool" {
       callback_urls                        = var.client_callback_urls
       default_redirect_uri                 = var.client_default_redirect_uri
       explicit_auth_flows                  = var.explicit_auth_flows
-      generate_secret                      = var.generate_secret
+      generate_secret                      = false
       logout_urls                          = var.client_logout_urls
       name                                 = "web-app"
       read_attributes                      = concat(["email"], var.client_read_attributes)
