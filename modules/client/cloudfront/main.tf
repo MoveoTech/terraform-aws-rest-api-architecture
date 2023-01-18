@@ -9,7 +9,7 @@ data "aws_cloudfront_cache_policy" "default" {
 
 module "cloudfront_s3_cdn" {
   source                             = "cloudposse/cloudfront-s3-cdn/aws"
-  version                            = "0.85.0"
+  version                            = "0.86.0"
   origin_force_destroy               = true
   aliases                            = var.aliases
   dns_alias_enabled                  = var.dns_alias_enabled
