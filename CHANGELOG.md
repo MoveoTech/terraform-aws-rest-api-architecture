@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.16.10](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.9...v0.16.10) (2023-01-25)
+
+
+### Bug Fixes
+
+* bump @aws-sdk/client-secrets-manager in /server ([#573](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/573)) ([4a0a2f5](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/4a0a2f5455ce072db2c973bfed5b5f9ff999d046))
+* bump @aws-sdk/client-secrets-manager in /server ([#574](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/574)) ([8576900](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/85769009ac3be69b6ee0c9e94f652d4f97206d3a))
+* bump @aws-sdk/client-secrets-manager in /server ([#578](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/578)) ([87f0cd3](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/87f0cd3712ed2731e5b41e5e3ac068b4afeebca2))
+* bump @types/jest from 29.2.5 to 29.2.6 in /client ([#570](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/570)) ([17574bb](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/17574bb31bcf42c6478109da946bd5b853c48ec2))
+* bump @types/react from 18.0.26 to 18.0.27 in /client ([#571](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/571)) ([0a783a1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/0a783a15af51a7c75592d21fc7c321d9cc8b0788))
+* bump axios from 1.2.2 to 1.2.3 in /client ([#567](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/567)) ([1195713](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/119571311254a2af24a8ceebeec8e217975added))
+* bump axios from 1.2.2 to 1.2.3 in /server ([#569](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/569)) ([c671511](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/c67151172938bc1de82bb4420b3163cfb2f1eda7))
+* bump axios from 1.2.3 to 1.2.4 in /client ([#577](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/577)) ([df580cb](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/df580cbdf96dd97322683da1913be60e8d7013cd))
+* bump axios from 1.2.3 to 1.2.4 in /server ([#576](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/576)) ([c34fea7](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/c34fea73bd4c72cb23e7d14e437ef11c10f4e704))
+
 ## [0.16.9](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.8...v0.16.9) (2023-01-14)
 
 
