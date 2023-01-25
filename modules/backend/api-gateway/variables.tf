@@ -144,3 +144,16 @@ variable "cors_domain" {
   description = "List of all cors domain relevant to the api gateway resource, for example if we want to be able to allow request from client `[www.client.com,client.com]` "
   type        = list(string)
 }
+
+variable "allow_headers" {
+  description = "Allow headers"
+  type        = list(string)
+
+  default = [
+    "Authorization",
+    "Content-Type",
+    "X-Amz-Date",
+    "X-Amz-Security-Token",
+    "X-Api-Key",
+  ]
+}
