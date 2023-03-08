@@ -60,34 +60,33 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
-    - name: Render terraform docs and push changes back to PR
-      uses: terraform-docs/gh-actions@main
-      with:
-        working-dir: .
-        output-file: README.md
-        output-method: inject
-        git-push: "true"
+      - name: Render terraform docs and push changes back to PR
+        uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: .
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
 
-    - name: Render terraform example complete docs and push changes back to PR
-      uses: terraform-docs/gh-actions@main
-      with:
-        working-dir: ./examples/complete
-        output-file: README.md
-        output-method: inject
-        git-push: "true"
+      - name: Render terraform example complete docs and push changes back to PR
+        uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: ./examples/complete
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
 
-
-    - name: Render terraform example simple docs and push changes back to PR
-      uses: terraform-docs/gh-actions@main
-      with:
-        working-dir: ./examples/simple
-        output-file: README.md
-        output-method: inject
-        git-push: "true"
+      - name: Render terraform example simple docs and push changes back to PR
+        uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: ./examples/simple
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
   client-build:
     runs-on: ubuntu-latest
     defaults:
@@ -97,11 +96,11 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-    - run: npm i
-    - run: npm run build --if-present
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run build --if-present
   server-build:
     runs-on: ubuntu-latest
     defaults:
@@ -111,14 +110,33 @@ jobs:
       matrix:
         node-version: [12.x, 14.x, 16.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-    - run: npm i
-    - run: npm run build --if-present
-
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run build --if-present
+  scan:
+    name: gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITLEAKS_LICENSE: ${{ secrets.GITLEAKS_LICENSE}}
   automerge:
-    needs: [pre-commit-checks,validate,checkov-job,docs,client-build,server-build]
+    needs:
+      [
+        pre-commit-checks,
+        validate,
+        checkov-job,
+        docs,
+        client-build,
+        server-build,
+        scan,
+      ]
     runs-on: ubuntu-latest
 
     permissions:
