@@ -157,3 +157,23 @@ variable "allow_headers" {
     "X-Api-Key",
   ]
 }
+
+variable "method_request_parameters" {
+  type        = map(bool)
+  description = "Allowed request headers on api gateway routes methods"
+  default = {
+    "method.request.path.proxy"          = true
+    "method.request.header.Accept"       = false
+    "method.request.header.Content-Type" = false
+  }
+}
+
+variable "integration_request_parameters" {
+  type        = map(string)
+  description = "Allowed request headers on api gateway routes integrations"
+  default = {
+    "integration.request.path.proxy"          = "method.request.path.proxy"
+    "integration.request.header.Accept"       = "method.request.header.Accept"
+    "integration.request.header.Content-Type" = "method.request.header.Content-Type"
+  }
+}

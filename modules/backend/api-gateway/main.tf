@@ -56,7 +56,7 @@ resource "aws_api_gateway_method" "main" {
   authorization        = local.authorization
   authorization_scopes = local.authorization_scopes
   authorizer_id        = local.authorizer_id
-  request_parameters = var.method_request_parameters
+  request_parameters   = var.method_request_parameters
 }
 
 resource "aws_api_gateway_integration" "main" {
@@ -68,8 +68,8 @@ resource "aws_api_gateway_integration" "main" {
   uri                     = "http://${var.elastic_beanstalk_application_name}-$${stageVariables.targetEnv}.${join(".", slice(split(".", var.elastic_beanstalk_environment_cname), 1, length(split(".", var.elastic_beanstalk_environment_cname))))}/{proxy}"
 
   request_parameters = var.integration_request_parameters
-  connection_type = "VPC_LINK"
-  connection_id   = aws_api_gateway_vpc_link.this.id
+  connection_type    = "VPC_LINK"
+  connection_id      = aws_api_gateway_vpc_link.this.id
 }
 
 resource "aws_api_gateway_deployment" "main" {
