@@ -24,7 +24,7 @@ module "kms" {
 
 module "security_group" {
   source  = "cloudposse/security-group/aws"
-  version = "2.0.0"
+  version = "2.0.1"
 
   # Security Group names must be unique within a VPC.
   # This module follows Cloud Posse naming conventions and generates the name
