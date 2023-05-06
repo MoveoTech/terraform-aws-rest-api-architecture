@@ -127,3 +127,4 @@ variable "cognito_enabled" {
   description = "Allow cognito authorization on api gateway routes"
   default     = false
 }
+
