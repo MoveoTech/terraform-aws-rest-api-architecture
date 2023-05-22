@@ -3,6 +3,12 @@ variable "s3_bucket_access_log_bucket_name" {
   type        = string
   description = "Name of the S3 bucket where s3 access log will be sent to"
 }
+
+variable "s3_object_ownership" {
+  type        = string
+  default     = "ObjectWriter"
+  description = "Specifies the S3 object ownership control on the origin bucket. Valid values are `ObjectWriter`, `BucketOwnerPreferred`, and 'BucketOwnerEnforced'."
+}
 variable "context" {
   type = any
   default = {

@@ -24,6 +24,7 @@ module "cloudfront_s3_cdn" {
   cloudfront_access_log_prefix       = "logs/cf_access"
   block_origin_public_access_enabled = true
   allow_ssl_requests_only            = true
+  s3_object_ownership                = var.s3_object_ownership
   custom_error_response = [{
     error_caching_min_ttl = "60"
     error_code            = "404"
