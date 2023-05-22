@@ -1,8 +1,8 @@
-variable "public_key" {
+variable "region" {
   description = "The public API key for MongoDB Atlas"
   type        = string
 }
-variable "private_key" {
+variable "availability_zones" {
   type        = string
   description = "The private API key for MongoDB Atlas"
 }
