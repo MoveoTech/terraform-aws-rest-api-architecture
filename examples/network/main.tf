@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "context" {
-  source   = "../../modules/context"
+  source = "../../modules/context"
 }
 
 

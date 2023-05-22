@@ -4,7 +4,7 @@ provider "aws" {
 
 
 module "kms" {
-  source             = "../../modules/kms"
-  region             = "us-east-1"
+  source = "../../modules/kms"
+  region = "us-east-1"
 }
 

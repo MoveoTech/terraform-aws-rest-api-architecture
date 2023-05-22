@@ -20,5 +20,5 @@ module "elastic_beanstalk" {
   env_vars = {
     NODE_ENV = "develop"
   }
-  context                      = module.context
+  context = module.context
 }

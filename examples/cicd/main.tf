@@ -10,18 +10,18 @@ module "context" {
 
 
 module "cicd" {
-  source                             = "../../modules/cicd"
-  github_org                         = "github_org"
-  client_env_prefix                  = "client_env_prefix"
-  s3_bucket_access_log_bucket_name   = "s3_bucket_access_log_bucket_name"
-  region                             = "us-east-1"
-  client_repository_name             = "client_repository_name"
-  client_branch_name                 = "client_branch_name"
-  server_repository_name             = "server_repository_name"
-  server_branch_name                 = "server_branch_name"
+  source                           = "../../modules/cicd"
+  github_org                       = "github_org"
+  client_env_prefix                = "client_env_prefix"
+  s3_bucket_access_log_bucket_name = "s3_bucket_access_log_bucket_name"
+  region                           = "us-east-1"
+  client_repository_name           = "client_repository_name"
+  client_branch_name               = "client_branch_name"
+  server_repository_name           = "server_repository_name"
+  server_branch_name               = "server_branch_name"
 
-  client_buildspec_path              = "client_buildspec_path"
-  server_buildspec_path              = "server_buildspec_path"
+  client_buildspec_path = "client_buildspec_path"
+  server_buildspec_path = "server_buildspec_path"
 
   elastic_beanstalk_application_name = "elastic_beanstalk_application_name"
   elastic_beanstalk_environment_name = "elastic_beanstalk_environment_name"

@@ -1,8 +1,8 @@
 module "context" {
-  source   = "cloudposse/label/null"
+  source = "cloudposse/label/null"
   # Cloud Posse recommends pinning every module to a specific version
   version = "0.25.0"
-  
+
   enabled             = true
   tenant              = null
   environment         = null
