@@ -102,36 +102,6 @@ jobs:
           output-file: README.md
           output-method: inject
           git-push: "true"
-
-  client-build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./client
-    strategy:
-      matrix:
-        node-version: [19.x, 20.x]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run build --if-present
-  server-build:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./server
-    strategy:
-      matrix:
-        node-version: [19.x, 20.x]
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-      - run: npm i
-      - run: npm run build --if-present
-
   automerge:
     needs:
       [
