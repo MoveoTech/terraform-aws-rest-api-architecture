@@ -2,7 +2,7 @@
 .idea
 *.iml
 **/.terragrunt-cache/*
-.history/**
+**/.history/**
 
 # Local .terraform directories
 **/.terraform/*

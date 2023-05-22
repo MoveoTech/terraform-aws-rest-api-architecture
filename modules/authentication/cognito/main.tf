@@ -1,14 +1,13 @@
 
-
-# resource "aws_cognito_user" "default_user" {
-#   user_pool_id             = module.aws_cognito_user_pool.id
-#   username                 = "eliran@moveohls.com"
-#   desired_delivery_mediums = ["EMAIL"]
-#   attributes = {
-#     email          = "eliran@moveohls.com"
-#     email_verified = true
-#   }
-# }
+resource "aws_cognito_user" "default_user" {
+  user_pool_id             = module.aws_cognito_user_pool.id
+  username                 = var.cognito_default_user_email
+  desired_delivery_mediums = ["EMAIL"]
+  attributes = {
+    email          = var.cognito_default_user_email
+    email_verified = true
+  }
+}
 
 
 module "aws_cognito_user_pool" {

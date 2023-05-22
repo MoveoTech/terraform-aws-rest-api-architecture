@@ -22,6 +22,23 @@ jobs:
   validate:
     name: Validate examples
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        folders:
+          [
+            "acm",
+            "authentication",
+            "backend/elastic-beanstalk",
+            "backend/api-gateway",
+            "cicd",
+            "client/amplify",
+            "client/cloudfront",
+            "databases/mongodb",
+            "databases/rds",
+            "kms",
+            "network",
+            waf,
+          ]
     defaults:
       run:
         shell: bash
@@ -31,14 +48,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Check examples
-        env:
-          EXAMPLES: simple
         run: |
-          for EXAMPLE in ${EXAMPLES}
-          do
-            echo "Validating $EXAMPLE"...
-            cd $EXAMPLE && terraform init && terraform validate && cd -
-          done
+          echo "Validating ${{ matrix.folders }}"...
+          cd ${{ matrix.folders }} && terraform init && terraform validate && cd -
   checkov-job:
     runs-on: ubuntu-latest
     name: checkov-action
@@ -60,34 +72,37 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-      with:
-        ref: ${{ github.event.pull_request.head.ref }}
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
 
-    - name: Render terraform docs and push changes back to PR
-      uses: terraform-docs/gh-actions@main
-      with:
-        working-dir: .
-        output-file: README.md
-        output-method: inject
-        git-push: "true"
+      - name: Render terraform docs and push changes back to PR
+        uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: "examples/acm,
+            examples/authentication,
+            examples/backend/elastic-beanstalk,
+            examples/backend/api-gateway,
+            examples/cicd,
+            examples/client/amplify,
+            examples/client/cloudfront,
+            examples/databases/mongodb,
+            examples/databases/rds,
+            examples/kms,
+            examples/network,
+            examples/waf"
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
 
-    - name: Render terraform example complete docs and push changes back to PR
-      uses: terraform-docs/gh-actions@main
-      with:
-        working-dir: ./examples/complete
-        output-file: README.md
-        output-method: inject
-        git-push: "true"
+      - name: Render terraform example complete docs and push changes back to PR
+        uses: terraform-docs/gh-actions@main
+        with:
+          working-dir: ./examples/${{ matrix.folders }}
+          output-file: README.md
+          output-method: inject
+          git-push: "true"
 
-
-    - name: Render terraform example simple docs and push changes back to PR
-      uses: terraform-docs/gh-actions@main
-      with:
-        working-dir: ./examples/simple
-        output-file: README.md
-        output-method: inject
-        git-push: "true"
   client-build:
     runs-on: ubuntu-latest
     defaults:
@@ -95,13 +110,13 @@ jobs:
         working-directory: ./client
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [19.x, 20.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-    - run: npm i
-    - run: npm run build --if-present
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run build --if-present
   server-build:
     runs-on: ubuntu-latest
     defaults:
@@ -109,16 +124,24 @@ jobs:
         working-directory: ./server
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [19.x, 20.x]
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-    - run: npm i
-    - run: npm run build --if-present
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+      - run: npm i
+      - run: npm run build --if-present
 
   automerge:
-    needs: [pre-commit-checks,validate,checkov-job,docs,client-build,server-build]
+    needs:
+      [
+        pre-commit-checks,
+        validate,
+        checkov-job,
+        docs,
+        client-build,
+        server-build,
+      ]
     runs-on: ubuntu-latest
 
     permissions:
