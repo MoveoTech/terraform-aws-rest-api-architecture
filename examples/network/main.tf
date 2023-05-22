@@ -1,7 +1,3 @@
-provider "aws" {
-  region = "eu-west-3"
-}
-
 module "context" {
   source = "../../modules/context"
 }
