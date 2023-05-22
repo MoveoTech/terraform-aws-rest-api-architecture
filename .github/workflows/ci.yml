@@ -108,9 +108,7 @@ jobs:
         pre-commit-checks,
         validate,
         checkov-job,
-        docs,
-        client-build,
-        server-build,
+        docs
       ]
     runs-on: ubuntu-latest
 
