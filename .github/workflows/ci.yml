@@ -71,23 +71,6 @@ jobs:
           log_level: DEBUG # optional: set log level. Default WARNING
   docs:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        folders:
-          [
-            "acm",
-            "authentication",
-            "backend/elastic-beanstalk",
-            "backend/api-gateway",
-            "cicd",
-            "client/amplify",
-            "client/cloudfront",
-            "databases/mongodb",
-            "databases/rds",
-            "kms",
-            "network",
-            waf,
-          ]
     steps:
       - uses: actions/checkout@v3
         with:
