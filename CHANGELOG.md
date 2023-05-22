@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.17.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.17.0...v0.17.1) (2023-05-22)
+
+
+### Bug Fixes
+
+* add variable ([#793](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/793)) ([885d421](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/885d4218fde5be1200826e486da99d594cbdbd15))
+* remove workflow ([3f07785](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/3f077855dae5ebf7513cbc403089b37aad78bbe6))
+
 ## [0.17.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.16.10...v0.17.0) (2023-05-22)
 
 
