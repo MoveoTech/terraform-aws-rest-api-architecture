@@ -34,7 +34,7 @@ jobs:
             "cicd",
             "cicd/cloudfront-auto-invalidator",
             "cicd/codebuild",
-            "cicd/codepipline",
+            "cicd/codepipeline",
             "client/amplify",
             "client/cloudfront",
             "context",
