@@ -20,34 +20,48 @@ jobs:
           terraform-version: ${{ steps.minMax.outputs.maxVersion }}
           terraform-docs-version: v0.16.0
   validate:
-    name: Validate examples
+    name: Validate modules
     runs-on: ubuntu-latest
     strategy:
       matrix:
         folders:
           [
             "acm",
-            "authentication",
+            "authentication/cognito",
+            "backend",
             "backend/elastic-beanstalk",
             "backend/api-gateway",
             "cicd",
+            "cicd/cloudfront-auto-invalidator",
+            "cicd/codebuild",
+            "cicd/codepipeline",
             "client/amplify",
             "client/cloudfront",
-            "databases/mongodb",
-            "databases/rds",
+            "context",
+            "database",
+            "database/vpc-endpoint",
+            "database/db-user",
+            "database/atlas-project",
+            "database/atlas-cluster",
+            "database/security-groups",
             "kms",
-            "network",
+            "network/security-group",
+            "network/vpc-endpoints",
+            "network/vpc-flow-logs-s3-bucket",
+            "network/vpc-private",
+            "network/vpc-private-public",
+            rds,
             waf,
           ]
     defaults:
       run:
         shell: bash
-        working-directory: examples
+        working-directory: modules
     steps:
       - uses: hashicorp/setup-terraform@v2
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Check examples
+      - name: Check modules
         run: |
           echo "Validating ${{ matrix.folders }}"...
           cd ${{ matrix.folders }} && terraform init && terraform validate && cd -

@@ -1,4 +1,16 @@
-
+variable "cloudfront_access_log_create_bucket" {
+  type        = bool
+  default     = true
+  description = <<-EOT
+    When `true` and `cloudfront_access_logging_enabled` is also true, this module will create a new,
+    separate S3 bucket to receive Cloudfront Access Logs.
+    EOT
+}
+variable "cloudfront_access_logging_enabled" {
+  type        = bool
+  default     = true
+  description = "Set true to enable delivery of Cloudfront Access Logs to an S3 bucket"
+}
 variable "s3_bucket_access_log_bucket_name" {
   type        = string
   description = "Name of the S3 bucket where s3 access log will be sent to"

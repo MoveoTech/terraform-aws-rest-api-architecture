@@ -145,7 +145,7 @@ module "codepipeline_client_app" {
 }
 
 module "cloudfront_invalidation" {
-  source             = "./cloudfron-auto-invalidator"
+  source             = "./cloudfront-auto-invalidator"
   name               = "cloudfront-invalidation-${var.context.stage}"
   private_subnet_ids = var.private_subnet_ids
   security_group_id  = module.security_group.id
