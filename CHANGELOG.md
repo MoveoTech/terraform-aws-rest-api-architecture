@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.18.1...v0.18.2) (2023-05-24)
+
+
+### Bug Fixes
+
+* change names ([#799](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/799)) ([3770285](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/3770285b8f46ddd5b4b56df3d1cc47b016f4b1d3))
+
 ## [0.18.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.17.1...v0.18.0) (2023-05-24)
 
 
