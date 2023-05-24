@@ -18,7 +18,7 @@ module "account_settings" {
 
 
 resource "aws_api_gateway_rest_api" "main" {
-  name               =  var.context.name
+  name               = var.context.name
   binary_media_types = var.binary_media_types
   tags = merge(var.context.tags, { Name = "Api Gateway" }, {
     yor_trace = "921a6956-bab5-4ab5-9fca-496360259651"
