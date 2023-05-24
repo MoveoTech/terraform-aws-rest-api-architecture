@@ -93,18 +93,33 @@ jobs:
       - name: Render terraform docs and push changes back to PR
         uses: terraform-docs/gh-actions@main
         with:
-          working-dir: "examples/acm,
-            examples/authentication,
-            examples/backend/elastic-beanstalk,
-            examples/backend/api-gateway,
-            examples/cicd,
-            examples/client/amplify,
-            examples/client/cloudfront,
-            examples/databases/mongodb,
-            examples/databases/rds,
-            examples/kms,
-            examples/network,
-            examples/waf"
+          working-dir: 
+            "acm,
+            authentication/cognito,
+            backend,
+            backend/elastic-beanstalk,
+            backend/api-gateway,
+            cicd,
+            cicd/cloudfront-auto-invalidator,
+            cicd/codebuild,
+            cicd/codepipeline,
+            client/amplify,
+            client/cloudfront,
+            context,
+            database,
+            database/vpc-endpoint,
+            database/db-user,
+            database/atlas-project,
+            database/atlas-cluster,
+            database/security-groups,
+            kms,
+            network/security-group,
+            network/vpc-endpoints,
+            network/vpc-flow-logs-s3-bucket,
+            network/vpc-private,
+            network/vpc-private-public,
+            rds,
+            waf"
           output-file: README.md
           output-method: inject
           git-push: "true"
