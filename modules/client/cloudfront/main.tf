@@ -26,7 +26,6 @@ module "cloudfront_s3_cdn" {
   s3_object_ownership                = var.s3_object_ownership
   cloudfront_access_logging_enabled = var.cloudfront_access_logging_enabled
   cloudfront_access_log_create_bucket = var.cloudfront_access_log_create_bucket
-
   custom_error_response = [{
     error_caching_min_ttl = "60"
     error_code            = "404"
