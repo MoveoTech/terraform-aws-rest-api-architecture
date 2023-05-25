@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.18.2...v0.19.0) (2023-05-25)
+
+
+### Features
+
+* add option to change load balancer subnet ([#802](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/802)) ([4dc7cbb](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/4dc7cbb891f0b1bf8365fb633d87fabd28852c09))
+
 ## [0.18.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.18.1...v0.18.2) (2023-05-24)
 
 
