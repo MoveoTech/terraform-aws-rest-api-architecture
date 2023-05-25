@@ -11,6 +11,17 @@ variable "description" {
   default     = "Elastic Beanstalk environment"
   description = "Short description of the Environment"
 }
+variable "loadbalancer_subnets" {
+  type        = list(string)
+  description = "List of subnets to place Elastic Load Balancer"
+  default     = []
+}
+variable "application_subnets" {
+  type        = list(string)
+  description = "List of subnets to place EC2 instances"
+  default     = []
+}
+
 
 variable "environment_type" {
   type        = string
