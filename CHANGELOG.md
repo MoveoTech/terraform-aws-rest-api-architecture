@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.19.0...v0.20.0) (2023-05-27)
+
+
+### Features
+
+* change the way we pass sg for elb ([#804](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/804)) ([609a81d](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/609a81db54afdae7b08317824f2facc0fe8f6eee))
+
 ## [0.19.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.18.2...v0.19.0) (2023-05-25)
 
 
