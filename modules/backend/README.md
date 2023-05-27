@@ -4,7 +4,7 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.0 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.74.2 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | <= 5.0.0 |
 
 ## Providers
 
@@ -24,7 +24,7 @@ No providers.
 | <a name="input_user_pool_arn"></a> [user\_pool\_arn](#input\_user\_pool\_arn) | The ARN of the Cognito user pool | `string` | yes |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC ID where subnets will be created (e.g. `vpc-aceb2723`) | `string` | yes |
 | <a name="input_acm_request_certificate_arn"></a> [acm\_request\_certificate\_arn](#input\_acm\_request\_certificate\_arn) | Certificate manager ARN | `string` | no |
-| <a name="input_associated_security_group_ids"></a> [associated\_security\_group\_ids](#input\_associated\_security\_group\_ids) | IDs for private subnets | `string` | no |
+| <a name="input_associated_security_group_ids"></a> [associated\_security\_group\_ids](#input\_associated\_security\_group\_ids) | IDs for private subnets | `list(string)` | no |
 | <a name="input_cognito_enabled"></a> [cognito\_enabled](#input\_cognito\_enabled) | Allow cognito authorization on api gateway routes | `bool` | no |
 | <a name="input_context"></a> [context](#input\_context) | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | `any` | no |
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | A domain name for which the certificate should be issued | `string` | no |
