@@ -86,8 +86,8 @@ variable "private_subnet_ids" {
 }
 
 variable "associated_security_group_ids" {
-  type        = string
-  default     = "null"
+  type        = list(string)
+  default     = []
   description = "IDs for private subnets"
 }
 
