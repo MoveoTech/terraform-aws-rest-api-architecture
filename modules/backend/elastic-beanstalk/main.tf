@@ -28,19 +28,19 @@ module "elastic_beanstalk_environment" {
   root_volume_size = var.root_volume_size
   root_volume_type = var.root_volume_type
 
-  autoscale_min             = var.autoscale_min
-  autoscale_max             = var.autoscale_max
-  autoscale_measure_name    = var.autoscale_measure_name
-  autoscale_statistic       = var.autoscale_statistic
-  autoscale_unit            = var.autoscale_unit
-  autoscale_lower_bound     = var.autoscale_lower_bound
-  autoscale_lower_increment = var.autoscale_lower_increment
-  autoscale_upper_bound     = var.autoscale_upper_bound
-  autoscale_upper_increment = var.autoscale_upper_increment
-
-  vpc_id               = var.vpc_id
-  loadbalancer_subnets = length(var.loadbalancer_subnets) > 0 ? var.loadbalancer_subnets : var.private_subnet_ids
-  application_subnets  = length(var.application_subnets) > 0 ? var.application_subnets : var.private_subnet_ids
+  autoscale_min               = var.autoscale_min
+  autoscale_max               = var.autoscale_max
+  autoscale_measure_name      = var.autoscale_measure_name
+  autoscale_statistic         = var.autoscale_statistic
+  autoscale_unit              = var.autoscale_unit
+  autoscale_lower_bound       = var.autoscale_lower_bound
+  autoscale_lower_increment   = var.autoscale_lower_increment
+  autoscale_upper_bound       = var.autoscale_upper_bound
+  autoscale_upper_increment   = var.autoscale_upper_increment
+  associate_public_ip_address = var.associate_public_ip_address
+  vpc_id                      = var.vpc_id
+  loadbalancer_subnets        = length(var.loadbalancer_subnets) > 0 ? var.loadbalancer_subnets : var.private_subnet_ids
+  application_subnets         = length(var.application_subnets) > 0 ? var.application_subnets : var.private_subnet_ids
 
   allow_all_egress = true
 
