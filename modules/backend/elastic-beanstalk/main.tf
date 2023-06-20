@@ -37,7 +37,7 @@ module "elastic_beanstalk_environment" {
   autoscale_lower_increment = var.autoscale_lower_increment
   autoscale_upper_bound     = var.autoscale_upper_bound
   autoscale_upper_increment = var.autoscale_upper_increment
-
+  associate_public_ip_address = var.associate_public_ip_address
   vpc_id               = var.vpc_id
   loadbalancer_subnets = length(var.loadbalancer_subnets) > 0 ? var.loadbalancer_subnets : var.private_subnet_ids
   application_subnets  = length(var.application_subnets) > 0 ? var.application_subnets : var.private_subnet_ids

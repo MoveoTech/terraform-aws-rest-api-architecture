@@ -271,3 +271,9 @@ variable "aws_elastic_beanstalk_solution_stack" {
   default     = "^64bit Amazon Linux (.*) running Node.js (.*)$"
   description = "aws elastic beanstalk solution stack environment"
 }
+
+variable "associate_public_ip_address" {
+  type        = bool
+  default     = false
+  description = "Whether to associate public IP addresses to the instances"
+}

@@ -12,13 +12,13 @@ module "account_settings" {
   source = "cloudposse/api-gateway/aws//modules/account-settings"
 
   version = "0.3.1"
-  name    = var.context.name
+  name    = "api-gateway-${var.context.stage}"
 
 }
 
 
 resource "aws_api_gateway_rest_api" "main" {
-  name               = var.context.name
+  name               = "api-gateway-${var.context.stage}"
   binary_media_types = var.binary_media_types
   tags = merge(var.context.tags, { Name = "Api Gateway" }, {
     yor_trace = "921a6956-bab5-4ab5-9fca-496360259651"
