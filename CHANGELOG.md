@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.20.0...v0.20.1) (2023-06-20)
+
+
+### Bug Fixes
+
+* adding api gateway name by stage ([#815](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/815)) ([e757b2a](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/e757b2afafabba6626dda2e2f81c423e88890a10))
+
 ## [0.20.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.19.0...v0.20.0) (2023-05-27)
 
 
