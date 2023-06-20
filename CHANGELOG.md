@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.20.1...v0.20.2) (2023-06-20)
+
+
+### Bug Fixes
+
+* update version constrain for waf ([#817](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/817)) ([c8cc982](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/c8cc9820a14b444ac5f67b2e007ec53c8e5d6f05))
+
 ## [0.20.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.20.0...v0.20.1) (2023-06-20)
 
 
