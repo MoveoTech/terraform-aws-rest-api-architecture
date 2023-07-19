@@ -17,6 +17,7 @@
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
 | <a name="input_atlas_project_id"></a> [atlas\_project\_id](#input\_atlas\_project\_id) | The ID of your MongoDB Atlas project | `string` | yes |
+| <a name="input_mongo_db_major_version"></a> [mongo\_db\_major\_version](#input\_mongo\_db\_major\_version) | Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: 4.2, 4.4, 5.0, or 6.0. | `string` | yes |
 | <a name="input_provider_instance_size_name"></a> [provider\_instance\_size\_name](#input\_provider\_instance\_size\_name) | Atlas provides different instance sizes, each with a default storage capacity and RAM size | `string` | yes |
 | <a name="input_region"></a> [region](#input\_region) | AWS region | `string` | yes |
 | <a name="input_context"></a> [context](#input\_context) | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | `any` | no |
