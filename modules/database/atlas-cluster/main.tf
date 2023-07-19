@@ -5,6 +5,7 @@ resource "mongodbatlas_cluster" "cluster-atlas" {
   name                         = var.context.name
   cloud_backup                 = true
   auto_scaling_disk_gb_enabled = true
+  mongo_db_major_version       = var.mongo_db_major_version
   cluster_type                 = "REPLICASET"
   replication_specs {
     num_shards = 1

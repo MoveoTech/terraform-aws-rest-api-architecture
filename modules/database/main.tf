@@ -85,6 +85,7 @@ module "atlas_cluster" {
   provider_instance_size_name = var.provider_instance_size_name
   depends_on                  = [module.atlas_vpc_endpoint]
   context                     = var.context
+  mongo_db_major_version      = var.mongo_db_major_version
 
 }
 
