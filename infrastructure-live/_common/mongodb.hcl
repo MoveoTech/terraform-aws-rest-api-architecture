@@ -28,6 +28,7 @@ version_number = local.versions_vars.locals.base_architecture_version
   env = local.environment_vars.locals.stage
   region = local.environment_vars.locals.region
   atlas_users = local.environment_vars.locals.atlas_users
+  mongo_db_major_version = local.environment_vars.locals.mongo_db_major_version
 
   # Expose the base source URL so different versions of the module can be deployed in different environments. This will
   # be used to construct the terraform block in the child terragrunt configurations.
@@ -65,5 +66,6 @@ inputs = {
   enable_atlas_whitelist_ips  = true
   enable_database_credentials_secret_manager = true
   context                     = dependency.context.outputs.context
+  mongo_db_major_version                     = local.mongo_db_major_version
 
 }

@@ -7,8 +7,9 @@ locals{
     # Cognito detilas
     cognito_default_user_email = "dev@moveohls.com"
 
-    # Database detilas
+    # Database details
     atlas_users =["dev@moveohls.com"]
+    mongo_db_major_version = "6.0"
 
     # Github details
     client_branch_name = "master"

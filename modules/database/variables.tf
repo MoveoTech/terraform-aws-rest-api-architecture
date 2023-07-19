@@ -21,6 +21,13 @@ variable "provider_instance_size_name" {
   type        = string
   description = "Atlas provides different instance sizes, each with a default storage capacity and RAM size"
 }
+
+variable "mongo_db_major_version" {
+  type        = string
+  description = "Version of the cluster to deploy. Atlas supports the following MongoDB versions for M10+ clusters: 4.2, 4.4, 5.0, or 6.0."
+  default     = "6.0"
+}
+
 variable "context" {
   type = any
   default = {
