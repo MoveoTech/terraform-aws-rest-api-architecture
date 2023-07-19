@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.20.2...v0.21.0) (2023-07-19)
+
+
+### Features
+
+* Support variable for database version ([#835](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/835)) ([5e5d49d](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/5e5d49da557d2040f34d59a7a89ccb47a36066fc))
+
 ## [0.20.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.20.1...v0.20.2) (2023-06-20)
 
 
