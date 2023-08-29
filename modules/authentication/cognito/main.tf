@@ -15,7 +15,7 @@ module "aws_cognito_user_pool" {
   source  = "lgallard/cognito-user-pool/aws"
   version = "0.23.0"
 
-  user_pool_name             = "${var.context.name}-${var.context.stage}${var.user-pool-name}"
+  user_pool_name             = "${var.context.name}-${var.context.stage}${var.user_pool_name}"
   username_attributes        = ["email"]
   auto_verified_attributes   = ["email"]
   sms_authentication_message = "Your username is {username} and temporary password is {####}."

@@ -106,7 +106,7 @@ variable "client_write_attributes" {
   default     = []
 }
 
-variable "user-pool-name" {
+variable "user_pool_name" {
   description = "User poll name. concatenated with the environment name"
   type        = string
   default     = ""
