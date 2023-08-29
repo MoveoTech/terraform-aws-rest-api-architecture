@@ -29,6 +29,7 @@
 | <a name="input_number_schemas"></a> [number\_schemas](#input\_number\_schemas) | A container with the number schema attributes of a user pool. Maximum of 50 attributes | `list(any)` | no |
 | <a name="input_schemas"></a> [schemas](#input\_schemas) | A container with the schema attributes of a user pool. Maximum of 50 attributes | `list(any)` | no |
 | <a name="input_string_schemas"></a> [string\_schemas](#input\_string\_schemas) | A container with the string schema attributes of a user pool. Maximum of 50 attributes | `list(any)` | no |
+| <a name="input_user_pool_name"></a> [user\_pool\_name](#input\_user\_pool\_name) | User poll name. concatenated with the environment name | `string` | no |
 | <a name="input_verification_message_template"></a> [verification\_message\_template](#input\_verification\_message\_template) | The template of the sign-up verification message | `object({ default_email_option = string, email_message = optional(string), email_subject = optional(string), sms_message = optional(string) })` | no |
 
 ## Outputs

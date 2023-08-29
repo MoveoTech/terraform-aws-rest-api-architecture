@@ -106,6 +106,12 @@ variable "client_write_attributes" {
   default     = []
 }
 
+variable "user_pool_name" {
+  description = "User poll name. concatenated with the environment name"
+  type        = string
+  default     = ""
+}
+
 
 variable "explicit_auth_flows" {
   description = "List of explicit auth flows"
