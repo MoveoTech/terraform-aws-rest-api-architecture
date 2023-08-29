@@ -72,7 +72,7 @@ module "aws_cognito_user_pool" {
 
 
   # user_pool_domain
-  domain = "${var.context.name}-${var.context.stage}"
+  domain = "${var.context.name}-${var.context.stage}${var.user_pool_name}${var.domain_name}"
   # clients
   clients = [
     {
