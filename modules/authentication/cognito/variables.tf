@@ -111,6 +111,11 @@ variable "user_pool_name" {
   type        = string
   default     = ""
 }
+variable "domain_name" {
+  description = "Domain name. concatenated with the environment name"
+  type        = string
+  default     = ""
+}
 
 
 variable "explicit_auth_flows" {
