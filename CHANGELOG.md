@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.23.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.22.0...v0.23.0) (2023-08-29)
+
+
+### Features
+
+* expose domain name unique ([#849](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/849)) ([ae57d8a](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/ae57d8a3e01a4c719a7d8f055e3876a0efcb739d))
+
 ## [0.22.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.21.0...v0.22.0) (2023-08-29)
 
 
