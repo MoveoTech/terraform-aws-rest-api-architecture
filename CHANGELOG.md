@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.21.0...v0.22.0) (2023-08-29)
+
+
+### Features
+
+* expose cognito user pool name ([#847](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/issues/847)) ([f7bd61f](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/f7bd61f2657bcbf1451f575f3f5801ca6098fffb))
+
 ## [0.21.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.20.2...v0.21.0) (2023-07-19)
 
 
