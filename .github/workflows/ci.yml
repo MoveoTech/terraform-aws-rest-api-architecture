@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Terraform min/max versions
         id: minMax
         uses: clowdhaus/terraform-min-max@v1.2.7
@@ -60,7 +60,7 @@ jobs:
     steps:
       - uses: hashicorp/setup-terraform@v2
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Check modules
         run: |
           echo "Validating ${{ matrix.folders }}"...
@@ -86,7 +86,7 @@ jobs:
   docs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
