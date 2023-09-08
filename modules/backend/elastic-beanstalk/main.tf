@@ -8,7 +8,7 @@ module "elastic_beanstalk_application" {
 
 module "elastic_beanstalk_environment" {
   source  = "cloudposse/elastic-beanstalk-environment/aws"
-  version = "0.50.0"
+  version = "0.51.2"
 
   description                        = var.description
   region                             = var.region
