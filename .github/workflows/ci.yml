@@ -58,7 +58,7 @@ jobs:
         shell: bash
         working-directory: modules
     steps:
-      - uses: hashicorp/setup-terraform@v2
+      - uses: hashicorp/setup-terraform@v3
       - name: Checkout
         uses: actions/checkout@v4
       - name: Check modules
