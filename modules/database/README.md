@@ -34,6 +34,8 @@
 | <a name="input_private_endpoint_enabled"></a> [private\_endpoint\_enabled](#input\_private\_endpoint\_enabled) | Private endpoint allow to connect between 2 aws accounts by private network no need to use internet. To use this feature you need to add payment card to your atlas account | `bool` | no |
 | <a name="input_private_key"></a> [private\_key](#input\_private\_key) | Atlas MongoDB private key for authentication | `string` | no |
 | <a name="input_public_key"></a> [public\_key](#input\_public\_key) | Atlas MongoDB public key for authentication | `string` | no |
+| <a name="input_role_names"></a> [role\_names](#input\_role\_names) | Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team | `list(string)` | no |
+| <a name="input_team_id"></a> [team\_id](#input\_team\_id) | The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization. | `string` | no |
 
 ## Outputs
 
