@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.24.0...v0.24.1) (2024-01-11)
+
+
+### Bug Fixes
+
+* change env ([2fa72da](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/2fa72da2c14fa78d51cfdd402637485356e0d623))
+
 ## [0.24.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.23.0...v0.24.0) (2024-01-11)
 
 
