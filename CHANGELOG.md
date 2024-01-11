@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.24.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.24.1...v0.24.2) (2024-01-11)
+
+
+### Bug Fixes
+
+* fix bug for atlas-project ([17a8642](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/17a8642ec2f24bac26ad4685f56516818f1617df))
+
 ## [0.24.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.24.0...v0.24.1) (2024-01-11)
 
 
