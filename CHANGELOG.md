@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.24.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.23.0...v0.24.0) (2024-01-11)
+
+
+### Features
+
+* fix env var ([df10d21](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/df10d21d68d4887b4e990bf9c7cd52a475d0064b))
+
+
+### Bug Fixes
+
+* fix env.hcl var ([e5500e1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/e5500e12156658df35b3cad321ea62392415f49c))
+
 ## [0.23.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.22.0...v0.23.0) (2023-08-29)
 
 
