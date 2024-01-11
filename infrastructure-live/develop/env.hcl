@@ -10,6 +10,8 @@ locals{
     # Database details
     atlas_users =["dev@moveohls.com"]
     mongo_db_major_version = "6.0"
+    team_id    = "xxxxxxxxxxxxx"
+    role_names = ["GROUP_OWNER"]
 
     # Github details
     client_branch_name = "master"

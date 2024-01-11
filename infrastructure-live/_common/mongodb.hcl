@@ -26,6 +26,8 @@ locals {
 version_number = local.versions_vars.locals.base_architecture_version
   # Extract out common variables for reuse
   env = local.environment_vars.locals.stage
+  team_id = local.environment_vars.locals.team_id
+  role_names = local.environment_vars.locals.role_names
   region = local.environment_vars.locals.region
   atlas_users = local.environment_vars.locals.atlas_users
   mongo_db_major_version = local.environment_vars.locals.mongo_db_major_version
@@ -66,6 +68,7 @@ inputs = {
   enable_atlas_whitelist_ips  = true
   enable_database_credentials_secret_manager = true
   context                     = dependency.context.outputs.context
-  mongo_db_major_version                     = local.mongo_db_major_version
-
+  mongo_db_major_version      = local.mongo_db_major_version
+  team_id                     = local.team_id
+  role_names                  = local.role_names 
 }
