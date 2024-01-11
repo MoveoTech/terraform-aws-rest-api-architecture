@@ -61,6 +61,8 @@ module "atlas_project" {
   source       = "./atlas-project"
   atlas_org_id = local.atlas_org_id
   context      = var.context
+  team_id      = var.team_id
+  role_names   = var.role_names
 }
 
 module "db_users" {

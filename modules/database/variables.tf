@@ -80,6 +80,19 @@ variable "atlas_org_id" {
   type        = string
   default     = null
 }
+
+variable "team_id" {
+  description = "The unique identifier of the team you want to associate with the project. The team and project must share the same parent organization."
+  type        = string
+  default     = null
+}
+
+variable "role_names" {
+  description = "Each string in the array represents a project role you want to assign to the team. Every user associated with the team inherits these roles. You must specify an array even if you are only associating a single role with the team"
+  type        = list(string)
+  default     = []
+}
+
 variable "private_key" {
   description = "Atlas MongoDB private key for authentication"
   type        = string
