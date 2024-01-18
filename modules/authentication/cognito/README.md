@@ -17,7 +17,7 @@
 | Name | Description | Type | Required |
 |------|-------------|------|:--------:|
 | <a name="input_cognito_default_user_email"></a> [cognito\_default\_user\_email](#input\_cognito\_default\_user\_email) | This is a default user to be able to login to the system | `string` | yes |
-| <a name="input_admin_create_user_config"></a> [admin\_create\_user\_config](#input\_admin\_create\_user\_config) | The configuration for AdminCreateUser requests | <pre>object({<br>    email_message = optional(string),<br>    email_subject = optional(string),<br>    sms_message = optional(string),<br>  })</pre> | no |
+| <a name="input_admin_create_user_config"></a> [admin\_create\_user\_config](#input\_admin\_create\_user\_config) | The configuration for AdminCreateUser requests | <pre>object({<br>    email_message = optional(string)<br>    email_subject = optional(string)<br>    sms_message   = optional(string)<br>  })</pre> | no |
 | <a name="input_client_callback_urls"></a> [client\_callback\_urls](#input\_client\_callback\_urls) | List of allowed callback URLs for the identity providers | `list(string)` | no |
 | <a name="input_client_default_redirect_uri"></a> [client\_default\_redirect\_uri](#input\_client\_default\_redirect\_uri) | The default redirect URI. Must be in the list of callback URLs | `string` | no |
 | <a name="input_client_logout_urls"></a> [client\_logout\_urls](#input\_client\_logout\_urls) | List of allowed logout URLs for the identity providers | `list(string)` | no |
@@ -31,7 +31,7 @@
 | <a name="input_explicit_auth_flows"></a> [explicit\_auth\_flows](#input\_explicit\_auth\_flows) | List of explicit auth flows | `list(string)` | no |
 | <a name="input_generate_secret"></a> [generate\_secret](#input\_generate\_secret) | Generate a user secret. | `bool` | no |
 | <a name="input_number_schemas"></a> [number\_schemas](#input\_number\_schemas) | A container with the number schema attributes of a user pool. Maximum of 50 attributes | `list(any)` | no |
-| <a name="input_password_policy"></a> [password\_policy](#input\_password\_policy) | The configuration for the generated user pool's password policy | <pre>object({<br>    minimum_length = optional(number)<br>    require_lowercase = optional(bool)<br>    require_numbers = optional(bool)<br>    require_symbols = optional(bool)<br>    require_uppercase = optional(bool)<br>    temporary_password_validity_days = optional(number)<br>  })</pre> | no |
+| <a name="input_password_policy"></a> [password\_policy](#input\_password\_policy) | The configuration for the generated user pool's password policy | <pre>object({<br>    minimum_length                   = optional(number)<br>    require_lowercase                = optional(bool)<br>    require_numbers                  = optional(bool)<br>    require_symbols                  = optional(bool)<br>    require_uppercase                = optional(bool)<br>  })</pre> | no |
 | <a name="input_schemas"></a> [schemas](#input\_schemas) | A container with the schema attributes of a user pool. Maximum of 50 attributes | `list(any)` | no |
 | <a name="input_string_schemas"></a> [string\_schemas](#input\_string\_schemas) | A container with the string schema attributes of a user pool. Maximum of 50 attributes | `list(any)` | no |
 | <a name="input_user_pool_name"></a> [user\_pool\_name](#input\_user\_pool\_name) | User poll name. concatenated with the environment name | `string` | no |
