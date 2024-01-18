@@ -19,17 +19,23 @@ source = "${local.base_source_url}?ref=v${local.version_number}"
 # ---------------------------------------------------------------------------------------------------------------------
 locals {
   # Automatically load environment-level variables
-  environment_vars = read_terragrunt_config(find_in_parent_folders("env.hcl"))
-  versions_vars = read_terragrunt_config(find_in_parent_folders("versions.hcl"))
+  environment_vars                            = read_terragrunt_config(find_in_parent_folders("env.hcl"))
+  versions_vars                               = read_terragrunt_config(find_in_parent_folders("versions.hcl"))
 
-version_number = local.versions_vars.locals.base_architecture_version
+  version_number                              = local.versions_vars.locals.base_architecture_version
   # Extract out common variables for reuse
-  env = local.environment_vars.locals.stage
-  cognito_default_user_email = local.environment_vars.locals.cognito_default_user_email
+  env                                         = local.environment_vars.locals.stage
+  cognito_default_user_email                  = local.environment_vars.locals.cognito_default_user_email
+  admin_create_user_config                    = local.environment_vars.admin_create_user_config
+  password_policy                             = local.environment_vars.password_policy
+  verification_message_template               = local.environment_vars.verification_message_template
+  clients_access_token_validity_hours_amount  = local.environment_vars.clients_access_token_validity_hours_amount
+  clients_id_token_validity_hours_amount      = local.environment_vars.clients_id_token_validity_hours_amount
+  clients_refresh_token_validity_hours_amount = local.environment_vars.clients_refresh_token_validity_hours_amount
 
   # Expose the base source URL so different versions of the module can be deployed in different environments. This will
   # be used to construct the terraform block in the child terragrunt configurations.
-  base_source_url = "git::git@github.com:MoveoTech/terraform-aws-rest-api-architecture.git//modules/authentication/cognito"
+  base_source_url                             = "git::git@github.com:MoveoTech/terraform-aws-rest-api-architecture.git//modules/authentication/cognito"
 }
 dependencies {
   paths = [ "../context"]
@@ -39,7 +45,13 @@ dependency "context" {
 }
 
 inputs = {
-  client_callback_urls        = ["http://localhost:3000"]
-  cognito_default_user_email  = local.cognito_default_user_email
-  context                     = dependency.context.outputs.context
+  client_callback_urls                        = ["http://localhost:3000"]
+  cognito_default_user_email                  = local.cognito_default_user_email
+  context                                     = dependency.context.outputs.context
+  admin_create_user_config                    = local.admin_create_user_config
+  password_policy                             = local.password_policy
+  verification_message_template               = local.verification_message_template
+  clients_access_token_validity_hours_amount  = local.clients_access_token_validity_hours_amount
+  clients_id_token_validity_hours_amount      = local.clients_id_token_validity_hours_amount
+  clients_refresh_token_validity_hours_amount = local.clients_refresh_token_validity_hours_amount
 }

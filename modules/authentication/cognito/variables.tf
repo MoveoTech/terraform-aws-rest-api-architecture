@@ -117,6 +117,21 @@ variable "domain_name" {
   default     = ""
 }
 
+variable "clients_access_token_validity_hours_amount" {
+  description = "The amount of hours a client's access token should be valid"
+  type        = number
+  default     = 1
+}
+variable "clients_id_token_validity_hours_amount" {
+  description = "The amount of hours a client's id token should be valid"
+  type        = number
+  default     = 1
+}
+variable "clients_refresh_token_validity_hours_amount" {
+  description = "The amount of hours a client's access token should be valid"
+  type        = number
+  default     = 12
+}
 
 variable "explicit_auth_flows" {
   description = "List of explicit auth flows"
@@ -137,10 +152,34 @@ variable "verification_message_template" {
 
 variable "admin_create_user_config" {
   description = "The configuration for AdminCreateUser requests"
-  type        = map(any)
+  type = object({
+    email_message = optional(string)
+    email_subject = optional(string)
+    sms_message   = optional(string)
+  })
   default = {
     email_message = "Dear {username}, your verification code is {####}."
     email_subject = "Verification code"
     sms_message   = "Your username is {username} and temporary password is {####}."
+  }
+}
+
+variable "password_policy" {
+  description = "The configuration for the generated user pool's password policy"
+  type = object({
+    minimum_length                   = optional(number)
+    require_lowercase                = optional(bool)
+    require_numbers                  = optional(bool)
+    require_symbols                  = optional(bool)
+    require_uppercase                = optional(bool)
+    temporary_password_validity_days = optional(number)
+  })
+  default = {
+    minimum_length                   = 12
+    require_lowercase                = true
+    require_numbers                  = true
+    require_symbols                  = false
+    require_uppercase                = false
+    temporary_password_validity_days = 7
   }
 }
