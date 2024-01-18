@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.25.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.24.2...v0.25.0) (2024-01-18)
+
+
+### Features
+
+* expose cognito user pool configurations. ([dd7ba4d](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/dd7ba4d851c468d728fac0c1cdd499220c657a0f))
+
+
+### Bug Fixes
+
+* line error ([9275220](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/9275220a728af978404ae6ca74d63e897ee0874d))
+* var error ([25d777a](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/25d777acafcb00022cb58752d31a33da6eb00801))
+
 ## [0.24.2](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.24.1...v0.24.2) (2024-01-11)
 
 
