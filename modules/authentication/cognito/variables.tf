@@ -152,10 +152,10 @@ variable "verification_message_template" {
 
 variable "admin_create_user_config" {
   description = "The configuration for AdminCreateUser requests"
-  type        = object({
-    email_message = optional(string),
-    email_subject = optional(string),
-    sms_message = optional(string),
+  type = object({
+    email_message = optional(string)
+    email_subject = optional(string)
+    sms_message   = optional(string)
   })
   default = {
     email_message = "Dear {username}, your verification code is {####}."
@@ -166,13 +166,12 @@ variable "admin_create_user_config" {
 
 variable "password_policy" {
   description = "The configuration for the generated user pool's password policy"
-  type        = object({
-    minimum_length = optional(number)
-    require_lowercase = optional(bool)
-    require_numbers = optional(bool)
-    require_symbols = optional(bool)
-    require_uppercase = optional(bool)
-    temporary_password_validity_days = optional(number)
+  type = object({
+    minimum_length                   = optional(number)
+    require_lowercase                = optional(bool)
+    require_numbers                  = optional(bool)
+    require_symbols                  = optional(bool)
+    require_uppercase                = optional(bool)
   })
   default = {
     minimum_length                   = 12
