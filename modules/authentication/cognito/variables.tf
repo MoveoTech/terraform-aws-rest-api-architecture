@@ -167,11 +167,12 @@ variable "admin_create_user_config" {
 variable "password_policy" {
   description = "The configuration for the generated user pool's password policy"
   type = object({
-    minimum_length    = optional(number)
-    require_lowercase = optional(bool)
-    require_numbers   = optional(bool)
-    require_symbols   = optional(bool)
-    require_uppercase = optional(bool)
+    minimum_length                   = optional(number)
+    require_lowercase                = optional(bool)
+    require_numbers                  = optional(bool)
+    require_symbols                  = optional(bool)
+    require_uppercase                = optional(bool)
+    temporary_password_validity_days = optional(number)
   })
   default = {
     minimum_length                   = 12
