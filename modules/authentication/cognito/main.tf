@@ -37,15 +37,7 @@ module "aws_cognito_user_pool" {
     case_sensitive = false
   }
 
-  password_policy = {
-    minimum_length                   = 10
-    require_lowercase                = true
-    require_numbers                  = true
-    require_symbols                  = true
-    require_uppercase                = true
-    temporary_password_validity_days = 7
-
-  }
+  password_policy = var.password_policy
 
   user_pool_add_ons = {
     advanced_security_mode = "ENFORCED"
@@ -89,13 +81,13 @@ module "aws_cognito_user_pool" {
       read_attributes                      = concat(["email"], var.client_read_attributes)
       supported_identity_providers         = ["COGNITO"]
       write_attributes                     = var.client_write_attributes
-      access_token_validity                = 1
-      id_token_validity                    = 1
-      refresh_token_validity               = 1
+      access_token_validity                = var.clients_access_token_validity_hours_amount
+      id_token_validity                    = var.clients_id_token_validity_hours_amount
+      refresh_token_validity               = var.clients_refresh_token_validity_hours_amount
       token_validity_units = {
         access_token  = "hours"
         id_token      = "hours"
-        refresh_token = "days"
+        refresh_token = "hours"
       }
     }
   ]
