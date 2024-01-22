@@ -37,7 +37,7 @@ locals {
 
   # Expose the base source URL so different versions of the module can be deployed in different environments. This will
   # be used to construct the terraform block in the child terragrunt configurations.
-  base_source_url                             = "git::git@github.com:MoveoTech/terraform-aws- rest-api-architecture.git//modules/authentication/cognito"
+  base_source_url                             = "git::git@github.com:MoveoTech/terraform-aws-rest-api-architecture.git//modules/authentication/cognito"
 }
 dependencies {
   paths = [ "../context"]
