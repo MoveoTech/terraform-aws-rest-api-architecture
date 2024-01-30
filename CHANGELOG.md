@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.25.0...v0.25.1) (2024-01-30)
+
+
+### Bug Fixes
+
+* add retention var to api gateway logs ([d6a0ca6](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/d6a0ca63ecc40ddeba5c456cbbc25ff7ddd37e2f))
+
 ## [0.25.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.24.2...v0.25.0) (2024-01-18)
 
 
