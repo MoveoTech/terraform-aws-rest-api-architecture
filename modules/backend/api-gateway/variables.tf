@@ -3,6 +3,11 @@ variable "zone_id" {
   type        = string
   default     = null
 }
+variable "retention_in_days" {
+  description = "The logs retention in days"
+  type        = number
+  default     = 180
+}
 variable "domain_name" {
   type        = string
   description = "A domain name for which the certificate should be issued"
