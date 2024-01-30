@@ -126,6 +126,7 @@ module "cloudwatch_log_group" {
   source      = "cloudposse/cloudwatch-logs/aws"
   version     = "0.6.8"
   kms_key_arn = var.kms_key_arn
+  retention_in_days = var.retention_in_days
   context = merge(var.context,
     {
       namespace   = "",
