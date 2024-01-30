@@ -36,6 +36,7 @@
 | <a name="input_integration_http_method"></a> [integration\_http\_method](#input\_integration\_http\_method) | The integration HTTP method (GET, POST, PUT, DELETE, HEAD, OPTIONs, ANY, PATCH) specifying how API Gateway will interact with the back end. | `string` | no |
 | <a name="input_integration_request_parameters"></a> [integration\_request\_parameters](#input\_integration\_request\_parameters) | Allowed request headers on api gateway routes integrations | `map(string)` | no |
 | <a name="input_method_request_parameters"></a> [method\_request\_parameters](#input\_method\_request\_parameters) | Allowed request headers on api gateway routes methods | `map(bool)` | no |
+| <a name="input_retention_in_days"></a> [retention\_in\_days](#input\_retention\_in\_days) | The logs retention in days | `number` | no |
 | <a name="input_zone_id"></a> [zone\_id](#input\_zone\_id) | The id of the parent Route53 zone to use for the distribution. | `string` | no |
 
 ## Outputs
