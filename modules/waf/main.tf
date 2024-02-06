@@ -22,7 +22,7 @@ module "cloudwatch_log_group" {
 
 module "waf" {
   source                    = "cloudposse/waf/aws"
-  version                   = "0.4.0"
+  version                   = "1.4.0"
   association_resource_arns = var.association_resource_arns
   scope                     = var.scope
   default_action            = "allow"
