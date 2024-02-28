@@ -11,7 +11,7 @@ locals {
 module "acm_request_certificate" {
   source                            = "cloudposse/acm-request-certificate/aws"
   enabled                           = local.enabled
-  version                           = "0.17.0"
+  version                           = "0.18.0"
   zone_id                           = var.zone_id
   domain_name                       = local.domain_name
   subject_alternative_names         = var.subject_alternative_names
