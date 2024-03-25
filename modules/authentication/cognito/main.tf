@@ -13,7 +13,7 @@ resource "aws_cognito_user" "default_user" {
 module "aws_cognito_user_pool" {
 
   source  = "lgallard/cognito-user-pool/aws"
-  version = "0.24.0"
+  version = "0.26.0"
 
   user_pool_name             = "${var.context.name}-${var.context.stage}${var.user_pool_name}"
   username_attributes        = ["email"]
