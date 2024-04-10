@@ -54,3 +54,9 @@ variable "cluster_name" {
   description = "Cluster name"
   type        = string
 }
+
+variable "db_name_for_specific_privileges_permission" {
+  description = "Database name for a specific privileges use"
+  type        = string
+  default     = null
+}

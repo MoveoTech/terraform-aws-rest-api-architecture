@@ -1,3 +1,6 @@
+locals{
+  database_name_for_specific_privileges = "${var.db_name_for_specific_privileges_permission ? var.db_name_for_specific_privileges_permission : "${var.context.name}-${var.context.stage}"}"
+}
 
 resource "random_password" "db_user_password" {
   length = 24
@@ -11,7 +14,7 @@ resource "mongodbatlas_database_user" "user1" {
 
   roles {
     role_name     = "readWrite"
-    database_name = "${var.context.name}-${var.context.stage}"
+    database_name = local.database_name_for_specific_privileges
   }
   labels {
     key   = "Name"
