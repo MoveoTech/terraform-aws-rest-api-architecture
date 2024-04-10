@@ -21,6 +21,7 @@
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Cluster name | `string` | yes |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | Atlas database prodect ID | `string` | yes |
 | <a name="input_context"></a> [context](#input\_context) | Single object for setting entire context at once.<br>See description of individual variables for details.<br>Leave string and numeric variables as `null` to use default value.<br>Individual variable settings (non-null) override settings in context object,<br>except for attributes, tags, and additional\_tag\_map, which are merged. | `any` | no |
+| <a name="input_db_name_for_specific_privileges_permission"></a> [db\_name\_for\_specific\_privileges\_permission](#input\_db\_name\_for\_specific\_privileges\_permission) | Database name for a specific privileges use | `string` | no |
 
 ## Outputs
 

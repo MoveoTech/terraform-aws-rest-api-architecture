@@ -70,6 +70,7 @@ module "db_users" {
   cluster_name = module.atlas_cluster.cluster_name
   project_id   = module.atlas_project.atlas_project_id
   context      = var.context
+  db_name_for_specific_privileges_permission      = var.db_name_for_specific_privileges_permission
 }
 
 module "security_groups" {
