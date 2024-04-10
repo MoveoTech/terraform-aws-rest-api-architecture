@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.26.0](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.25.1...v0.26.0) (2024-04-10)
+
+
+### Features
+
+* Add an option to var - Database name for a specific privileges use ([ed1cd95](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/commit/ed1cd95b27a1bd71fa10c5a806b77b74ad470a2a))
+
 ## [0.25.1](https://github.com/MoveoTech/terraform-aws-rest-api-architecture/compare/v0.25.0...v0.25.1) (2024-01-30)
 
 
