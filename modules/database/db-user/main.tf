@@ -1,5 +1,5 @@
 locals{
-  database_name_for_specific_privileges = "${var.db_name_for_specific_privileges_permission ? var.db_name_for_specific_privileges_permission : "${var.context.name}-${var.context.stage}"}"
+  database_name_for_specific_privileges = "${var.db_name_for_specific_privileges_permission != null ? var.db_name_for_specific_privileges_permission : "${var.context.name}-${var.context.stage}"}"
 }
 
 resource "random_password" "db_user_password" {
